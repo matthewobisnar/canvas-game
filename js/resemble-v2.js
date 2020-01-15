@@ -26,7 +26,7 @@
                [2,2,6,5],
                [3,2,6,2],
                [3,4,2,2],
-               [2,4,2,4]
+               [2,4,2,5]
             ],
         },
         {
@@ -41,6 +41,9 @@
             W: 70,
             answers: [
                [2,5,3,2,4,6,2,5,3],
+               [4,6,2,5,3,2,4,6,2],
+               [2,2,2,5,6,5,3,4,3],
+               [6,5,6,4,3,4,2,2,2]
             ],
         },
     ];
@@ -99,7 +102,7 @@
                     jQuery('<div/>', {
                         "class": 'draggable m-5 ui-widget-content drag-num-' + i,
                         "id":"draggable",
-                    }).append("<p class='text-center num-p'>"+ (i+1) +"</p>").appendTo('.items');
+                    }).append("<p class='text-center'>"+ (i+1) +"</p>").appendTo('.items');
                 }
 
                 // ==== Activate Draggable ====
@@ -144,7 +147,7 @@
                     jQuery('<div/>', {
                         "class": 'objective-box objective-div objective-num-'+ questions[currentIndex].answers[rotateObjective][i],
                         "id": 'obj-target',
-                    }).append("<p class='num-p'> "+ (questions[currentIndex].answers[rotateObjective][i])+" </p>").appendTo('.'+param);
+                    }).append("<p class=' d'> "+ (questions[currentIndex].answers[rotateObjective][i])+" </p>").appendTo('.'+param);
                 }
 
 
@@ -162,13 +165,16 @@
     }
 
     function evaluate () {
-       var array = [];
        var value = $(".puzzle-box").find("p").text();
+       var answer = [];
 
        if (value.length == Math.pow(questions[currentIndex].grid,2)) {
-            array = value.split('');
 
-            if (check(array, questions[currentIndex].answers[0]) == true) {
+            for (var i =0; i<questions[currentIndex].answers.length; i++) {
+                answer.push(questions[currentIndex].answers[i].join(""));
+            }
+
+            if (answer.includes(value) == true) {
 
               var statugme = setInterval(function() {
                     score +=1;
@@ -186,15 +192,15 @@
 
        }
 
-       function check(array, value) {
-            for (var j = Math.pow(questions[currentIndex].grid, 2); j--;) {
-                if (array[j] != value[j]) {
-                    return false;
-                } 
-            }
+    //    function check(array, value) {
+    //         for (var j = Math.pow(questions[currentIndex].grid, 2); j--;) {
+    //             if (array[j] != value[j]) {
+    //                 return false;
+    //             } 
+    //         }
 
-            return true;
-       }
+    //         return true;
+    //    }
 
     }
 
