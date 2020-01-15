@@ -1,0 +1,140 @@
+body { overflow-x: hidden; background: #2a053a;}
+.bg-vio { background-color: #401146 !important;}
+.canvas { max-width: 210mm; margin: 0 auto;}
+.canvas p .targets { cursor: pointer; }
+.t-y { color: #ffc929 !important}
+.t-r {color: #ff3f3f !important}
+.dead-h { color: #929292 !important}
+
+.bg-white { background: #faf8fa !important }
+.bg-dark { background-color: #0e0117!important;}
+.l-h-2 { line-height: 1.7; }
+.l-h-3 { line-height: 2;}
+.l-h { line-height: 1.7;}
+.wrong {display: inline-block }
+.swal-button { background: #651d5c !important;}
+
+.correct {
+  font-weight: bold;
+  color: red;
+  opacity: 0;
+  padding: 2px;
+  text-decoration: line-through;
+  animation-name: bounceIn;
+  animation-duration: 450ms;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.btnContainer {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px !important;
+}
+
+.myProgress {
+  width: 60px;
+  height: 10px;
+  margin:4.5px;
+  background-color: #fff;
+}
+  
+.myBar {
+  width: 60px;
+  height: 100%;
+  background-color: rgb(76, 107, 175);
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+  /* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+.animate-like {
+	animation-name: likeAnimation;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+	animation-duration: 0.2s;
+}
+
+
+@keyframes likeAnimation {
+  0%   { transform: scale(5); opacity: 0; overflow:  hidden !important; }
+  99% { transform: scale(1); opacity: 1; overflow:  hidden !important;}
+}
+
+.animate-loss {
+	animation-name: heartloss;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+	animation-duration: 0.2s;
+}
+
+@keyframes heartloss {
+  0%  { transform: scale(1); opacity: 1; overflow:  hidden !important;}
+  99% { transform: scale(5); opacity: 0; overflow:  hidden !important;}
+}
+
+.shake {
+  animation: shake 0.3s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}

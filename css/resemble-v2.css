@@ -1,0 +1,90 @@
+body { background: #31495f;   overflow-x: hidden;}
+
+
+#draggable { width: 70px; height: 70px; padding: 0.5em; border: solid 1px #ccc }
+.boxes, .objective-box { border: solid 1px #562971; width: 70px; height: 70px; background: #3b2350;}
+.boxes:hover { background: #562971; translate: .2s ease; border: dotted 1px yellowgreen}
+.puzzle-game, .objective-container { background-color: #2a1550 !important; }
+.hovered { background: #562971; translate: .2s ease; border: dotted 1px yellowgreen}
+.drag-num-0, .objective-num-0 { background-color: #fae488; transition: transform .2s ease-in-out;}
+.drag-num-1, .objective-num-1 { background-color: #66b0e0; transition: transform .2s ease-in-out;}
+.drag-num-2 { background: linear-gradient(135deg, #fae488 50%, #66b0e0 50%); transition: transform .2s ease-in-out;}
+.objective-num-2 { background-color: #66b0e0; transition: transform .2s ease-in-out; }
+.objective-num-3 { background: linear-gradient(135deg, #fae488 50%, #66b0e0 50%); transform: rotate(0deg);}
+.objective-num-4 { background: linear-gradient(135deg, #fae488 50%, #66b0e0 50%); transform: rotate(90deg);}
+.objective-num-5 { background: linear-gradient(135deg, #fae488 50%, #66b0e0 50%); transform: rotate(180deg);}
+.objective-num-6 { background: linear-gradient(135deg, #fae488 50%, #66b0e0 50%); transform: rotate(270deg);}
+.objective-div { margin: 0px !important; border: none !important}
+.big {transform: scale(1.1); }
+.height { max-height: 30px !important}
+.objective , .puzzle-box { transition: transform .2s ease-in-out; transform: rotate(45deg); }
+.l-h-2 { line-height: 1.7; }
+.l-h-3 { line-height: 2;}
+.l-h { line-height: 1.7;}
+.t-y { color: #ffc929 !important}
+.f-30 { font-size: 25px;}
+
+.navigators {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 9px !important;
+  background: #3b2350;
+}
+
+.myProgress {
+  width: 60px;
+  height: 10px;
+  margin:4.5px;
+  background-color: #fff;
+}
+
+.myBar {
+  width: 60px;
+  height: 100%;
+  background-color: rgb(76, 107, 175);
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+  }
+  
+    /* Rules for sizing the icon. */
+  .material-icons.md-18 { font-size: 18px; }
+  .material-icons.md-24 { font-size: 24px; }
+  .material-icons.md-36 { font-size: 36px; }
+  .material-icons.md-48 { font-size: 48px; }
+  
+  /* Rules for using icons as black on a light background. */
+  .material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+  .material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+  
+  /* Rules for using icons as white on a dark background. */
+  .material-icons.md-light { color: rgba(255, 255, 255, 1); }
+  .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
