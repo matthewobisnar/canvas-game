@@ -54,6 +54,7 @@
         GameQue: function (index) {
 
             this.currentIndexQue = index;
+            this.timerStatus = null;
 
             if (this.currentIndexQue < this.compareQuestions.stages.length ) {
                 this.numCompare1 = this.compareQuestions.stages[this.currentIndexQue].combinations[1];
@@ -66,7 +67,7 @@
                 this.drawCircles(this.canvas1, this.context1, this.numCompare1, {bg:"white", color: "#f15349"}); // compare 1
                 this.drawCircles(this.canvas2, this.context2, this.numCompare2, {bg:"#f15349", color: "white"});
     
-                this.timerStatus = setInterval(this.updateTimer.bind(this), 100);
+                this.timerStatus = setInterval(this.updateTimer.bind(this), 200);
             } else {
                 this.currentQuestionIndex = 0;
                 console.log("Game stops.");
@@ -449,15 +450,15 @@
             window["CompareNumbers"].startGame();
         })
 
-        $("."+CompareNumbers.CLASSES.canvas1).on("click", function() { 
+        $("."+CompareNumbers.CLASSES.canvas1).bind("click", function() { 
             window["CompareNumbers"].evaluate($(this))
         });
 
-        $("."+CompareNumbers.CLASSES.canvas2).on("click", function() {
+        $("."+CompareNumbers.CLASSES.canvas2).bind("click", function() {
             window["CompareNumbers"].evaluate($(this))
         });
 
-        $("."+CompareNumbers.CLASSES.btnEqual).on("click", function(){
+        $("."+CompareNumbers.CLASSES.btnEqual).bind("click", function(){
             window["CompareNumbers"].evaluate($(this))
         });
     }
