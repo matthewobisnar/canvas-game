@@ -99,10 +99,9 @@
                     jQuery('<div/>', {
                         "class": 'draggable m-5 ui-widget-content drag-num-' + i,
                         "id":"draggable",
-                    }).appendTo('.items');
+                    }).append("<p class='text-center num-p'>"+ (i+1) +"</p>").appendTo('.items');
                 }
 
-                // .append("<p class='text-center'>"+ (i+1) +"</p>")
                 // ==== Activate Draggable ====
                 for ( var i=0 ;i<draggableBox.numbers; i++ ) {
                     $( ".drag-num-" + i ).draggable({
@@ -145,10 +144,9 @@
                     jQuery('<div/>', {
                         "class": 'objective-box objective-div objective-num-'+ questions[currentIndex].answers[rotateObjective][i],
                         "id": 'obj-target',
-                    }).appendTo('.'+param);
+                    }).append("<p class='num-p'> "+ (questions[currentIndex].answers[rotateObjective][i])+" </p>").appendTo('.'+param);
                 }
 
-                //append("<p> "+ (questions[currentIndex].answers[rotateObjective][i])+" </p>")
 
                 $(".rotateBox").on("click", function(){
                     objectRotate += 45;
@@ -171,12 +169,19 @@
             array = value.split('');
 
             if (check(array, questions[currentIndex].answers[0]) == true) {
+
+              var statugme = setInterval(function() {
+                    score +=1;
+                    updateNavDivs ();
+                }, 100);
+
                 setTimeout(function(){
                     clearInterval(timerStatus);
-                    score +=5;
-                    updateNavDivs ();
+                    clearInterval(statugme);
+                    // score +=5;
+                    // updateNavDivs ();
                     startGame(currentIndex + 1);
-                }, 100);
+                }, 500);
             }
 
        }
