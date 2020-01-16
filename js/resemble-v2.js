@@ -102,7 +102,7 @@
                     jQuery('<div/>', {
                         "class": 'draggable m-5 ui-widget-content drag-num-' + i,
                         "id":"draggable",
-                    }).append("<p class='text-center'>"+ (i+1) +"</p>").appendTo('.items');
+                    }).append("<p class='text-center num-p'>"+ (i+1) +"</p>").appendTo('.items');
                 }
 
                 // ==== Activate Draggable ====
@@ -147,7 +147,7 @@
                     jQuery('<div/>', {
                         "class": 'objective-box objective-div objective-num-'+ questions[currentIndex].answers[rotateObjective][i],
                         "id": 'obj-target',
-                    }).append("<p class=' d'> "+ (questions[currentIndex].answers[rotateObjective][i])+" </p>").appendTo('.'+param);
+                    }).append("<p class='num-p'> "+ (questions[currentIndex].answers[rotateObjective][i])+" </p>").appendTo('.'+param);
                 }
 
 
