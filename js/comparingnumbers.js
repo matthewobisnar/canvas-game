@@ -15,6 +15,54 @@
         currenQuestionSpan:"currenQuestion"
     }
 
+    function Circles (x, y, radius, bg, color, text) {
+        this.x = x;
+        this.y = y;
+        this.radius= radius;
+        this.bg = bg;
+        this.color = color;
+        this.text = text;
+
+        this.font = "25px Comic Sans MS";
+        this.textAlign = "center";
+
+    }
+
+    Circles.prototype = {
+        draw: function (ctx) {
+            ctx.beginPath();
+            ctx.arc(this.x , this.y, this.radius, 0, 2 * Math.PI);
+            ctx.fillStyle = this.bg;
+            ctx.fill();
+            ctx.closePath();
+    
+            ctx.beginPath();
+            ctx.arc(this.x , this.y, this.radius - 5, 0, 2 * Math.PI);
+            ctx.strokeStyle= this.color;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+            ctx.closePath();
+
+            ctx.beginPath();
+            ctx.font = this.font;
+            ctx.fillStyle = this.color;
+            ctx.textAlign = this.textAlign;
+
+            // ADD QUESTONS HERE ..
+            ctx.fillText(this.text, this.x, this.y + (Math.round(parseInt(ctx.font)/2)));
+            ctx.closePath();
+        },
+
+        update: function () {
+
+            if (this.radius  < 35) {
+                this.radius  += this.radius  * 0.1;
+            } else if(this.radius  == 35) { 
+                this.radius  = 1;
+            }
+        }
+    }
+
     function CompareNumbers(payload_questions) {
         
         this.compareQuestions = payload_questions;
@@ -23,6 +71,7 @@
         this.timerStatus = null;
         this.totalScores = 0;
         this.answer = null;
+        this.animteCirles = null;
 
         this.canvas1 = null;
         this.context1 = null;
@@ -31,7 +80,7 @@
 
         this.canvas2 = null;
         this.context2 = null;
-        this.circles2 = null;
+        this.circles2 = [];
         this.numCompare2 = null;
 
         this.initiateElements();
@@ -52,9 +101,13 @@
         },
 
         GameQue: function (index) {
+            this.circles1 = [];
+            this.circles2 = [];
 
             this.currentIndexQue = index;
-            this.timerStatus = null;
+           // this.timerStatus = null;
+            clearInterval(this.animteCirles);
+            clearInterval(this.timerStatus);
 
             if (this.currentIndexQue < this.compareQuestions.stages.length ) {
                 this.numCompare1 = this.compareQuestions.stages[this.currentIndexQue].combinations[1];
@@ -64,14 +117,44 @@
                 this.updateDivs();
                 
                 // Draw random Circles here..
-                this.drawCircles(this.canvas1, this.context1, this.numCompare1, {bg:"white", color: "#f15349"}); // compare 1
-                this.drawCircles(this.canvas2, this.context2, this.numCompare2, {bg:"#f15349", color: "white"});
-    
+                this.circles1 =  this.drawCircles(this.canvas1, this.numCompare1, {bg:"white", color: "#f15349"}); // compare 1
+                this.circles2 = this.drawCircles(this.canvas2, this.numCompare2, {bg:"#f15349", color: "white"});
+            
+                this.animteCirles = setInterval(this.update.bind(this), 20);
                 this.timerStatus = setInterval(this.updateTimer.bind(this), 200);
+
             } else {
                 this.currentQuestionIndex = 0;
                 console.log("Game stops.");
                 return;
+            }
+        },
+
+        update: function () {
+            this.context1.clearRect(0,0,this.canvas1.width, this.canvas1.height);
+            this.context2.clearRect(0,0,this.canvas2.width, this.canvas2.height);
+
+            
+            // Draw Initial Canvas2..
+            this.context2.beginPath();
+            this.context2.rect(0, 0, this.canvas2.width, this.canvas2.height);
+            this.context2.fillStyle = "#603664";
+            this.context2.fill();
+            
+            // Draw Initial Canvas2..
+            this.context1.beginPath();
+            this.context1.rect(0, 0, this.canvas2.width, this.canvas2.height);
+            this.context1.fillStyle = "#603664";
+            this.context1.fill();
+
+            for (var c1 = 0; c1<this.circles1.length; c1++) {
+                this.circles1[c1].update();
+                this.circles1[c1].draw(this.context1);
+            }
+
+            for (var c2 = 0; c2<this.circles2.length; c2++) {
+                this.circles2[c2].update();
+                this.circles2[c2].draw(this.context2);
             }
         },
 
@@ -143,51 +226,36 @@
             $("." + CompareNumbers.CLASSES.currenQuestionSpan).text(this.currentIndexQue + 1);
         },
 
-        drawCircles: function(canvas, ctx, numQuestions, settings) {
+        drawCircles: function(canvas, numQuestions, settings) {
             var circles = [];
-            var numbers = [];
-            
-            ctx.clearRect(0,0, canvas.width, canvas.height);
 
-            // Draw Initial Canvas1..
-            ctx.beginPath();
-            ctx.rect(0, 0, this.canvas1.width, this.canvas1.height);
-            ctx.fillStyle = "#603664";
-            ctx.fill();
-            ctx.closePath();
+            for (var i=0; i<numQuestions.length; i++) {
 
-            while (circles.length < numQuestions.length) {
-
-                var circle = {
-                    x: (canvas.width) * Math.random(),
-                    y: (canvas.height) * Math.random(),
-                    radius: 40,
-                    PI: 2 * Math.PI,
-                    bg: settings.bg,
-                }
+                var x = (canvas.width) * Math.random();
+                var y = (canvas.height) * Math.random();
+                var radius = 20;
+                var bg = settings.bg;
+                var color = settings.color;
+                var numtext = numQuestions[i];
+                var circle = new Circles (x, y, radius, bg, color, numtext); 
+                
                 // wall collision detection...
-                if (circle.x + circle.radius > canvas.width) {
-                    circle.x = (circle.x - circle.radius) - 100;
+                if (circle.x + 35 > canvas.width) {
+                    circle.x = (circle.x - 35) - 100;
                 }
     
-                if (circle.x - circle.radius < 20) {
-                    circle.x = circle.x + circle.radius + 100;
+                if (circle.x - 35 < 20) {
+                    circle.x = circle.x + 35 + 100;
                 }
     
-                if (circle.y + circle.radius > canvas.height) {
-                    circle.y = (circle.y - circle.radius) - 100;
+                if (circle.y + 35 > canvas.height) {
+                    circle.y = (circle.y - 35) - 100;
                 }
     
-                if (circle.y - circle.radius < 20) {
-                    circle.y = circle.y + circle.radius + 100;
+                if (circle.y - 35 < 20) {
+                    circle.y = circle.y + 35 + 100;
                 }
     
-                var number = {
-                    coordinateX : circle.x,
-                    coordinateY :circle.y,
-                    font : "25px Comic Sans MS",
-                    textAlign: "center"
-                }
     
                 var overlapping = false;
                 for (var j=0; j<circles.length; j++) {
@@ -202,37 +270,13 @@
     
                 if (!overlapping) {
                     circles.push(circle);
-                    numbers.push(number);
                     overlapping = false;
                 }
             }
-            
-            for (var i=0; i<circles.length; i++) {
-                ctx.beginPath();
-                ctx.arc(circles[i].x , circles[i].y, circles[i].radius, 0, 2 * Math.PI);
-                ctx.fillStyle = circles[i].bg;
-                ctx.fill();
-                ctx.closePath();
-     
-                ctx.beginPath();
-                ctx.arc(circles[i].x , circles[i].y, circles[i].radius - 5, 0, 2 * Math.PI);
-                ctx.strokeStyle= settings.color;
-                ctx.lineWidth = 0.5;
-                ctx.stroke();
-                ctx.closePath();
 
-                ctx.beginPath();
-                ctx.font = numbers[i].font;
-                ctx.fillStyle = settings.color;
-                ctx.textAlign = numbers[i].textAlign;
-                // ADD QUESTONS HERE ..
-                ctx.fillText(numQuestions[i], numbers[i].coordinateX, numbers[i].coordinateY + (Math.round(parseInt(ctx.font)/2)));
-                ctx.closePath();
-            }
-    
-            circlesList = [];
-            numbers = [];
+            return circles;
         },
+
 
         distance: function (x1,y1, x2,y2) {
             return Math.sqrt(Math.pow(Math.abs(x1 - x2), 2) + Math.pow(Math.abs(y1-y2), 2));
