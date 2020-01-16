@@ -21,7 +21,7 @@
         this.radius= radius;
         this.bg = bg;
         this.color = color;
-        this.text = text;
+        this.text = text.replace("*","x");
 
         this.font = "25px Comic Sans MS";
         this.textAlign = "center";
@@ -161,16 +161,17 @@
         evaluate: function(param){
 
             var target = $(param).prop("class").split(" ");
+
             var Compare1 = 0;
             var Compare2 = 0;
             var self = this;
 
             for (var i =0; i<this.numCompare1.length; i++) {
-                Compare1 += eval(this.numCompare1[i]);
+                Compare1 += eval(this.numCompare1[i].replace("x","*"));
             }
 
             for (var i =0; i<this.numCompare2.length; i++) {
-                Compare2 += eval(this.numCompare2[i]);
+                Compare2 += eval(this.numCompare2[i].replace("x","*"));
             }
 
             if (target.includes(CompareNumbers.CLASSES.canvas1)) {
