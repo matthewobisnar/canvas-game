@@ -17,7 +17,7 @@ body { background: #31495f;   overflow-x: hidden;}
 .objective-div { margin: 0px !important; border: none !important}
 .big {transform: scale(1.1); }
 .height { max-height: 30px !important}
-.objective , .puzzle-box { transition: transform .2s ease-in-out; transform: rotate(45deg); }
+.objective , .puzzle-box { transition: transform .2s ease-in-out; transform: rotate(45deg); background: rgb(102, 176, 224);}
 .l-h-2 { line-height: 1.7; }
 .l-h-3 { line-height: 2;}
 .l-h { line-height: 1.7;}
