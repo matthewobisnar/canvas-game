@@ -3,6 +3,14 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-heroic-features/blob/master/LICENSE)
  */
+
+body,html {
+  height: 100%;
+}
+
 body {
   padding-top: 56px;
 }
+
+.border-0 { border: none !important;}
+.m-b { padding-bottom: 350px;}
