@@ -1,6 +1,5 @@
 body { background: #31495f;   overflow-x: hidden;}
 
-
 #draggable { width: 70px; height: 70px; padding: 0.5em; border: solid 1px #ccc }
 .boxes, .objective-box { border: solid 1px #562971; width: 70px; height: 70px; background: #3b2350;}
 .boxes:hover { background: #562971; translate: .2s ease; border: dotted 1px yellowgreen}
@@ -17,7 +16,7 @@ body { background: #31495f;   overflow-x: hidden;}
 .objective-div { margin: 0px !important; border: none !important}
 .big {transform: scale(1.1); }
 .height { max-height: 30px !important}
-.objective , .puzzle-box { transition: transform .2s ease-in-out; transform: rotate(45deg);}
+.objective , .puzzle-box { transition: transform .2s ease-in-out; transform: rotate(0deg);}
 .objective {  background: rgb(102, 176, 224) !important; }
 .l-h-2 { line-height: 1.7; }
 .l-h-3 { line-height: 2;}

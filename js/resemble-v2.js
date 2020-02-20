@@ -96,7 +96,6 @@
                         }
                     });
                 }
-
                 // ===== Create Draggable Box =====
                 for ( var i=0; i<draggableBox.numbers; i++ ) {
                     jQuery('<div/>', {
@@ -104,7 +103,6 @@
                         "id":"draggable",
                     }).append("<p class='text-center num-p'>"+ (i+1) +"</p>").appendTo('.items');
                 }
-
                 // ==== Activate Draggable ====
                 for ( var i=0 ;i<draggableBox.numbers; i++ ) {
                     $( ".drag-num-" + i ).draggable({
@@ -331,7 +329,7 @@
             currentIndex = index;
 
             $("."+CLASSES.currenQuestionSpan).text(index + 1);
-            $(".objective").css("transform","rotate(45deg)");
+           //$(".objective").css("transform","rotate(45deg)");
 
             timerStatus = setInterval(function () {
                 updateTimer();
@@ -352,7 +350,7 @@
     }
 
     $(window).on("load", function() {
-        
+
         createRoundsDiv ();
         createCounterDiv ();
         createScoreDiv ();

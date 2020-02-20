@@ -47,7 +47,7 @@
         this.mistakesRemaing = 0;
         this.timer = 60;
         this.timerStatus = null;
-        this.totalScores = 0;
+        this.totalScores = true;
     
         this.createCanvas();
         this.canvas = document.querySelector("." + wordCorrection.CLASSES.canvas);
@@ -69,11 +69,13 @@
     // add methods of wordCorrection here..
     wordCorrection.prototype = {
         
-        startGame: function () {
+        startGame: function (state) {
+           
+            this.enableTimer = state;
             // load length of the game. and first index.
             this.wordMatchLength = this.states.stages.length;
             this.totalScores = 0;
-
+            
             this.gameQue(0);
         },
 
@@ -93,13 +95,16 @@
 
                 this.words = this.canvas.innerHTML.split( /\s+/ );
 
-                $(".canvas").addClass("animated fadeIn").html( "<p><span class='targets'>" + this.words.join( "</span> <span>" ) + "</span></p>" );
+                $(".canvas").addClass("animated fadeIn").html( "<div class='test-wrap'><p><span class='targets'>" + this.words.join( "</span> <span>" ) + "</span></p></div>" );
                 $("span").addClass("targets animated");
 
                 // Add Event click per word.
                 $(".canvas p .targets").on( "click", this.evaluateWords.bind(this));
+
                 // Update Timer..
-                this.timerStatus = setInterval(this.updateTimer.bind(this), 1000);
+                if (this.enableTimer == true) {
+                    this.timerStatus = setInterval(this.updateTimer.bind(this), 1000);
+                }
 
             } else {
                 this.currentQuestionIndex = 0;
@@ -327,7 +332,7 @@
 
                 barcontainer.appendChild(heartIcons[i]);
             }
-            barcontainer.className = "bar-container mx-3 d-flex text-right";
+            barcontainer.className = "bar-container hearts mx-3 d-flex text-right";
             btnContainer.appendChild(barcontainer);
         }
 
@@ -367,35 +372,67 @@
         // Just add Questions Here...
         let states = {
             "stages": [{
-                    "paragraph": "can you spot these avoidable mistsakes? <br/><br/>There are some puncstuation errors here as well, <br/>Also, the words are somethings not appropriate.",
-                    "incorrect": ["somethings","well,","puncstuation", "mistsakes?"],
+                    "paragraph": `Research in fiction<br/><br/>Fiction might be set in a maek-believe world, but it has to make sense. For our fiction to be authentic, we have to research, 
+                    and of course part of that research is ensuring that we have the world right, in terms of what can work and what can&apos;t. 
+                    A reader or viewer is happy to cut us a certain amount of slack &minus; they will suspend their disbelief &minus; but only to the point that it seems plausible. 
+                    Stretch too far and you might not lose them completely, but perhaps it could mean that now they&apos;re critiquing you&apos;re work and your world, instead of immersing themselves in it. 
+                    So the, world-building is the first obvious area where researching other art is necessary, if we want our worlds to hold up to scrutiny and feel real.<br/><br/>
+                    Steampunk as&nbsp; a genre is very much about the world the characters inhabit. as much as&nbsp; the characters and plot are important, the setting is what sets steampunk apart from horror, scifi, romance or historical fiction. 
+                    From the very beginning, it&apos;s important to set the scene You want the reader to understand what kind of book they&apos;re reading right from the start.`,
+                    "incorrect": ["maek-believe", "you're", "the,", "as", "scene"],
                 },{
-                    "paragraph": "Donec posuere mi nisi. Vestibulum feugiat purus lectus, sit amet tempor purus lobortis auctor. Aliquam ac ligula et elit efficitur aliquam. Aenean velit velit, mattis non nulla at, placerat fermentum turpis. Donec tincidunt ligula enim, et condimentum augue volutpat sed. Praesent a rhoncus libero. Nullam non metus sit amet augue feugiat mollis nec sed massa. Proin ac consectetur tellus. Duis lorem mauris, mattis vitae orci ac, sodales tempor odio.",
-                    "incorrect": ["nisi", "Vestibulum", "feugiat"],
-                },{
-                    "paragraph": "Duis pharetra, sapien sed tincidunt commodo, purus enim placerat ante, ut mattis nunc sapien in nibh. Nulla pharetra, justo pulvinar mattis gravida, tortor mauris tristique urna, in luctus est arcu vitae enim. Sed ac enim arcu. Ut sit amet tellus erat. Phasellus auctor, eros vitae venenatis suscipit, lorem erat hendrerit dolor, id vehicula diam sem sit amet augue. Praesent ac mattis leo. Phasellus tempus lacus ac accumsan commodo.",
-                    "incorrect": ["Duis", "Phasellus", "Praesent"],
+                    "paragraph": `Bubbles party Services<br/><br/>Welcome to your new neighbourhood party&nbsp; service! We are newly established in the Bayside Area and offer a range of services and products to suit every party&nbsp; need. 
+                    From baby showers to engagement parties, birthday celebrations to end-of-year farewells, we take care of all your requiremens so you have nothing to worry about, 
+                    and you can just sat back and enjoy your event.<br/><br/> Our team has a combined forty-five years of experience in the event planning and management sector. 
+                    It&apos;s fair to say we know all the potential pitfalls of event management and how to avoid them! You can rest assured that your party&nbsp;will go off without a hitch&nbsp;In fact, 
+                    we&apos;re so convinced that we can foresee every issue that we guarantee satisfaction - or your money back. <br/><br/>
+                    Worried about the cost? Don&apos;t be - we offer four different tiers of services so you can choose a party&nbsp; to suit your budget. 
+                    And for the month of Sepptember, you can upgrade from Tier 1 to Tier 2 for no extra cost! So find us on social media (links below) 
+                    or you can even give us a call or send us an email. We would love to hear from you so that we can help make your speciale day utterly unforgettable.`,
+                    "incorrect": ["Sepptember,", "requiremens", "speciale", "party", "hitch&nbsp;In"],
                 }]
             }
 
         // Declare Instance of the object.
         window["wordCorrection"] = new wordCorrection(states);
-
-        // Call Swal
-        call_swal(wordCorrection.SWAL.start_game, function() {
-            call_swal(wordCorrection.SWAL.instruction, function(){
-                window["wordCorrection"].startGame();
-            });
+        window["wordCorrection"].startGame(false);
+        var intro = introJs();
+        intro.setOptions({
+            steps: [
+            { 
+                intro: "This exercise gives you various selections that require proofreading.."
+            },
+            { 
+                intro: "Your task is to identify the errors - misspells, typos, grammar and punctuation, that have been strewn throughout the selection."
+            },
+            { 
+                element: ".test-wrap",
+                intro: "Identify an error in the selection below."
+            },
+            { 
+                element: "."+wordCorrection.CLASSES.mistakesRemaing,
+                intro: "There is error counter on the right side of the screen. Make sure to refer how many errors are still left."
+            },
+            { 
+                element: ".hearts",
+                intro: "When you select a word, punctuation or grammar that is NOT an error, it will result in an incorrect mark. Three incorrect marks will result to a default and you&apos;ll have to move to the next selection. "
+            },
+            { 
+                intro: "Longer selections will require you to scroll down the page to be able to read the entire document. "
+            },
+            { 
+                intro: "Now, go ahead and try clicking a word that&apos;s not an error below. When done, identify the remaining errors in the selection."
+            },
+            ]
         });
 
-        // ===== CREATE BUTTON OBJECT =======
-        // createButtons("btn btn-primary text-center start-btn", "click", function(e){    
-        //     //Start the game..
-        //     window["wordCorrection"].startGame();
-        // }, "start", ".swal-button-container");
+        intro.start();
 
-        // createButtons("btn btn-primary pause-btn", "click", function(){
-        // Pause the game ....    
-        // }, "pause", ".btnContainer");
+        // // // Call Swal
+        // call_swal(wordCorrection.SWAL.start_game, function() {
+        //     call_swal(wordCorrection.SWAL.instruction, function(){
+              //  window["wordCorrection"].startGame(false);
+        //     });
+        // });
     }
 })();
