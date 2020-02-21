@@ -32,7 +32,7 @@
             title: "Time's up! Continue to next question.", 
             text:"",
             button:"OK"
-        }        
+        }, 
     }
 
     function wordCorrection(opt_states) {
@@ -180,13 +180,20 @@
                     if (this.enableTimer) {
                         // dead..
                         clearInterval(this.timerStatus);
-                        call_swal({
+                        swal({
                             title: "Game Over! Total Score: " + this.totalScores,
-                            description: "Do you want to reset the game?",
-                            btnText:"Reset"
-                        }, function() {
-                            // window.location.reload();
-                        });
+                            text: "Do you want to reset the game?",
+                            allowOutsideClick: false,
+                            buttons: true,
+                            dangerMode: true,
+                          })
+                          .then((willDelete) => {
+                            if (willDelete) {
+                                window.location.reload();
+                            } else {
+                                window.location.href ="index.html";
+                            }
+                          });
                     } else {
                          // dead..
                          clearInterval(this.timerStatus);
@@ -226,6 +233,7 @@
                         localthis.gameQue(localthis.currentQuestionIndex + 1);
                     });   
                 } else {
+                    window.location.href = "index.html";
                     console.log("Reload Another Game");
                 }
                 return;
