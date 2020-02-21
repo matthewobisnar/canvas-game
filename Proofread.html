@@ -11,6 +11,33 @@
     </head>
     <body>
         <div class="container-fluid px-0 introduction-farm">
+                
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Instructions</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <li class="pb-2">This exercise gives you various selections that require proofreading.</li>
+                                <li class="pb-2">Your task is to identify the errors – misspells, typos, grammar and punctuation, that have been strewn throughout the selection.</li>
+                                <li class="pb-2">Identify an error in the selection below.</li>
+                                <li class="pb-2">There is error counter on the right side of the screen. Make sure to refer how many errors are still left.</li>
+                                <li class="pb-2">When you select a word, punctuation or grammar that is NOT an error, it will result in an incorrect mark. Three incorrect marks will result to a default and you’ll have to move to the next selection. </li>
+                                <li class="pb-2">Longer selections will require you to scroll down the page to be able to read the entire document.</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- <div class="row"> -->
                 <div class="container">
                     <div class="col canvasContainer py-2 bg-vio text-justify"></div>
@@ -20,8 +47,11 @@
                 </div>
             <!-- </div> -->
         </div>
+
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="vendor//intro.js/intro.js"></script>
     <script src="js/proofreading.js"></script>

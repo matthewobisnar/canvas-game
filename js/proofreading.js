@@ -95,7 +95,7 @@
 
                 this.words = this.canvas.innerHTML.split(/\s+/);
 
-                $(".canvas").addClass("animated fadeIn").html( "<div class='test-wrap'><p><span class='targets'>" + this.words.join( "</span> <span>" ) + "</span></p></div>" );
+                $(".canvas").addClass("animated fadeIn").html( "<button class='instructionClass btn btn-sm' data-toggle='modal' data-target='#exampleModalCenter'><i class='material-icons text-secondary'>info</i></button><div class='test-wrap p-5'><p><span class='targets'>" + this.words.join( "</span> <span>" ) + "</span></p></div>" );
                 $("span").addClass("targets animated");
 
                 // Add Event click per word.
@@ -223,8 +223,10 @@
 
             // Create Canvas Element..
             var canvas = document.createElement("div");
-            canvas.className = wordCorrection.CLASSES.canvas + " border p-5 bg-white";
-            canvas.style.minHeight = (window.innerHeight - (document.querySelector("." + wordCorrection.CLASSES.navigatiorContainer).clientHeight + 15)) + "px";
+                canvas.className = wordCorrection.CLASSES.canvas + " border bg-white";
+                canvas.style.minHeight = (window.innerHeight - (document.querySelector("." + wordCorrection.CLASSES.navigatiorContainer).clientHeight + 15)) + "px";
+
+
             document.querySelector("."+wordCorrection.CLASSES.canvasContainer).appendChild(canvas);
             
             this.createMistakeAppempt();
@@ -234,8 +236,15 @@
             this.createMistakeWordDiv();
         },
 
-        createProgressbar : function () {
+        createButtons: function () {
+            var buttons = document.createElement("button");
+                buttons.className = " btn btn-sm";
+                buttons.innerHTML = "Click Buttons"
+                document.querySelector("."+wordCorrection.CLASSES.canvas).appendChild(buttons);
+        },
 
+        createProgressbar : function () {
+            this.createButtons();
             var btnContainer = document.querySelector("." + wordCorrection.CLASSES.navigatiorContainer);
             var barcontainer = document.createElement("div");
             var progressDiv = document.createElement("div")
@@ -367,7 +376,6 @@
     }
 
     window.onload = function () {
-
         // Just add Questions Here...
         let states = {
             "stages": [{
@@ -422,7 +430,7 @@
                     "incorrect": ["suprised.", "oportunity", "hanppend." ,"informetion,", "didnt", "difficult’.", "it,", "fewe","silence,","wasnt", "a" ,"initiative"],
                 },{
                     "paragraph": `Dear Ali, <br/><br/>
-                    Thank you for you grant submission, which we received on 17st March. 
+                    Thank you for you grant submission, which we received on 17st March.
                     As you are no doubt aware, the grants process takes some time and involves several stages, and we would like to thank you for your patience while we reached our decision. <br/><br/>
                     Im delighted to be able to inform you that your application has bene successful and we will be able to forward the grant money to your designated account within four (5) business days. 
                     Please note that you will be required to sign and submit an acknowledgment of receipt within one week of receiving the monies. 
@@ -443,46 +451,46 @@
         window["wordCorrection"].startGame(false);
 
         var intro = introJs();
-        intro.setOptions({
-            showBullets: false,
-            exitOnEsc: false,
-            overlayOpacity: 0,
-            exitOnOverlayClick: false,
-            showStepNumbers:true,
-            steps: [
-                { 
-                    intro: "This exercise gives you various selections that require proofreading.."
-                },
-                { 
-                    intro: "Your task is to identify the errors - misspells, typos, grammar and punctuation, that have been strewn throughout the selection."
-                },
-                { 
-                    element: ".test-wrap",
-                    intro: "Identify an error in the selection."
-                },
-                { 
-                    element: "."+wordCorrection.CLASSES.mistakesRemaing,
-                    intro: "There is error counter on the right side of the screen. Make sure to refer how many errors are still left."
-                },
-                { 
-                    element: ".hearts",
-                    intro: "When you select a word, punctuation or grammar that is NOT an error, it will result in an incorrect mark. Three incorrect marks will result to a default and you&apos;ll have to move to the next selection. "
-                },
-                { 
-                    intro: "Longer selections will require you to scroll down the page to be able to read the entire document. "
-                },
-                { 
-                    intro: "Now, go ahead and try clicking a word that&apos;s not an error below. When done, identify the remaining errors in the selection.",
-                    oncomplete : function() {
-                        alert("end of introduction");
-                    }
-                },
-            ]
-        });
+            intro.setOptions({
+                showBullets: false,
+                exitOnEsc: false,
+                overlayOpacity: 0,
+                exitOnOverlayClick: false,
+                showStepNumbers:true,
+                steps: [
+                    { 
+                        intro: "This exercise gives you various selections that require proofreading.."
+                    },
+                    { 
+                        intro: "Your task is to identify the errors - misspells, typos, grammar and punctuation, that have been strewn throughout the selection."
+                    },
+                    { 
+                        element: ".test-wrap",
+                        intro: "Identify an error in the selection."
+                    },
+                    { 
+                        element: "."+wordCorrection.CLASSES.mistakesRemaing,
+                        intro: "There is error counter on the right side of the screen. Make sure to refer how many errors are still left."
+                    },
+                    { 
+                        element: ".hearts",
+                        intro: "When you select a word, punctuation or grammar that is NOT an error, it will result in an incorrect mark. Three incorrect marks will result to a default and you&apos;ll have to move to the next selection. "
+                    },
+                    { 
+                        intro: "Longer selections will require you to scroll down the page to be able to read the entire document. "
+                    },
+                    { 
+                        intro: "Now, go ahead and try clicking a word that&apos;s not an error below. When done, identify the remaining errors in the selection.",
+                        oncomplete : function() {
+                            alert("end of introduction");
+                        }
+                    },
+                ]
+            });
         
-        setTimeout(function() {
-            intro.start();
-        }, 500);
+            setTimeout(function() {
+                intro.start();
+            }, 500);
 
         // Call Swal
         // call_swal(wordCorrection.SWAL.start_game, function() {

@@ -90,7 +90,10 @@ body { overflow-x: hidden; background: #2a053a;}
   line-height: 30px;
   color: white;
 }
-
+/* .material-icons:hover {
+  color: #007bff!important;
+  transition: .5s all;
+} */
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
@@ -116,6 +119,7 @@ body { overflow-x: hidden; background: #2a053a;}
   font-feature-settings: 'liga';
 }
 
+.material-icons.vio600 { color: #401146; }
   /* Rules for sizing the icon. */
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
