@@ -484,7 +484,7 @@
             intro.start();
         }, 500);
 
-        // // // Call Swal
+        // Call Swal
         // call_swal(wordCorrection.SWAL.start_game, function() {
         //     call_swal("", function(){
         //        window["wordCorrection"].startGame(false);
