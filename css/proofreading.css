@@ -31,8 +31,12 @@ body { overflow-x: hidden; background: #2a053a;}
 
 .introjs-tooltip {
   min-width: 600px; 
-  max-width: 600px;
+  /* max-width: 600px; */
 }
+
+.introjs-disabled {
+  display: none !important;
+  }
 
 .introjs-helperLayer {
   background: transparent;
