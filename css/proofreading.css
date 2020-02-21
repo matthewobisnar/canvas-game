@@ -90,10 +90,7 @@ body { overflow-x: hidden; background: #2a053a;}
   line-height: 30px;
   color: white;
 }
-/* .material-icons:hover {
-  color: #007bff!important;
-  transition: .5s all;
-} */
+
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;

@@ -138,13 +138,24 @@
                         
                         clearInterval(this.timerStatus);
                         this.currentQuestionIndex += 1;
-                        call_swal({
-                            title: "0 Remaining Mistakes",
-                            description: "Proceed to question " + parseInt(self.currentQuestionIndex + 1),
-                            btnText:"Next"
-                        }, function() {
-                           self.gameQue(self.currentQuestionIndex + 1);
-                        });
+
+                        if (this.enableTimer == false) {
+                            call_swal({
+                                title: "Good job! You are now ready to take the exercise. ",
+                                btnText:"Next"
+                            }, function() {
+                               self.enableTimer = true;
+                               self.gameQue(self.currentQuestionIndex + 1);
+                            });
+                        } else {
+                            call_swal({
+                                title: "0 Remaining Mistakes",
+                                description: "Proceed to question " + parseInt(self.currentQuestionIndex + 1),
+                                btnText:"Next"
+                            }, function() {
+                               self.gameQue(self.currentQuestionIndex + 1);
+                            });
+                        }
                     }
                 }
             } else {
@@ -165,15 +176,29 @@
                 }
 
                 if (this.mistakesAttempt <= 0) {
-                    // dead..
-                    clearInterval(this.timerStatus);
-                    call_swal({
-                        title: "Game Over! Total Score: " + this.totalScores,
-                        description: "Do you want to reset the game?",
-                        btnText:"Reset"
-                    }, function() {
-                        window.location.reload();
-                    });
+
+                    if (this.enableTimer) {
+                        // dead..
+                        clearInterval(this.timerStatus);
+                        call_swal({
+                            title: "Game Over! Total Score: " + this.totalScores,
+                            description: "Do you want to reset the game?",
+                            btnText:"Reset"
+                        }, function() {
+                            // window.location.reload();
+                        });
+                    } else {
+                         // dead..
+                         clearInterval(this.timerStatus);
+                         call_swal({
+                             title: "Total Score: " + this.totalScores,
+                             description: "Continue anyway?",
+                             btnText:"Reset"
+                         }, function() {
+                            self.enableTimer = true;
+                            self.gameQue(self.currentQuestionIndex + 1);
+                         });
+                    }
 
                     return;
                 }
@@ -379,6 +404,11 @@
         // Just add Questions Here...
         let states = {
             "stages": [{
+                    "paragraph": `Can you spot these avoidable mistsakes? <br/> 
+                    There are some punctuations errors here as well; <br/> 
+                    Also, the words are somethings not apporpriate.`,
+                    "incorrect": ["mistsakes?","well;","somethings","apporpriate."],
+                },{
                     "paragraph": `Research in fiction <br/><br/> Fiction might be set in a maek-believe world, but it has to make sense. For our fiction to be authentic, we have to research, 
                     and of course part of that research is ensuring that we have the world right, in terms of what can work and what can&apos;t. 
                     A reader or viewer is happy to cut us a certain amount of slack &minus; they will suspend their disbelief &minus; but only to the point that it seems plausible. 
@@ -407,25 +437,25 @@
                     Each bead corresponds to a pray, but the prayers are quite repetitive and recited off by heart. 
                     According to the people who use them, after a while, the prayers can offer a kind of calm, similar to that achieved through meditation. 
                     So we can see that seeking a quiet mind and stress relief is not something which is restricted to &apos;Western&apos; or &apos;Eastern&apos; belief&apos;s, but is something which humans have developed all over the world. <br/><br/> 
-                    How do you begin meditation!; Rather than trying to twist your legs into nots and risk having your bottom going numb from sitting in one spot for hours, just try it in short bursts to begin with. 
+                    How do you begin meditation! Rather than trying to twist your legs into nots and risk having your bottom going numb from sitting in one spot for hours, just try it in short bursts to begin with. 
                     There are many apps you can download to help, but you can start by just sitting or lying still for 30 seconds and focusing on your breath and you inhale and exhale. 
                     You might be surprised at how much calmer you feel even after a short time of meditation. And once youve had some practice, you can start extending it for even greater benefits.`,
                     "incorrect": ["releiving", "Easter", "Buddism", "pray,", "belief&apos;s", "nots", "youve","meditation!"],
                 },{
-                    "paragraph": `Even though they had known for years that it was coming, when the Collapse happened, people were suprised. <br/>br/> 
-                    They had had every oportunity to prevent it. The short-term inconveniences and difficulties would have yielded immeasurable long-term benefits, had they only taken the initiative
+                    "paragraph": `The Collapse <br/><br/> Even though they had known for years that it was coming, when the Collapse happened, people were suprised. <br/><br/> 
+                    They had had every oportunity to prevent it. The short-term inconveniences and difficulties would have yielded immeasurable long-term benefits, had they only taken the initiative<br/><br/>
                     But nobody did, so there was the Collapse, and then afterwards, the Chaos. No informetion, no infrastructure. 
                     To begin with there was fear and panic, but after the fear and panic, there was an odd kind of resignation, and in that time of resignation, the Company just sort of… hanppend. 
                     It cannot be said that people were happy to have someone finally start rebuilding. Nobody was happy in those days. 
                     There were brief moments of happiness, brief moments where it didnt all seem pointless or difficult’.
-                    But when the Company took over, people welcomed the idea of not having to worry about each day. It was easier to leave it all to the Company.
+                    But when the Company took over, people welcomed the idea of not having to worry about each day. It was easier to leave it all to the Company. <br/><br/>
                     The first changes were met with universal agreement. The Company would have control over all government buildingss. Since the government had fallen apart, who was using them anyway? 
                     The Company would issue vehicles to Company employees only—who needed a car, when you had no fuel to put in it, The Company would distribute food and phase out supermarkets. 
-                    The shops had had precious little to offer since the Collapse, so most agreed that this was one less concern, and it left time for cleaning up, for leisure, for reconnecting with family.
+                    The shops had had precious little to offer since the Collapse, so most agreed that this was one less concern, and it left time for cleaning up, for leisure, for reconnecting with family. <br/><br/> 
                     One by one, each responsibility was taken from the many and claimed by the fewe. When the people finally realised that their voices had been silence, and their influence eliminated, 
                     it's hard to know if they cared anymore. The trade-off for their liberation was a easy life. It wasnt an exciting life, and there was no way to sway decision-making, but it was not hard. 
                     They had had enough of 'hard'. Soon enough, the Company had convinced them that democracy was overrated, and that if the people just left it to them, 
-                    the Company could do a better job, make a much better society, out of the ruins of the imperfection which had existed before.
+                    the Company could do a better job, make a much better society, out of the ruins of the imperfection which had existed before. <br/><br/> 
                     And so a new kind of life began, and almost too willingly, every one began to forget the past.`,
                     "incorrect": ["suprised.", "oportunity", "hanppend." ,"informetion,", "didnt", "difficult’.", "it,", "fewe","silence,","wasnt", "a" ,"initiative"],
                 },{
