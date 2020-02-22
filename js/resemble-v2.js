@@ -406,7 +406,18 @@
 
                 });
              })
-        }    
+        } else {
+            swal({
+                title: "Total Score: " + score,
+                allowOutsideClick: false,
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    window.location.href ="index.html";
+                }
+            });
+        }
     }
 
     $(window).on("load", function() {
