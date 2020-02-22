@@ -541,8 +541,6 @@
         //     window["CompareNumbers"].startGame();
         // })
 
-        window["CompareNumbers"].startGame();
-
         var intro = introJs();
         intro.setOptions({
             showBullets: false,
