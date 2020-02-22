@@ -18,6 +18,9 @@ canvas {cursor: pointer;}
   min-width: 600px; 
   /* max-width: 600px; */
 }
+.introjs-skipbutton {
+  display: none;
+}
 
 .swal-button--cancel {
   color: #fff;
