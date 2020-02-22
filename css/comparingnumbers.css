@@ -10,6 +10,10 @@
 .wrong {display: inline-block }
 canvas {cursor: pointer;}
 
+.canvas-container1, .canvas-container2 {
+  background: #603664;
+}
+
 .introjs-tooltip {
   min-width: 600px; 
   /* max-width: 600px; */
