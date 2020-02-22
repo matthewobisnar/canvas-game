@@ -441,7 +441,7 @@
         intro.setOptions({
             showBullets: false,
             exitOnEsc: false,
-            overlayOpacity: 0,
+            overlayOpacity: 1,
             exitOnOverlayClick: false,
             showStepNumbers:true,
             steps: [

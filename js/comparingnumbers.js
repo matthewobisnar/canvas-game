@@ -339,6 +339,18 @@
                 if ((localthis.currentIndexQue + 1) < localthis.compareQuestions.stages.length) {
                         localthis.GameQue(localthis.currentIndexQue + 1);          
                 } else {
+                    swal({
+                        title: "Total Score: " + this.totalScores,
+                        allowOutsideClick: false,
+                        buttons: true,
+                        dangerMode: true,
+                    }).then((willDelete) => {
+                        if (willDelete) {
+                            window.location.href ="index.html";
+                        } else {
+                            window.location.reload();
+                        }
+                    });
                     console.log("Next Game Another Game");
                     return;
                 }
@@ -537,7 +549,7 @@
         intro.setOptions({
             showBullets: false,
             exitOnEsc: false,
-            overlayOpacity: 0,
+            overlayOpacity: 1,
             exitOnOverlayClick: false,
             showStepNumbers:true,
             steps: [
