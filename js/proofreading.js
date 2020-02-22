@@ -186,8 +186,7 @@
                             allowOutsideClick: false,
                             buttons: true,
                             dangerMode: true,
-                          })
-                          .then((willDelete) => {
+                          }).then((willDelete) => {
                             if (willDelete) {
                                 window.location.reload();
                             } else {
@@ -195,16 +194,33 @@
                             }
                           });
                     } else {
-                         // dead..
-                         clearInterval(this.timerStatus);
-                         call_swal({
-                             title: "Total Score: " + this.totalScores,
-                             description: "Continue anyway?",
-                             btnText:"Reset"
-                         }, function() {
-                            self.enableTimer = true;
-                            self.gameQue(self.currentQuestionIndex + 1);
-                         });
+                        // dead..
+                        clearInterval(this.timerStatus);
+                        swal({
+                            title:"Total Score: " + this.totalScores,
+                            text: "Take exercise anyway?",
+                            closeOnClickOutside: false,
+                            allowOutsideClick: false,
+                            buttons: {
+                                cancel: "Cancel",
+                                catch: {
+                                  text: "Take Excercise",
+                                  value:  true,
+                                },
+                              },
+                            dangerMode: true,
+                          }).then((response) => {
+
+                            switch (response) {                        
+                                case true:
+                                    self.enableTimer = true;
+                                    self.gameQue(self.currentQuestionIndex + 1);
+                                  break;
+                                default :
+                                    window.location.href ="index.html";
+                              }
+
+                          });
                     }
 
                     return;
@@ -233,7 +249,19 @@
                         localthis.gameQue(localthis.currentQuestionIndex + 1);
                     });   
                 } else {
-                    window.location.href = "index.html";
+
+                    swal({
+                        title: "Total Score: " + this.totalScores,
+                        allowOutsideClick: false,
+                        buttons: true,
+                        dangerMode: true,
+                    }).then((willDelete) => {
+                        if (willDelete) {
+                            window.location.href ="index.html";
+                        }
+                    });
+
+                    //window.location.href = "index.html";
                     console.log("Reload Another Game");
                 }
                 return;
@@ -451,7 +479,7 @@
                     "incorrect": ["releiving", "Easter", "Buddism", "pray,", "belief&apos;s", "nots", "youve","meditation!"],
                 },{
                     "paragraph": `The Collapse <br/><br/> Even though they had known for years that it was coming, when the Collapse happened, people were suprised. <br/><br/> 
-                    They had had every oportunity to prevent it. The short-term inconveniences and difficulties would have yielded immeasurable long-term benefits, had they only taken the initiative<br/><br/>
+                    They had had every oportunity to prevent it. The short-term inconveniences and difficulties would have yielded immeasurable long-term benefits, had they only taken the initiative <br/><br/> 
                     But nobody did, so there was the Collapse, and then afterwards, the Chaos. No informetion, no infrastructure. 
                     To begin with there was fear and panic, but after the fear and panic, there was an odd kind of resignation, and in that time of resignation, the Company just sort of… hanppend. 
                     It cannot be said that people were happy to have someone finally start rebuilding. Nobody was happy in those days. 
@@ -508,7 +536,7 @@
                     },
                     { 
                         element: "."+wordCorrection.CLASSES.mistakesRemaing,
-                        intro: "There is error counter on the right side of the screen. Make sure to refer how many errors are still left."
+                        intro: "There is an error counter on the right side of the screen. Make sure to refer how many errors are still left."
                     },
                     { 
                         element: ".hearts",

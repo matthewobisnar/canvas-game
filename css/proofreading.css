@@ -14,6 +14,11 @@ body { overflow-x: hidden; background: #2a053a;}
 .wrong {display: inline-block }
 .swal-button { background: #651d5c !important;}
 
+.swal-button--cancel {
+  color: #fff;
+  background-color: #efefef;
+}
+
 .correct {
   font-weight: bold;
   color: red;
@@ -25,6 +30,7 @@ body { overflow-x: hidden; background: #2a053a;}
   animation-timing-function: linear;
   animation-fill-mode: forwards;
 }
+
 .test-wrap span {
   z-index: 9999999999 !important;
 }
