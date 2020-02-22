@@ -344,12 +344,8 @@
                         allowOutsideClick: false,
                         buttons: true,
                         dangerMode: true,
-                    }).then((willDelete) => {
-                        if (willDelete) {
-                            window.location.href ="index.html";
-                        } else {
-                            window.location.reload();
-                        }
+                    }).then(() => {
+                        window.location.href ="index.html";
                     });
                     console.log("Next Game Another Game");
                     return;
