@@ -26,6 +26,10 @@ body { background: #31495f;   overflow-x: hidden;}
 .num-p { opacity: 0; }
 
 
+.swal-button--cancel {
+  color: #fff;
+  background-color: #efefef;
+}
 .introjs-tooltip {
   min-width: 600px; 
   /* max-width: 600px; */

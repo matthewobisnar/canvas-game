@@ -19,6 +19,11 @@ canvas {cursor: pointer;}
   /* max-width: 600px; */
 }
 
+.swal-button--cancel {
+  color: #fff;
+  background-color: #efefef;
+}
+
 .introjs-disabled {
   display: none !important;
 }
