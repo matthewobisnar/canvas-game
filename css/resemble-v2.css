@@ -25,6 +25,12 @@ body { background: #31495f;   overflow-x: hidden;}
 .f-30 { font-size: 25px;}
 .num-p { opacity: 0; }
 
+.d-none { display: none}
+.d-block { display: relative !important }
+
+body, html, #wrapper { width: 100%; height: 100%  }
+#wrapper { display: table ; background-color: #fff;}
+#main { display: table-cell; vertical-align: middle;text-align:center }
 
 .swal-button--cancel {
   color: #fff;
@@ -104,3 +110,29 @@ body { background: #31495f;   overflow-x: hidden;}
   /* Rules for using icons as white on a dark background. */
   .material-icons.md-light { color: rgba(255, 255, 255, 1); }
   .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+
+@keyframes zoominoutsinglefeatured {
+  0% {
+      transform: scale(1,1);
+      -webkit-transform: scale(1,1);
+      -o-transform: scale(1.1);
+      -moz-animation: scale(1.1);
+  } 50% {
+      transform: scale(2,2);
+      -webkit-transform:scale(2,2);
+      -o-transform: scale(2,2);
+      -moz-animation: scale(2,2);
+  }
+  100% {
+    transform: scale(1,1);
+    -webkit-transform: scale(1,1);
+  }
+}
+
+.cardcontainer {
+  animation: zoominoutsinglefeatured 2s infinite;
+  -webkit-animation: zoominoutsinglefeatured 2s infinite;
+  -moz-animation: zoominoutsinglefeatured 2s infinite;
+  -o-animation:  zoominoutsinglefeatured 2s infinite;
+}

@@ -9,43 +9,50 @@
         <title>Tally it up</title>
     </head>
     <body>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col px-0 mt-2 mx-2 canvas-container1">
-                </div>
-                <div class="col px-0 mt-2 mx-2 canvas-container2"></div>
-            </div>
-            <div class="row">
-                <div class="col m-2 equal-btn-container"></div>
-            </div>
-            <div class="row">
-                <div class="col navigators bg-dark">
-                    <button class='instructionClass btn btn-sm text-white' data-toggle='modal' data-target='#exampleModalCenter'><i class='material-icons text-white'>info</i></button>
-                </div>
+        <div id="wrapper">
+            <div id="main">
+                <img src="assets//1.png" width="200px" class="animated fadeIn cardcontainer"/>
             </div>
         </div>
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Instructions</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        <!-- <div class="tallyitip d-none"> -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col px-0 mt-2 mx-2 canvas-container1">
                     </div>
-                    <div class="modal-body">
-                        <ul>
-                            <li class="pb-2">Your attention to details and quick calculating skills will be put to the test.</li>
-                            <li class="pb-2">2 sets of values will be displayed on the screen. Select the one with higher value.</li>
-                            <li class="pb-2">If the values are equal, click on the equal sign below. Now practice!</li>
-                        </ul>
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <div class="col px-0 mt-2 mx-2 canvas-container2"></div>
+                </div>
+                <div class="row">
+                    <div class="col m-2 equal-btn-container"></div>
+                </div>
+                <div class="row">
+                    <div class="col navigators bg-dark">
+                        <button class='instructionClass btn btn-sm text-white' data-toggle='modal' data-target='#exampleModalCenter'><i class='material-icons text-white'>info</i></button>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Instructions</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <li class="pb-2">Your attention to details and quick calculating skills will be put to the test.</li>
+                                <li class="pb-2">2 sets of values will be displayed on the screen. Select the one with higher value.</li>
+                                <li class="pb-2">If the values are equal, click on the equal sign below. Now practice!</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

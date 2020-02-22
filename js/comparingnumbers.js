@@ -566,24 +566,37 @@
             ]
         });
 
-        window["CompareNumbers"].startGame();
-    
-        setTimeout(function() {
-            intro.start();
+       window["CompareNumbers"].startGame();
+        $(".container-fluid").hide();
 
-            intro.oncomplete(function() {
-                window["CompareNumbers"].startGame();
-            });
+        $(document).ready(function() {
+            setTimeout(function() {
+                $("#wrapper").hide();
+                $(".container-fluid").show();
+                $(".container-fluid").addClass("d-block");
 
-            $('.introjs-skipbutton').hide();
+                if ($(".container-fluid").hasClass("d-block")) {
+                    setTimeout(function() {
+                        intro.start();
+            
+                        intro.oncomplete(function() {
+                            window["CompareNumbers"].startGame();
+                        });
+            
+                        $('.introjs-skipbutton').hide();
+            
+                        intro.onafterchange(function(){          
+                            if (this._introItems.length - 1 == this._currentStep || this._introItems.length == 1) {
+                                $('.introjs-skipbutton').show();
+                            } 
+                        });
+            
+                    }, 500);
+                }
 
-            intro.onafterchange(function(){          
-                if (this._introItems.length - 1 == this._currentStep || this._introItems.length == 1) {
-                    $('.introjs-skipbutton').show();
-                } 
-            });
+            },2000)
+        })
 
-        }, 500);
 
         $("."+CompareNumbers.CLASSES.canvas1).bind("click", function() { 
             window["CompareNumbers"].evaluate($(this))

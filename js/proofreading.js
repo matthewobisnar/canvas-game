@@ -555,15 +555,19 @@
                 ]
             });
         
-            setTimeout(function() {
-                intro.start();
-            }, 500);
 
-        // Call Swal
-        // call_swal(wordCorrection.SWAL.start_game, function() {
-        //     call_swal("", function(){
-        //        window["wordCorrection"].startGame(false);
-        //     });
-        // });
+            $(document).ready(function() {
+                setTimeout(function() {
+                    $("#wrapper").hide();
+                    $(".introduction-farm").addClass("d-block");
+
+                    if ( $(".introduction-farm").hasClass("d-block")) {
+                        setTimeout(function() {
+                            intro.start();
+                        }, 500);
+                    }
+                },2000)
+            })
+
     }
 })();

@@ -466,12 +466,21 @@
                 }
             ]
         });
-    
-        setTimeout(function() {
-            intro.start();
-        }, 500);
 
-        startGame (0);
+        $(document).ready(function() {
+            setTimeout(function() {
+                $("#wrapper").hide();
+                $(".reassemble-container").addClass("d-block");
+
+                if ( $(".reassemble-container").hasClass("d-block")) {
+                    setTimeout(function() {
+                        intro.start();
+                    }, 500);
+                }
+
+                startGame (0);
+            },2000)
+        })
 
     });
 })()
