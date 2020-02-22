@@ -123,7 +123,7 @@
                 this.animteCirles = setInterval(this.update.bind(this), 20);
                
                 if(this.currentIndexQue != 0) {
-                    this.timerStatus = setInterval(this.updateTimer.bind(this), 200);
+                    this.timerStatus = setInterval(this.updateTimer.bind(this), 500);
                 }
 
             } else {
