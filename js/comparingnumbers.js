@@ -575,13 +575,13 @@
                 window["CompareNumbers"].startGame();
             });
 
-            //$('.introjs-skipbutton').hide();
+            $('.introjs-skipbutton').hide();
 
-            // intro.onafterchange(function(){          
-            //     if (this._introItems.length - 1 == this._currentStep || this._introItems.length == 1) {
-            //         $('.introjs-skipbutton').show();
-            //     } 
-            // });
+            intro.onafterchange(function(){          
+                if (this._introItems.length - 1 == this._currentStep || this._introItems.length == 1) {
+                    $('.introjs-skipbutton').show();
+                } 
+            });
 
         }, 500);
 
