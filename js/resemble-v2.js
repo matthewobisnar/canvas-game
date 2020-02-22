@@ -169,7 +169,7 @@
                 }
 
                 $(".rotateBox").on("click", function(){
-                    objectRotate += 45;
+                    objectRotate += 90;
                     $(".objective").css("transform","rotate("+ (objectRotate) +"deg)");
                 });
 
