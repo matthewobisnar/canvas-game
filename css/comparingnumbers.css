@@ -10,6 +10,15 @@
 .wrong {display: inline-block }
 canvas {cursor: pointer;}
 
+.introjs-tooltip {
+  min-width: 600px; 
+  /* max-width: 600px; */
+}
+
+.introjs-disabled {
+  display: none !important;
+}
+
 .navigators {
     height: 40px;
     display: flex;

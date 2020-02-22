@@ -121,11 +121,21 @@
                 this.circles2 = this.drawCircles(this.canvas2, this.numCompare2, {bg:"#f15349", color: "white"});
             
                 this.animteCirles = setInterval(this.update.bind(this), 20);
-                this.timerStatus = setInterval(this.updateTimer.bind(this), 200);
+               
+                if(this.currentIndexQue != 0) {
+                    this.timerStatus = setInterval(this.updateTimer.bind(this), 200);
+                }
 
             } else {
                 this.currentQuestionIndex = 0;
-                console.log("Game stops.");
+                swal({
+                    title: "Total Score: " + this.totalScores,
+                    allowOutsideClick: false,
+                }).then(() => {
+                 //   if (willDelete) {
+                        window.location.href ="index.html";
+                   // }
+                });
                 return;
             }
         },
@@ -165,6 +175,8 @@
             var Compare1 = 0;
             var Compare2 = 0;
             var self = this;
+            var title = "";
+            var description = "";
 
             for (var i =0; i<this.numCompare1.length; i++) {
                 Compare1 += eval(this.numCompare1[i].replace("x","*"));
@@ -181,8 +193,13 @@
                     $("."+CompareNumbers.CLASSES.score).html(' <i class="material-icons md-light t-y md-18">star</i>');
                     $("."+CompareNumbers.CLASSES.score).children('.material-icons').addClass('animated bounceInDown');
                     $("."+CompareNumbers.CLASSES.totalScoreSpan).text(this.totalScores);
-
+                    title = "Good job! You are now ready to take the exercise.";
+                    description = "";
+        
                 } else {
+                    title = "Opps! Wrong Answer";
+                    description = "Take exercise anyway?";
+        
                     $("."+CompareNumbers.CLASSES.canvas1).addClass("shake");
                     $("."+CompareNumbers.CLASSES.canvas1).on("mouseleave", function() {
                         $(this).removeClass("shake");
@@ -191,11 +208,15 @@
             } else if (target.includes(CompareNumbers.CLASSES.canvas2)) {
                 if (Compare2 > Compare1) {
                     this.totalScores += 1;
+                    title = "Good job! You are now ready to take the exercise.";
+                    description = "";
                     $("."+CompareNumbers.CLASSES.score).html(' <i class="material-icons md-light t-y md-18">star</i>');
                     $("."+CompareNumbers.CLASSES.score).children('.material-icons').addClass('animated bounceInDown');
                     $("."+CompareNumbers.CLASSES.totalScoreSpan).text(this.totalScores);
 
                 } else {
+                    title = "Opps! Wrong Answer";
+                    description = "Take exercise anyway?";
                     $("."+CompareNumbers.CLASSES.canvas2).addClass("shake");
                     $("."+CompareNumbers.CLASSES.canvas2).on("mouseleave", function() {
                         $(this).removeClass("shake");
@@ -204,11 +225,15 @@
             } else if (target.includes(CompareNumbers.CLASSES.btnEqual)) {
                 if (Compare2 === Compare1) {
                     this.totalScores += 1;
+                    title = "Good job! You are now ready to take the exercise.";
+                    description = "";
                     $("."+CompareNumbers.CLASSES.score).html(' <i class="material-icons md-light t-y md-18">star</i>');
                     $("."+CompareNumbers.CLASSES.score).children('.material-icons').addClass('animated bounceInDown ');
                     $("."+CompareNumbers.CLASSES.totalScoreSpan).text(this.totalScores);
 
                 } else {
+                    title = "Opps! Wrong Answer";
+                    description = "Take exercise anyway?";
                     $("."+CompareNumbers.CLASSES.btnEqual).addClass("hake");
                     $("."+CompareNumbers.CLASSES.btnEqual).on("mouseleave", function() {
                         $(this).removeClass("shake");
@@ -217,9 +242,22 @@
             }
 
             clearInterval(this.timerStatus);
-            setTimeout(function() {
-                self.GameQue(self.currentIndexQue + 1);
-            }, 1000)
+
+            if (self.currentIndexQue == 0) {
+                call_swal({
+                    title: title,
+                    description: description,
+                    btnText:"Take Exercise",
+                }, function(){
+                    setTimeout(function() {
+                        self.GameQue(self.currentIndexQue + 1);
+                    }, 1000)
+                })
+            } else {
+                setTimeout(function() {
+                    self.GameQue(self.currentIndexQue + 1);
+                }, 1000);
+            }
         },
 
         updateDivs: function() {
@@ -487,13 +525,49 @@
 
         window["CompareNumbers"] = new CompareNumbers(stages);
 
-        call_swal({
-            title:"",
-            description:"Click the button to start the game",
-            btnText:"Play",
-        }, function(){
-            window["CompareNumbers"].startGame();
-        })
+        // call_swal({
+        //     title:"",
+        //     description:"Click the button to start the game",
+        //     btnText:"Play",
+        // }, function(){
+        //     window["CompareNumbers"].startGame();
+        // })
+
+        var intro = introJs();
+        intro.setOptions({
+            showBullets: false,
+            exitOnEsc: false,
+            overlayOpacity: 0,
+            exitOnOverlayClick: false,
+            showStepNumbers:true,
+            steps: [
+                { 
+                    intro: "Your attention to details and quick calculating skills will be put to the test."
+                },
+                { 
+                    element:".canvas-1",
+                    intro: "2 sets of values will be displayed on the screen. Select the one with higher value."
+                },{
+                    element:".canvas-2",
+                    intro: "2 sets of values will be displayed on the screen. Select the one with higher value."
+                },
+                {
+                    element:".btn-equal",
+                    intro: "If the values are equal, click on the equal sign below. Now practice!"
+                }
+            ]
+        });
+
+        // window["CompareNumbers"].startGame();
+    
+        setTimeout(function() {
+            intro.start();
+
+            intro.oncomplete(function() {
+                window["CompareNumbers"].startGame();
+            });
+
+        }, 500);
 
         $("."+CompareNumbers.CLASSES.canvas1).bind("click", function() { 
             window["CompareNumbers"].evaluate($(this))
