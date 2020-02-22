@@ -566,7 +566,7 @@
             ]
         });
 
-        // window["CompareNumbers"].startGame();
+        window["CompareNumbers"].startGame();
     
         setTimeout(function() {
             intro.start();
@@ -575,7 +575,7 @@
                 window["CompareNumbers"].startGame();
             });
 
-            $('.introjs-skipbutton').hide();
+            //$('.introjs-skipbutton').hide();
 
             // intro.onafterchange(function(){          
             //     if (this._introItems.length - 1 == this._currentStep || this._introItems.length == 1) {
