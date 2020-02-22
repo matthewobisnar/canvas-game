@@ -564,7 +564,7 @@
                     if ( $(".introduction-farm").hasClass("d-block")) {
                         setTimeout(function() {
                             intro.start();
-                        }, 500);
+                        }, 1000);
                     }
                 },2000)
             })
