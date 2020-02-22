@@ -23,7 +23,19 @@ body { background: #31495f;   overflow-x: hidden;}
 .l-h { line-height: 1.7;}
 .t-y { color: #ffc929 !important}
 .f-30 { font-size: 25px;}
-.num-p { opacity: 0; }
+.num-p { opacity: 1; }
+
+
+.introjs-tooltip {
+  min-width: 600px; 
+  /* max-width: 600px; */
+}
+
+.introjs-disabled {
+  display: none !important;
+}
+
+
 .navigators {
   height: 60px;
   width: 100%;

@@ -196,6 +196,7 @@
                     } else {
                         // dead..
                         clearInterval(this.timerStatus);
+                        
                         swal({
                             title:"Total Score: " + this.totalScores,
                             text: "Take exercise anyway?",

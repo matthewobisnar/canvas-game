@@ -17,8 +17,9 @@
     var timer = 60;
     var timerStatus = false;
     var score = 0;
+    var enableTimer = true;
 
-    var questions = [
+    var questions = [       
         {
             grid: 2,
             W: 70,
@@ -30,10 +31,29 @@
             ],
         },
         {
+            grid: 2,
+            W: 70,
+            answers: [
+                [4,3,5,6],
+                [6,5,3,4],
+            ],
+        },
+        {
             grid: 3,
             W: 70,
             answers: [
                 [6,5,6,3,4,3,6,5,6],
+                [4,3,4,5,6,5,4,3,4],
+            ],
+        }, 
+        {
+            grid: 3,
+            W: 70,
+            answers: [
+               [2,5,3,5,3,2,4,6,2],
+               [5,6,2,3,4,6,2,2,4],
+               [2,4,6,2,5,3,5,3,2],
+               [6,2,2,4,6,5,2,4,3]
             ],
         },
         {
@@ -148,7 +168,6 @@
                     }).append("<p class='num-p'> "+ (questions[currentIndex].answers[rotateObjective][i])+" </p>").appendTo('.'+param);
                 }
 
-
                 $(".rotateBox").on("click", function(){
                     objectRotate += 45;
                     $(".objective").css("transform","rotate("+ (objectRotate) +"deg)");
@@ -184,7 +203,18 @@
                     clearInterval(statugme);
                     // score +=5;
                     // updateNavDivs ();
-                    startGame(currentIndex + 1);
+                    if (currentIndex == 0) {
+                        call_swal({
+                            title: "Good job! You are now ready to take the exercise. ",
+                            btnText:"Next"
+                        }, function() {
+                           //self.enableTimer = true;
+                           startGame(currentIndex + 1);
+                        });
+                    } else {
+                        startGame(currentIndex + 1);
+                    }
+
                 }, 500);
             }
 
@@ -218,7 +248,16 @@
             if ((currentIndex + 1) < questions.length) {
                  startGame(currentIndex + 1);
             } else {
-                console.log("Reload Another Game");
+                swal({
+                    title: "Total Score: " + score,
+                    allowOutsideClick: false,
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href ="index.html";
+                    }
+                });
             }
 
             return;
@@ -324,26 +363,47 @@
     function startGame (index) {
 
         if (index < questions.length) { 
-            
+
+            enableTimer = (index == 0) ? false : true;
+
             timer = 60;
             currentIndex = index;
 
             $("."+CLASSES.currenQuestionSpan).text(index + 1);
            //$(".objective").css("transform","rotate(45deg)");
 
-            timerStatus = setInterval(function () {
+           if (enableTimer) {
+             timerStatus = setInterval(function () {
                 updateTimer();
              }, 500);
-     
+           }
              loadGame ();
 
              $(".btn-reset").on("click", function(){
-                call_swal({
-                    title:"",
-                    description:"Are you sure you want to reset the game?",
-                    btnText:"Play",
-                }, function(){
-                    startGame (0);
+            
+              swal({
+                title:"",
+                text:"Are you sure you want to reset the game?",
+                closeOnClickOutside: false,
+                allowOutsideClick: false,
+                buttons: {
+                    cancel: "Home",
+                    catch: {
+                      text: "Reset",
+                      value:  true,
+                    },
+                  },
+                dangerMode: true,
+              }).then((response) => {
+
+                switch (response) {                        
+                    case true:
+                        startGame (0);
+                      break;
+                    default :
+                        window.location.href ="index.html";
+                  }
+
                 });
              })
         }    
@@ -357,13 +417,50 @@
         resetButton ();
         loadGame ();
 
-        call_swal({
-            title:"Your Task",
-            description:"You will be shown an objective pattern in the left side of the canvas made with coloured pieces. You'll need to recreate the pattern shown in the right side of the canvas.",
-            btnText:"Play",
-        }, function(){
-            startGame (0);
+
+        // call_swal({
+        //     title:"Your Task",
+        //     description:"You will be shown an objective pattern in the left side of the canvas made with coloured pieces. You'll need to recreate the pattern shown in the right side of the canvas.",
+        //     btnText:"Play",
+        // }, function(){
+        //     startGame (0);
+        // });
+
+        var intro = introJs();
+        intro.setOptions({
+            showBullets: false,
+            exitOnEsc: false,
+            overlayOpacity: 0,
+            exitOnOverlayClick: false,
+            showStepNumbers:true,
+            steps: [
+                { 
+                    element: ".objective",
+                    intro: "A pattern of colorful pieces will appear on the right side of the screen."
+                },{ 
+                    element: ".puzzle-box",
+                    intro: "You will have to recreate such pattern on the left side."
+                },{
+                    element: ".items", 
+                    intro: "Choose from the pieces at the bottom of the screen to recreate and match the pattern shown. Unless, you are asked to rotate to a specific degree otherwise."
+                },{ 
+                    element: ".drag-num-2",
+                    intro: "Drag the pieces to the empty grid on the left side to recreate the pattern on the right."
+                },{
+                    element: ".boxes > .drag-num-2",
+                    intro: "Pieces that are placed poorly or overlap will be reset. <br/> Be patient! Sometimes, pieces will have to be rotated many times to fit perfectly!"
+                },
+                { 
+                    intro: "Now, try dragging one piece to the grid on the left. Then tap to rotate the piece so it matches the target pattern."
+                }
+            ]
         });
+    
+        setTimeout(function() {
+            intro.start();
+        }, 500);
+
+        startGame (0);
 
     });
 })()
