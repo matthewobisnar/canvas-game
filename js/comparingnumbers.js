@@ -581,6 +581,18 @@
             
                         intro.oncomplete(function() {
                             window["CompareNumbers"].startGame();
+
+                            $("."+CompareNumbers.CLASSES.canvas1).bind("click", function() { 
+                                window["CompareNumbers"].evaluate($(this))
+                            });
+                    
+                            $("."+CompareNumbers.CLASSES.canvas2).bind("click", function() {
+                                window["CompareNumbers"].evaluate($(this))
+                            });
+                    
+                            $("."+CompareNumbers.CLASSES.btnEqual).bind("click", function(){
+                                window["CompareNumbers"].evaluate($(this))
+                            });
                         });
             
                         $('.introjs-skipbutton').hide();
@@ -597,17 +609,5 @@
             },2000)
         })
 
-
-        $("."+CompareNumbers.CLASSES.canvas1).bind("click", function() { 
-            window["CompareNumbers"].evaluate($(this))
-        });
-
-        $("."+CompareNumbers.CLASSES.canvas2).bind("click", function() {
-            window["CompareNumbers"].evaluate($(this))
-        });
-
-        $("."+CompareNumbers.CLASSES.btnEqual).bind("click", function(){
-            window["CompareNumbers"].evaluate($(this))
-        });
     }
 })();
