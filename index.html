@@ -11,7 +11,7 @@
   <title>Amplify: A Cognitive Excercise</title>
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <!-- Custom styles for this template -->
   <link href="css/heroic-features.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
@@ -19,9 +19,14 @@
 </head>
 
 <body>
+  <div id="wrapper">
+    <div id="main">
+        <img src="assets//1.png" width="200px" class="animated fadeIn cardcontainer"/>
+    </div>
+  </div>
   <!-- Page Content -->
-  <div class="container">
-    <h3 class="my-5 text-center"><img src="assets/1.png" width="300px"></h3>
+  <div class="container index-container d-none animated fadeIn">
+    <h3 class="my-5 text-center">Amplify: A Cognitive Excercise</h3>
     <!-- Page Features -->
     <div class="row text-center my-5 m-b">
 
@@ -102,7 +107,22 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script>
+        $(document).ready(function() {
+            setTimeout(function() {
+                $("#wrapper").hide();
+                $(".index-container").addClass("d-block");
 
+                if ( $(".index-container").hasClass("d-block")) {
+                    setTimeout(function() {
+                        intro.start();
+                    }, 500);
+                }
+
+                startGame (0);
+            },2000)
+        })
+  </script>
 </body>
 
 </html>
