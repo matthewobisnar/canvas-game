@@ -28,6 +28,22 @@
         },
         {   operation: ["36*1", "12*3","4*2","30+6","24*2"],
             target: 36,
+        },
+        {   
+            operation: ["36*1", "12*3","4*2","30+6","24*2"],
+            target: 36,
+        },
+        {
+            operation: ["36*1", "12*3","4*2","30+6","24*2"],
+            target: 36,
+        },
+        {
+            operation: ["36*1", "12*3","4*2","30+6","24*2"],
+            target: 36,
+        },
+        {
+            operation: ["36*1", "12*3","4*2","30+6","24*2"],
+            target: 36,
         }
     ]
     
@@ -66,8 +82,7 @@
     }
     // End Correct Circle 
 
-    function Circle (x,y,radius,dx,dy, text, bg) {
-    
+    function Circle (x,y,radius,dx,dy, text, bg, timerCircle) {
         this.x = x;
         this.y = y;
         this.radius = radius;
@@ -75,9 +90,10 @@
         this.dy = dy;
         this.text = text.replace("*", "x");
         this.fontSize = 1;
-        this.bg = bg;    
+        this.bg = bg;
+        this.timerCircle = timerCircle;    
     }
-    
+
     Circle.prototype = {
         update:function () {
             if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
@@ -90,12 +106,13 @@
     
             this.x += this.dx;
             this.y += this.dy;
+            var self = this;
     
             this.updateRadius();
         },
     
         draw: function (c) {
-    
+
             c.save();        
             c.beginPath();
             c.fillStyle = this.bg;
@@ -110,7 +127,7 @@
     
             c.restore();
         },
-    
+
         updateRadius:function () {
             if (this.radius < 50) {
                 this.radius += this.radius * 0.1;
@@ -140,8 +157,10 @@
                 var y = (Math.random() * canvas.height);
                 var dx = (Math.random() < 0.5 ? -0.01 : 0.01);
                 var dy = (Math.random() < 0.5 ? -0.01 : 0.01);
+                var timerCircle = new Date().getTime();
                 var randomColor = randomColors();
-                var circle = new Circle(x, y, radius, dx, dy, questions[index].operation[j], randomColor);
+
+                var circle = new Circle(x, y, radius, dx, dy, questions[index].operation[j], randomColor, timerCircle);
                 // wall collision detection...
                 if (circle.x + circle.radius > canvas.width) {
                     circle.x = (circle.x - circle.radius);
@@ -181,8 +200,9 @@
                 var y = (Math.random() * canvas.height);
                 var dx = (Math.random() < 0.5 ? -0.01 : 0.01);
                 var dy = (Math.random() < 0.5 ? -0.01 : 0.01);
+                var timerCircle = new Date().getTime();
                 var randomColor = randomColors();
-                var circle = new Circle(x, y, radius, dx, dy, questions[index].operation[random], randomColor);
+                var circle = new Circle(x, y, radius, dx, dy, questions[index].operation[random], randomColor, timerCircle);
                 // wall collision detection...
                 if (circle.x + circle.radius > canvas.width) {
                     circle.x = (circle.x - circle.radius);
@@ -269,11 +289,10 @@
         
         if (questionsCollected.length > 0) {
             loadCanvasBg ();
-    
+            
             for (var i =0; i<questionsCollected.length; i++) {
                 questionsCollected[i].draw(context);
                 questionsCollected[i].update();
-
             }
         }
 
@@ -281,7 +300,7 @@
 
     function updateNavDivs () {
         $("."+CLASSES.totalScoreSpan).text(score);
-        $("."+CLASSES.score).html(' <i class="material-icons md-light t-y md-18">star</i>');
+        $("."+CLASSES.score).html(' <i class="material-icons md-light t-y md-18">check</i>');
         $("."+CLASSES.score).children('.material-icons').addClass('animated bounceInDown ');
     }
 
@@ -399,7 +418,7 @@
             score.innerHTML = 0;
            
             icon2.className = "material-icons mx-2 score py-2 md-light md-18";
-            icon2.innerHTML = "star";
+            icon2.innerHTML = "check";
             barcontainer.className = "bar-container mx-2 d-flex";
         
             barcontainer.appendChild(icon2);
@@ -436,6 +455,7 @@
         corrects = [];
     
         setInterval(function() {question(index)}, 1000); // this will que... for next button
+
         setInterval(function(){
             loop();
             correctAndMistakeLoop();
@@ -443,15 +463,27 @@
         getTargetValue();
     
         setInterval(function() {
-            questionsCollected.splice(0,1);
-        }, 2500);
+            // for (var i=0; i<questionsCollected.length; i++) {
+            //     if (new Date().getTime() >= questionsCollected[i].timerCircle + 7 * 1000) {
+            //         questionsCollected.splice(questionsCollected.findIndex(function () { return  questionsCollected[i].timerCircle }) ,1);
+            //     } 
+                
+            // }
+
+            questionsCollected.forEach(function(item, index){
+                if (new Date().getTime() >= questionsCollected[index].timerCircle + 7 * 1000) { 
+                    // console.log(questionsCollected[index].text + "removed");
+                    questionsCollected.splice(index, 1);
+                }
+            });
+
+        }, 100);
 
         // Correct Wrong Interval;
         setInterval(function() {
             if (corrects.length > 0) {
                 corrects.splice(0,1);
             }
-
             if (mistakes.length >0) {
                 mistakes.splice(0,1);
             }
@@ -459,7 +491,7 @@
 
         timerStatus = setInterval(function () {
             updateTimer ();
-        }, 300);
+        }, 500);
     }
     
     })()
