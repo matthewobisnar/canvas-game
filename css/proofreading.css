@@ -3,9 +3,8 @@ body, html, #wrapper { width: 100%; height: 100%  }
 #main { display: table-cell; vertical-align: middle;text-align:center }
 
 body { 
-   /* overflow-x: hidden; */
-   background: #2a053a;
-}
+   overflow-x: hidden;
+   background: #2a053a;}
 .bg-vio { background-color: #401146 !important;}
 .canvas { max-width: 210mm; margin: 0 auto;}
 .canvas p .targets { cursor: pointer; }
