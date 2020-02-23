@@ -253,10 +253,8 @@
                     allowOutsideClick: false,
                     buttons: true,
                     dangerMode: true,
-                }).then((willDelete) => {
-                    if (willDelete) {
-                        window.location.href ="index.html";
-                    }
+                }).then(() => {
+                    window.location.href ="index.html";
                 });
             }
 
