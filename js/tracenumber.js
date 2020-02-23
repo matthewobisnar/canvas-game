@@ -349,10 +349,11 @@
             if ((currentQuestionIndex + 1) < questions.length) {
                 startTheGame(currentQuestionIndex + 1);
             } else {
+                context.fillStyle = "#834b9a"
+                context.fillRect(0,0, canvas.width,canvas.height);
                 swal({
                     title: "Total Score: " + score,
                     allowOutsideClick: false,
-                    buttons: true,
                 }).then(() => {
                     window.location.href ="index.html";
                 });
