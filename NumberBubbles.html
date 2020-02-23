@@ -6,10 +6,16 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+        <link rel="stylesheet" href="vendor/intro.js/introjs.css"/>
         <link rel="stylesheet" href="css/tracenumber.css"/>
     </head>
     <body>
-       
+        <div id="wrapper">
+            <div id="main">
+                <img src="assets/1.png" width="200px" class="animated fadeIn cardcontainer"/>
+            </div>
+        </div>
+       <div class="parentContainer display-none">
         <!-- <div class="row"> -->
             <div class="col px-0 canvasContainer border bg-vio">
                 <canvas class="canvas"></canvas>
@@ -19,8 +25,10 @@
             </div>
             <div class="col navigators p-3 border bg-dark"></div>
             <!-- </div> -->
+       </div>
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="vendor/intro.js/intro.js"></script>
     <script src="js/tracenumber.js"></script>
 </html>

@@ -23,27 +23,27 @@
     var timerStatus = null;
     
     var questions = [
-        {   operation: ["36*1", "12*3","4*2","30+6","24*2"],
+        {
+            operation: ["2*5", "6+4"],
+            target: 10,
+        },
+        {
+            operation: ["4*3", "6*2","10+2","9+2","15-4","9+3"],
+            target: 12,
+        },
+        {
+            operation: ["4*5", "10*2","15+6","16+4","17+4","18+3"],
+            target: 20,
+        },
+        {   operation: ["36*1", "12*3","4*2","30+6","24*2","28+7"],
             target: 36,
         },
-        {   operation: ["36*1", "12*3","4*2","30+6","24*2"],
-            target: 36,
+        {   operation: ["16*3","40+8","6*8", "50-2", "50-3", "16*2"],
+            target: 48,
         },
         {   
-            operation: ["36*1", "12*3","4*2","30+6","24*2"],
-            target: 36,
-        },
-        {
-            operation: ["36*1", "12*3","4*2","30+6","24*2"],
-            target: 36,
-        },
-        {
-            operation: ["36*1", "12*3","4*2","30+6","24*2"],
-            target: 36,
-        },
-        {
-            operation: ["36*1", "12*3","4*2","30+6","24*2"],
-            target: 36,
+            operation: ["20+10", "26+4","15*2","10+19","21+8","25+6", "1*48"],
+            target: 30,
         }
     ]
     
@@ -142,15 +142,15 @@
     }
     
     function question (index) {
-        getTargetValue(questions[index].target)
 
         var random = 0;
     
         if (questionsCollected.length <= 0) {
-    
+            
             random = getRandom(index);
     
             for (var j = 0 ; j<random; j++) {
+
                 var overalapping = false;
                 var radius = 50;
                 var x = (Math.random() * canvas.width);
@@ -159,8 +159,8 @@
                 var dy = (Math.random() < 0.5 ? -0.01 : 0.01);
                 var timerCircle = new Date().getTime();
                 var randomColor = randomColors();
-
                 var circle = new Circle(x, y, radius, dx, dy, questions[index].operation[j], randomColor, timerCircle);
+
                 // wall collision detection...
                 if (circle.x + circle.radius > canvas.width) {
                     circle.x = (circle.x - circle.radius);
@@ -191,8 +191,9 @@
             };
     
         } else {
-            
+          
             if (questionsCollected.length < questions[index].operation.length) {
+                
                 var overalapping = false;
                 random = getRandom(index);
                 var radius = 50;
@@ -203,6 +204,7 @@
                 var timerCircle = new Date().getTime();
                 var randomColor = randomColors();
                 var circle = new Circle(x, y, radius, dx, dy, questions[index].operation[random], randomColor, timerCircle);
+
                 // wall collision detection...
                 if (circle.x + circle.radius > canvas.width) {
                     circle.x = (circle.x - circle.radius);
@@ -275,7 +277,19 @@
                 if (parseInt(questions[currentQuestionIndex].target) == eval(objValue)) {
                     score +=1;
                     updateNavDivs ();
-                    corrects.push(new Correct(correctX,correctY,"Correct!","green"));
+                    if (currentQuestionIndex == 0) {
+                        swal({
+                            title: "Good job! You are now ready to take the exercise.",
+                            allowOutsideClick: false,
+                            buttons: true,
+                            dangerMode: true,
+                        }).then(() => {
+                            corrects.push(new Correct(correctX,correctY,"Correct!","green"));
+                            startTheGame(1);
+                        });
+                    } else {
+                        corrects.push(new Correct(correctX,correctY,"Correct!","green"));
+                    }
                 } else {
                     mistakes.push(new Correct(correctX,correctY,"Wrong!","red"));
                 }
@@ -334,9 +348,15 @@
 
             if ((currentQuestionIndex + 1) < questions.length) {
                 startTheGame(currentQuestionIndex + 1);
-                    
             } else {
-                console.log("Reload Another Game");
+                swal({
+                    title: "Total Score: " + score,
+                    allowOutsideClick: false,
+                    buttons: true,
+                }).then(() => {
+                    window.location.href ="index.html";
+                });
+                // console.log("Reload Another Game");
             }
             return;
         }
@@ -432,12 +452,51 @@
         createCounterDiv ();
         createScoreDiv ();
 
-        call_swal({
-            title:"",
-            description:"The aim of the game is to pop the bubbles that match the target number.",
-            btnText:"Play",
-        }, function(){
-            startTheGame(0);
+        // call_swal({
+        //     title:"",
+        //     description:"The aim of the game is to pop the bubbles that match the target number.",
+        //     btnText:"Play",
+        // }, function(){
+        //     startTheGame(0);
+        // })
+
+        var intro = introJs();
+        intro.setOptions({
+            showBullets: false,
+            exitOnEsc: false,
+            overlayOpacity: 1,
+            exitOnOverlayClick: false,
+            showStepNumbers:true,
+            steps: [
+                { 
+                    intro: "Pop the number bubbles that match the target number."
+                },
+                {   element:".target-value",
+                    intro: "Get poppin&apos; and test your skills! Click on the bubbles that match the target."
+                },{
+                    intro: "No bubbles last forever. Click on the bubbles that match the target within 5 seconds or else, they will burst."
+                },{
+                    intro: "The longer you play into the round, the more bubbles will appear to make things more exciting!"
+                },{
+                    intro: "Remember to pop the most number of correct bubbles before the quick round ends. Good luck!"
+                }
+            ]
+        });
+
+        $(".parentContainer").hide();
+
+        $(document).ready(function() {
+            setTimeout(function() {
+                $("#wrapper").hide();
+                $(".parentContainer").show();
+
+                    setTimeout(function() {
+                        intro.start();
+                    }, 500);
+            
+
+                startTheGame (0);
+            },2000)
         })
     }
     
@@ -453,32 +512,29 @@
         questionsCollected = [];
         mistakes = [];
         corrects = [];
-    
+        getTargetValue(questions[index].target);
         setInterval(function() {question(index)}, 1000); // this will que... for next button
 
-        setInterval(function(){
-            loop();
-            correctAndMistakeLoop();
-        }, 1000/500);
-        getTargetValue();
+
+        if (index != 0) {
+
+            setInterval(function(){
+                loop();
+                correctAndMistakeLoop();
+            }, 1000/500);
+            getTargetValue();   
+        
+            timerStatus = setInterval(function () {
+                updateTimer ();
+            }, 500);
+
+        } else {
+            setInterval(function(){
+                loop();
+                correctAndMistakeLoop();
+            }, 1000/500);
+        }
     
-        setInterval(function() {
-            // for (var i=0; i<questionsCollected.length; i++) {
-            //     if (new Date().getTime() >= questionsCollected[i].timerCircle + 7 * 1000) {
-            //         questionsCollected.splice(questionsCollected.findIndex(function () { return  questionsCollected[i].timerCircle }) ,1);
-            //     } 
-                
-            // }
-
-            questionsCollected.forEach(function(item, index){
-                if (new Date().getTime() >= questionsCollected[index].timerCircle + 7 * 1000) { 
-                    // console.log(questionsCollected[index].text + "removed");
-                    questionsCollected.splice(index, 1);
-                }
-            });
-
-        }, 100);
-
         // Correct Wrong Interval;
         setInterval(function() {
             if (corrects.length > 0) {
@@ -489,9 +545,15 @@
             }
         }, 1000);
 
-        timerStatus = setInterval(function () {
-            updateTimer ();
-        }, 500);
+        setInterval(function() {
+            questionsCollected.forEach(function(item, index){
+                if (new Date().getTime() >= questionsCollected[index].timerCircle + 7 * 1000) { 
+                    // console.log(questionsCollected[index].text + "removed");
+                    questionsCollected.splice(index, 1);
+                }
+            });
+
+        }, 100);
     }
     
     })()
