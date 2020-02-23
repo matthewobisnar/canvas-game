@@ -455,7 +455,7 @@
                     From the very beginning, it&apos;s important to set the scene You want the reader to understand what kind of book they&apos;re reading right from the start.`,
                     "incorrect": ["maek-believe", "you're", "the,", "as", "scene"],
                 },{
-                    "paragraph": `Bubbles party Services<br/><br/>Welcome to your new neighbourhood party&nbsp; service! We are newly established in the Bayside Area and offer a range of services and products to suit every party&nbsp; need. 
+                    "paragraph": `Bubbles party Services <br/><br/> Welcome to your new neighbourhood party&nbsp; service! We are newly established in the Bayside Area and offer a range of services and products to suit every party&nbsp; need. 
                     From baby showers to engagement parties, birthday celebrations to end-of-year farewells, we take care of all your requiremens so you have nothing to worry about, 
                     and you can just sat back and enjoy your event.<br/><br/> Our team has a combined forty-five years of experience in the event planning and management sector. 
                     It&apos;s fair to say we know all the potential pitfalls of event management and how to avoid them! You can rest assured that your party&nbsp;will go off without a hitch&nbsp;In fact, 
