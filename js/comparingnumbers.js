@@ -569,6 +569,11 @@
        window["CompareNumbers"].startGame();
         $(".container-fluid").hide();
 
+        var sound = new Howl({
+            src: ['js/NiGiD_-_Easy_Peter.mp3'],
+            loop: true,
+          });
+
         $(document).ready(function() {
             setTimeout(function() {
                 $("#wrapper").hide();
@@ -577,6 +582,7 @@
 
                 if ($(".container-fluid").hasClass("d-block")) {
                     setTimeout(function() {
+                        sound.play();
                         intro.start();
             
                         intro.oncomplete(function() {

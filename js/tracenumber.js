@@ -476,6 +476,11 @@
             ]
         });
 
+        var sound = new Howl({
+            src: ['js/NiGiD_-_Road_to_Tutu.mp3'],
+            loop: true,
+          });
+
         $(".parentContainer").hide();
 
         $(document).ready(function() {
@@ -484,6 +489,7 @@
                 $(".parentContainer").show();
 
                     setTimeout(function() {
+                        sound.play();
                         intro.start();
                     }, 500);
             

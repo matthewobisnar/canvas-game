@@ -553,18 +553,19 @@
             });
 
             var sound = new Howl({
-                src: ['js/NiGiD_-_Easy_Peter.mp3']
+                src: ['js/NiGiD_-_Easy_Peter.mp3'],
+                loop: true,
               });
-              
-              sound.play();
+            
 
             $(document).ready(function() {
                 setTimeout(function() {
                     $("#wrapper").hide();
                     $(".introduction-farm").addClass("d-block");
-                    win.play();
+                    
                     if ( $(".introduction-farm").hasClass("d-block")) {
                         setTimeout(function() {
+                            sound.play();
                             intro.start();
                         }, 1000);
                     }
