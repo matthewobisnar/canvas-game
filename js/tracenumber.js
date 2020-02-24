@@ -453,14 +453,6 @@
         createCounterDiv ();
         createScoreDiv ();
 
-        // call_swal({
-        //     title:"",
-        //     description:"The aim of the game is to pop the bubbles that match the target number.",
-        //     btnText:"Play",
-        // }, function(){
-        //     startTheGame(0);
-        // })
-
         var intro = introJs();
         intro.setOptions({
             showBullets: false,

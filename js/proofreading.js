@@ -548,19 +548,21 @@
                     },
                     { 
                         intro: "Now, go ahead and try clicking a word that&apos;s not an error below. When done, identify the remaining errors in the selection.",
-                        oncomplete : function() {
-                            alert("end of introduction");
-                        }
                     },
                 ]
             });
-        
+
+            var sound = new Howl({
+                src: ['js/NiGiD_-_Easy_Peter.mp3']
+              });
+              
+              sound.play();
 
             $(document).ready(function() {
                 setTimeout(function() {
                     $("#wrapper").hide();
                     $(".introduction-farm").addClass("d-block");
-
+                    win.play();
                     if ( $(".introduction-farm").hasClass("d-block")) {
                         setTimeout(function() {
                             intro.start();
