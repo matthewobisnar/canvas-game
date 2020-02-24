@@ -477,7 +477,7 @@
         });
 
         var sound = new Howl({
-            src: ['js/NiGiD_-_Road_to_Tutu.mp3'],
+            src: ['assets/aud_clip/NiGiD_-_Road_to_Tutu.mp3'],
             loop: true,
           });
 

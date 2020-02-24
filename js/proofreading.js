@@ -553,7 +553,7 @@
             });
 
             var sound = new Howl({
-                src: ['js/NiGiD_-_Easy_Peter.mp3'],
+                src: ['assets/aud_clip/NiGiD_-_Easy_Peter.mp3'],
                 loop: true,
               });
             
