@@ -286,7 +286,7 @@
             // Create Canvas Element..
             var canvas = document.createElement("div");
                 canvas.className = wordCorrection.CLASSES.canvas + " border bg-white";
-                canvas.style.minHeight = (window.innerHeight - (document.querySelector("." + wordCorrection.CLASSES.navigatiorContainer).clientHeight + 15)) + "px";
+                canvas.style.minHeight = (window.innerHeight - (document.querySelector("." + wordCorrection.CLASSES.navigatiorContainer).outerHeight + 15)) + "px";
 
 
             document.querySelector("."+wordCorrection.CLASSES.canvasContainer).appendChild(canvas);
