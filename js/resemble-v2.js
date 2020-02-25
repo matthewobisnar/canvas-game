@@ -79,7 +79,7 @@
 
             // Add Parent Box...
             $("."+param).css({
-                "margin": (window.innerHeight/2) - (questions[currentIndex].grid*questions[currentIndex].W/2) - (questions[currentIndex].W + draggableBox.margin)+ "px auto",
+                "margin": (window.innerHeight/2) - (questions[currentIndex].grid*questions[currentIndex].W/2) - (questions[currentIndex].W + draggableBox.margin + 30) + "px auto",
                 "width": questions[currentIndex].grid*questions[currentIndex].W + "px",
                 "display": "grid",
                 "grid-template-columns":"repeat(" +questions[currentIndex].grid+ ", " + questions[currentIndex].W+ "px)",
@@ -426,7 +426,7 @@
         resetButton ();
         loadGame ();
 
-        // $(".objective-container, .puzzle-game").height(window.innerHeight - $(".navigators").height());
+        $(".objective-container, .puzzle-game").height(window.innerHeight - $(".navigators").height());
 
         // call_swal({
         //     title:"Your Task",
