@@ -95,7 +95,7 @@
 
                 this.words = this.canvas.innerHTML.split(/\s+/);
 
-                $(".canvas").addClass("animated fadeIn").html( "<button class='instructionClass btn btn-sm' data-toggle='modal' data-target='#exampleModalCenter'><i class='material-icons text-secondary'>info</i></button><div class='test-wrap p-5'><p><span class='targets'>" + this.words.join( "</span> <span>" ) + "</span></p></div>" );
+                $(".canvas").addClass("animated fadeIn").html( "<button class='instructionClass btn btn-sm' data-toggle='modal' data-target='#exampleModalCenter'><i class='material-icons text-secondary'>info</i></button><a href='index.html'><button class='btn btn-sm'><i class='material-icons text-secondary'>home</i></button></a><div class='test-wrap p-5'><p><span class='targets'>" + this.words.join( "</span> <span>" ) + "</span></p></div>" );
                 $("span").addClass("targets animated");
 
                 // Add Event click per word.
@@ -286,7 +286,7 @@
             // Create Canvas Element..
             var canvas = document.createElement("div");
                 canvas.className = wordCorrection.CLASSES.canvas + " border bg-white";
-                canvas.style.minHeight = (window.innerHeight - (document.querySelector("." + wordCorrection.CLASSES.navigatiorContainer).outerHeight + 15)) + "px";
+                canvas.style.minHeight = (window.innerHeight - (document.querySelector("." + wordCorrection.CLASSES.navigatiorContainer).clientHeight + 55)) + "px";
 
 
             document.querySelector("."+wordCorrection.CLASSES.canvasContainer).appendChild(canvas);

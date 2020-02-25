@@ -426,6 +426,7 @@
         resetButton ();
         loadGame ();
 
+        // $(".objective-container, .puzzle-game").height(window.innerHeight - $(".navigators").height());
 
         // call_swal({
         //     title:"Your Task",
