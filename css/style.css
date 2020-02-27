@@ -3,11 +3,14 @@
   }
 
 .text-y { color: #ffea93 !important; }
+.bg-y {
+  background: #FFFDD0;
+}
 
 .d-none { display: none}
 .d-block { display: relative !important }
 
-body, html, #wrapper { width: 100%; height: 100%  }
+body, html, #wrapper { width: 100%; height: 100%  ;background: #FFFDD0; }
 #wrapper { display: table ; background-color: #fff;}
 #main { display: table-cell; vertical-align: middle;text-align:center }
 
@@ -35,4 +38,10 @@ body, html, #wrapper { width: 100%; height: 100%  }
   -webkit-animation: zoominoutsinglefeatured 2s infinite;
   -moz-animation: zoominoutsinglefeatured 2s infinite;
   -o-animation:  zoominoutsinglefeatured 2s infinite;
+}
+
+@media only screen and (max-width: 990px) {
+  .fixed-bottom {
+    position: relative !important;
+  }
 }
