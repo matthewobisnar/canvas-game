@@ -479,8 +479,20 @@
 
                 if ( $(".reassemble-container").hasClass("d-block")) {
                     setTimeout(function() {
+                        var id;
                         sound.play();
                         intro.start();
+
+                        
+                        $("#vol_control").on("click", function () {
+                            if ($("i", this).text() == "volume_up") {
+                            $("i", this).text("volume_mute");
+                            sound.mute(true, id);
+                            } else {
+                            $("i", this).text("volume_up");
+                            sound.mute(false, id);
+                            }
+                        })
                     }, 500);
                 }
 

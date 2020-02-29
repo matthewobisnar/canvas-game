@@ -95,7 +95,7 @@
 
                 this.words = this.canvas.innerHTML.split(/\s+/);
 
-                $(".canvas").addClass("animated fadeIn").html( "<button class='instructionClass btn btn-sm' data-toggle='modal' data-target='#exampleModalCenter'><i class='material-icons text-secondary'>info</i></button><a href='index.html'><button class='btn btn-sm'><i class='material-icons text-secondary'>home</i></button></a><div class='test-wrap p-5'><p><span class='targets'>" + this.words.join( "</span> <span>" ) + "</span></p></div>" );
+                $(".canvas").addClass("animated fadeIn").html("<a href='index.html'><button class='btn btn-sm'><i class='material-icons text-secondary'>home</i></button></a><button class='instructionClass btn btn-sm' data-toggle='modal' data-target='#exampleModalCenter'><i class='material-icons text-secondary'>info</i></button><button class='btn btn-sm' id='vol_control'><i class='material-icons text-secondary'>volume_up</i></button><div class='test-wrap p-5'><p><span class='targets'>" + this.words.join( "</span> <span>" ) + "</span></p></div>");
                 $("span").addClass("targets animated");
 
                 // Add Event click per word.
@@ -559,6 +559,7 @@
             
 
             $(document).ready(function() {
+                var id;
                 setTimeout(function() {
                     $("#wrapper").hide();
                     $(".introduction-farm").addClass("d-block");
@@ -567,6 +568,17 @@
                         setTimeout(function() {
                             sound.play();
                             intro.start();
+
+                            
+                            $("#vol_control").on("click", function () {
+                                if ($("i", this).text() == "volume_up") {
+                                $("i", this).text("volume_mute");
+                                sound.mute(true, id);
+                                } else {
+                                $("i", this).text("volume_up");
+                                sound.mute(false, id);
+                                }
+                            })
                         }, 1000);
                     }
                 },2000)

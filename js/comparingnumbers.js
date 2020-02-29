@@ -557,11 +557,11 @@
                     intro: "2 sets of values will be displayed on the screen. Select the one with higher value."
                 },{
                     element:".canvas-2",
-                    intro: "2 sets of values will be displayed on the screen. Select the one with higher value."
+                    intro: "Select the one with higher value."
                 },
                 {
                     element:".btn-equal",
-                    intro: "If the values are equal, click on the equal sign below. Now practice!"
+                    intro: "If the values are the same, click on the equal sign below. Now practice!"
                 }
             ]
         });
@@ -582,8 +582,19 @@
 
                 if ($(".container-fluid").hasClass("d-block")) {
                     setTimeout(function() {
+                        var id;
                         sound.play();
                         intro.start();
+
+                        $("#vol_control").on("click", function () {
+                            if ($("i", this).text() == "volume_up") {
+                               $("i", this).text("volume_mute");
+                               sound.mute(true, id);
+                            } else {
+                               $("i", this).text("volume_up");
+                               sound.mute(false, id);
+                            }
+                         })
             
                         intro.oncomplete(function() {
                             window["CompareNumbers"].startGame();
