@@ -523,7 +523,7 @@
                 exitOnEsc: false,
                 overlayOpacity: 0,
                 exitOnOverlayClick: false,
-                showStepNumbers:true,
+                showStepNumbers:false,
                 steps: [
                     { 
                         intro: "This exercise gives you various selections that require proofreading.."

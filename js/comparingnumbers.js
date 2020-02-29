@@ -547,17 +547,21 @@
             exitOnEsc: false,
             overlayOpacity: 1,
             exitOnOverlayClick: false,
-            showStepNumbers:true,
+            showStepNumbers:false,
             steps: [
                 { 
                     intro: "Your attention to details and quick calculating skills will be put to the test."
                 },
                 { 
                     element:".canvas-1",
-                    intro: "2 sets of values will be displayed on the screen. Select the one with higher value."
+                    intro: "2 sets of values will be displayed on the screen. Select the one with higher value.",
+                    position: "ottom-middle-aligned",
+                    displayStep: 4
                 },{
                     element:".canvas-2",
-                    intro: "Select the one with higher value."
+                    intro: "Select the one with higher value.",
+                    position: "bottom-middle-aligned",
+                    displayStep: 4
                 },
                 {
                     element:".btn-equal",

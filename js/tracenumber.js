@@ -459,7 +459,7 @@
             exitOnEsc: false,
             overlayOpacity: 1,
             exitOnOverlayClick: false,
-            showStepNumbers:true,
+            showStepNumbers:false,
             steps: [
                 { 
                     intro: "Pop the number bubbles that match the target number."
