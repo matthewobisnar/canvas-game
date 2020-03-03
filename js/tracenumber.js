@@ -490,7 +490,7 @@
 
                     setTimeout(function() {
                         var id;
-                        // sound.play();
+                        sound.play();
                         intro.start();
 
                         
