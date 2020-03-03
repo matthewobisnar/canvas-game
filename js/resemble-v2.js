@@ -23,48 +23,56 @@
         {
             grid: 2,
             W: 70,
+            rotation: 0,
+            objective:[
+                [2,2,6,5],
+            ],
             answers: [
                [2,2,6,5],
-               [3,2,6,2],
-               [3,4,2,2],
-               [2,4,2,5]
             ],
         },
         {
             grid: 2,
             W: 70,
+            rotation: 0,
+            objective:[
+                [3,2,2,5],
+            ],
             answers: [
-                [4,3,5,6],
-                [6,5,3,4],
+                [3,2,2,5],
             ],
         },
         {
             grid: 3,
             W: 70,
-            answers: [
+            rotation: 90,
+            objective: [
                 [6,5,6,3,4,3,6,5,6],
-                [4,3,4,5,6,5,4,3,4],
+            ],
+            answers: [
+                [3,4,3,6,5,6,3,4,3],
             ],
         }, 
         {
             grid: 3,
             W: 70,
+            rotation: 180,
+            objective:[
+                [2,5,3,5,3,2,4,6,2],
+            ],
             answers: [
-               [2,5,3,5,3,2,4,6,2],
-               [5,6,2,3,4,6,2,2,4],
-               [2,4,6,2,5,3,5,3,2],
-               [6,2,2,4,6,5,2,4,3]
+               [4,6,2,2,4,6,2,5,3],
             ],
         },
         {
             grid: 3,
             W: 70,
+            rotation: 0,
+            objective: [
+                [2,5,3,2,4,6,2,5,3],
+            ],
             answers: [
                [2,5,3,2,4,6,2,5,3],
-               [4,6,2,5,3,2,4,6,2],
-               [2,2,2,5,6,5,3,4,3],
-               [6,5,6,4,3,4,2,2,2],
-               [5,3,2,4,6,2,5,3,2]
             ],
         },
     ];
@@ -164,16 +172,19 @@
 
                 for (var i = 0; i<Math.pow (questions[currentIndex].grid, 2); i++) {
                     jQuery('<div/>', {
-                        "class": 'objective-box objective-div objective-num-'+ questions[currentIndex].answers[rotateObjective][i],
+                        "class": 'objective-box objective-div objective-num-'+ questions[currentIndex].objective[rotateObjective][i],
                         "id": 'obj-target',
-                    }).append("<p class='num-p'> "+ (questions[currentIndex].answers[rotateObjective][i])+" </p>").appendTo('.'+param);
+                    }).append("<p class='num-p'> "+ (questions[currentIndex].objective[rotateObjective][i])+" </p>").appendTo('.'+param);
                 }
 
-                $(".rotateBox").on("click", function(){
-                    objectRotate += 90;
-                    $(".objective").css("transform","rotate("+ (objectRotate) +"deg)");
-                });
+                $(".rotateBox").html(questions[currentIndex].rotation != 0 ? 'Rotate&nbsp;<span id="rotate_name"> '+ questions[currentIndex].rotation +' </span><span>&#176;</span> clockwise <i class="material-icons pl-3">rotate_right</i>': '');
 
+                // if (questions[currentIndex].rotation != 0) {
+                //     $(".rotateBox").on("click", function(){
+                //         objectRotate += questions[currentIndex].rotation;
+                //         $(".objective").css("transform","rotate("+ (objectRotate) +"deg)");
+                //     });
+                // }
             }
     }
 
