@@ -281,9 +281,7 @@
                         swal({
                             title: "Good job! You are now ready to take the exercise.",
                             allowOutsideClick: false,
-                            buttons: true,
-                            dangerMode: true,
-                        }).then(() => {
+                        }).then(function(){
                             corrects.push(new Correct(correctX,correctY,"Correct!","green"));
                             startTheGame(1);
                         });
