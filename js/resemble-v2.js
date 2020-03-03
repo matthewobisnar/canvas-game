@@ -263,9 +263,7 @@
                 swal({
                     title: "Total Score: " + score,
                     allowOutsideClick: false,
-                    buttons: true,
-                    dangerMode: true,
-                }).then(() => {
+                }).then(function() {
                     window.location.href ="index.html";
                 });
             }
@@ -420,12 +418,8 @@
             swal({
                 title: "Total Score: " + score,
                 allowOutsideClick: false,
-                buttons: true,
-                dangerMode: true,
-            }).then((willDelete) => {
-                if (willDelete) {
+            }).then(function() {
                     window.location.href ="index.html";
-                }
             });
         }
     }
