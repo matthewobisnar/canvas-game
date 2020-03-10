@@ -530,7 +530,7 @@
             setInterval(function(){
                 loop();
                 correctAndMistakeLoop();
-            }, 1000/500);
+            }, 1000);
             getTargetValue();   
         
             timerStatus = setInterval(function () {
@@ -541,7 +541,7 @@
             setInterval(function(){
                 loop();
                 correctAndMistakeLoop();
-            }, 1000/500);
+            }, 100/500);
         }
     
         // Correct Wrong Interval;
