@@ -577,6 +577,7 @@
           });
 
         $(document).ready(function() {
+
             setTimeout(function() {
                 $("#wrapper").hide();
                 $(".container-fluid").show();
@@ -584,19 +585,33 @@
 
                 if ($(".container-fluid").hasClass("d-block")) {
                     setTimeout(function() {
-                        var id;
-                        sound.play();
                         intro.start();
-
+                        sound.play();
+                        if (typeof sessionStorage.getItem("mute") == "undefined") {
+                                sessionStorage.setItem('mute', false);
+                                $("i", $("#vol_control")).text("volume_up");
+                        } else {
+                                var isTrue = sessionStorage.getItem("mute") == "true" ? true: false;
+                                if (isTrue == true) {
+                                    $("i", $("#vol_control")).text("volume_mute");
+                                 } else {
+                                    $("i", $("#vol_control")).text("volume_up");
+                                 }
+                                sound.mute(isTrue);
+                        }
+                        
                         $("#vol_control").on("click", function () {
                             if ($("i", this).text() == "volume_up") {
-                               $("i", this).text("volume_mute");
-                               sound.mute(true, id);
+                                $("i", this).text("volume_mute");
+                                sessionStorage.setItem('mute', true);
                             } else {
-                               $("i", this).text("volume_up");
-                               sound.mute(false, id);
+                                $("i", this).text("volume_up");
+                                sessionStorage.setItem('mute', false);
                             }
-                         })
+                            
+                            var isTrue = sessionStorage.getItem("mute") == "true" ? true: false;
+                            sound.mute(isTrue);
+                        });
             
                         intro.oncomplete(function() {
                             window["CompareNumbers"].startGame();

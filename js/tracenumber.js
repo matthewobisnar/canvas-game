@@ -482,25 +482,42 @@
         $(".parentContainer").hide();
 
         $(document).ready(function() {
+
             setTimeout(function() {
                 $("#wrapper").hide();
                 $(".parentContainer").show();
 
                     setTimeout(function() {
-                        var id;
                         sound.play();
                         intro.start();
 
                         
-                        $("#vol_control").on("click", function () {
-                            if ($("i", this).text() == "volume_up") {
+                      if (typeof sessionStorage.getItem("mute") == "undefined") {
+                            sessionStorage.setItem('mute', false);
+                            $("i", $("#vol_control")).text("volume_up");
+                      } else {
+                            var isTrue = sessionStorage.getItem("mute") == "true" ? true: false;
+                            if (isTrue == true) {
+                                $("i", $("#vol_control")).text("volume_mute");
+                             } else {
+                                $("i", $("#vol_control")).text("volume_up");
+                             }
+                            sound.mute(isTrue);
+                      }
+                     
+                     $("#vol_control").on("click", function () {
+                         if ($("i", this).text() == "volume_up") {
                             $("i", this).text("volume_mute");
-                            sound.mute(true, id);
-                            } else {
+                            sessionStorage.setItem('mute', true);
+                         } else {
                             $("i", this).text("volume_up");
-                            sound.mute(false, id);
-                            }
-                        })
+                            sessionStorage.setItem('mute', false);
+                         }
+                         
+                         var isTrue = sessionStorage.getItem("mute") == "true" ? true: false;
+                         sound.mute(isTrue);
+                      });
+
                     }, 500);
             
 
