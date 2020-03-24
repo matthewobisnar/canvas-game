@@ -145,7 +145,7 @@
                                 btnText:"Next"
                             }, function() {
                                self.enableTimer = true;
-                               self.gameQue(self.currentQuestionIndex + 1);
+                               self.gameQue(self.currentQuestionIndex);
                             });
                         } else {
                             call_swal({
