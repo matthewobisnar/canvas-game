@@ -463,7 +463,7 @@
                     Worried about the cost? Don&apos;t be - we offer four different tiers of services so you can choose a party&nbsp; to suit your budget. 
                     And for the month of Sepptember, you can upgrade from Tier 1 to Tier 2 for no extra cost! So find us on social media (links below) 
                     or you can even give us a call or send us an email. We would love to hear from you so that we can help make your speciale day utterly unforgettable.`,
-                    "incorrect": ["Sepptember,", "requiremens", "speciale", "party", "hitch&nbsp;In"],
+                    "incorrect": ["Sepptember,", "requiremens", "sat", "speciale", "party", "hitch&nbsp;In"],
                 },{
                     "paragraph": `Meditation for stress relief <br/><br/> Meditation has been practised for thousands of years as a means of quietening the mind and releiving stress. 
                     It involves sitting or lying in a comfortable position, and focusing on your breathing. 
