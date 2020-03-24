@@ -494,7 +494,7 @@
                     They had had enough of 'hard'. Soon enough, the Company had convinced them that democracy was overrated, and that if the people just left it to them, 
                     the Company could do a better job, make a much better society, out of the ruins of the imperfection which had existed before. <br/><br/> 
                     And so a new kind of life began, and almost too willingly, every one began to forget the past.`,
-                    "incorrect": ["suprised.", "oportunity", "hanppend." ,"informetion,", "didnt", "difficult’.", "it,", "fewe","silence,","wasnt", "a" ,"initiative"],
+                    "incorrect": ["suprised.", "oportunity", "hanppend." ,"informetion,", "buildingss." , "didnt", "difficult’.", "it,", "fewe","silence,","wasnt", "a" ,"initiative"],
                 },{
                     "paragraph": `Dear Ali, <br/><br/>
                     Thank you for you grant submission, which we received on 17st March.
