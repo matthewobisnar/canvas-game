@@ -18,64 +18,7 @@
     var timerStatus = false;
     var score = 0;
     var enableTimer = true;
-
-    var questions = [       
-        {
-            grid: 2,
-            W: 70,
-            rotation: 0,
-            objective:[
-                [2,2,6,5],
-            ],
-            answers: [
-               [2,2,6,5],
-            ],
-        },
-        {
-            grid: 2,
-            W: 70,
-            rotation: 0,
-            objective:[
-                [3,2,2,5],
-            ],
-            answers: [
-                [3,2,2,5],
-            ],
-        },
-        {
-            grid: 3,
-            W: 70,
-            rotation: 90,
-            objective: [
-                [6,5,6,3,4,3,6,5,6],
-            ],
-            answers: [
-                [3,4,3,6,5,6,3,4,3],
-            ],
-        }, 
-        {
-            grid: 3,
-            W: 70,
-            rotation: 180,
-            objective:[
-                [2,5,3,5,3,2,4,6,2],
-            ],
-            answers: [
-               [4,6,2,2,4,6,2,5,3],
-            ],
-        },
-        {
-            grid: 3,
-            W: 70,
-            rotation: 0,
-            objective: [
-                [2,5,3,2,4,6,2,5,3],
-            ],
-            answers: [
-               [2,5,3,2,4,6,2,5,3],
-            ],
-        },
-    ];
+    var questions = [];
 
     var draggableBox = {
         numbers: 3,
@@ -177,7 +120,7 @@
                     }).append("<p class='num-p'> "+ (questions[currentIndex].objective[rotateObjective][i])+" </p>").appendTo('.'+param);
                 }
 
-                $(".rotateBox").html(questions[currentIndex].rotation != 0 ? 'Rotate&nbsp;<span id="rotate_name"> '+ questions[currentIndex].rotation +' </span><span>&#176;</span> clockwise <i class="material-icons pl-3">rotate_right</i>': '');
+                $(".rotateBox").html(questions[currentIndex].rotation != 0 ? 'Rotate&nbsp;<span id="rotate_name"> '+ questions[currentIndex].rotation +' </span><span>&#176;</span> '+ (questions[currentIndex].direction == "CW" ? "Clockwise" : "Counter Clockwise") +' <i class="material-icons pl-3">rotate_right</i>': '');
 
                 // if (questions[currentIndex].rotation != 0) {
                 //     $(".rotateBox").on("click", function(){
@@ -425,6 +368,33 @@
     }
 
     $(window).on("load", function() {
+
+        var data = {};
+            data.game_level_category_code = "aaJJ6PCj1krTE9AR";
+            $.ajax({
+                url: "http://api.firefighteraptitudetest.com.au/api/v1/game/game-levels",
+                type:"POST",
+                data: data,
+                async:false,
+                cache: false,
+                dataType: "json",
+                crossDomain: true,
+                processData: true,
+                success:function(result) {
+                    if (result.status == true) {
+                        fetchquestiolist(result["content"]["data"]);
+                    }
+                },
+                error: function (error) {
+                    console.log("There is an error with the server response. Please coordinate with your System's Administrator.");
+                }
+            });
+
+        function fetchquestiolist($param) {
+            $param.forEach(function(item, index) {
+                questions.push(JSON.parse(item.game_level_content));
+            });
+        }
 
         createRoundsDiv ();
         createCounterDiv ();

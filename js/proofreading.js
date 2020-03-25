@@ -115,8 +115,17 @@
 
         evaluateWords: function(e) {
             var self = this;
+            var contain_answers = false;
 
-            if(this.wordMatch.includes(e.target.innerHTML) == true) {
+            
+            this.wordMatch.forEach(function(item){
+               if (e.target.innerHTML.search(new RegExp(item)) !== -1) {
+                    contain_answers = true; 
+                    return;
+               }
+            });
+            
+            if (contain_answers == true) {
                 if (!$(e.currentTarget).hasClass("correct")) {
                     $(e.currentTarget).addClass("correct");
                    
@@ -441,17 +450,17 @@
         // Just add Questions Here...
         let states = {
             "stages": [{
-                    "paragraph": `Can you spot these avoidable mistsakes? <br/> 
-                    There are some punctuations errors here as well; <br/> 
+                    "paragraph": `Can you spot these avoidable mistsakes?<br/>
+                    There are some punctuations errors here as well;<br/> 
                     Also, the words are somethings not apporpriate.`,
-                    "incorrect": ["mistsakes?","well;","somethings","apporpriate."],
+                    "incorrect": ["mistsakes","well;","somethings","apporpriate"],
                 },{
                     "paragraph": `Research in fiction <br/><br/> Fiction might be set in a maek-believe world, but it has to make sense. For our fiction to be authentic, we have to research, 
                     and of course part of that research is ensuring that we have the world right, in terms of what can work and what can&apos;t. 
                     A reader or viewer is happy to cut us a certain amount of slack &minus; they will suspend their disbelief &minus; but only to the point that it seems plausible. 
                     Stretch too far and you might not lose them completely, but perhaps it could mean that now they&apos;re critiquing you&apos;re work and your world, instead of immersing themselves in it. 
                     So the, world-building is the first obvious area where researching other art is necessary, if we want our worlds to hold up to scrutiny and feel real. <br/><br/> 
-                    Steampunk as&nbsp; a genre is very much about the world the characters inhabit. as much as&nbsp; the characters and plot are important, the setting is what sets steampunk apart from horror, scifi, romance or historical fiction. 
+                    Steampunk as; a genre is very much about the world the characters inhabit. as much as&nbsp; the characters and plot are important, the setting is what sets steampunk apart from horror, scifi, romance or historical fiction. 
                     From the very beginning, it&apos;s important to set the scene You want the reader to understand what kind of book they&apos;re reading right from the start.`,
                     "incorrect": ["maek-believe", "you're", "the,", "as", "scene"],
                 },{
