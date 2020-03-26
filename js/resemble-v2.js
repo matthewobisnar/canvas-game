@@ -371,6 +371,8 @@
 
         var data = {};
             data.game_level_category_code = "aaJJ6PCj1krTE9AR";
+            data.game_level_status = 1;
+
             $.ajax({
                 url: "http://api.firefighteraptitudetest.com.au/api/v1/game/game-levels",
                 type:"POST",

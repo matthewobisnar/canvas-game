@@ -448,79 +448,111 @@
 
     window.onload = function () {
         // Just add Questions Here...
-        let states = {
-            "stages": [{
-                    "paragraph": `Can you spot these avoidable mistsakes?<br/>
-                    There are some punctuations errors here as well;<br/> 
-                    Also, the words are somethings not apporpriate.`,
-                    "incorrect": ["mistsakes","well;","somethings","apporpriate"],
-                },{
-                    "paragraph": `Research in fiction <br/><br/> Fiction might be set in a maek-believe world, but it has to make sense. For our fiction to be authentic, we have to research, 
-                    and of course part of that research is ensuring that we have the world right, in terms of what can work and what can&apos;t. 
-                    A reader or viewer is happy to cut us a certain amount of slack &minus; they will suspend their disbelief &minus; but only to the point that it seems plausible. 
-                    Stretch too far and you might not lose them completely, but perhaps it could mean that now they&apos;re critiquing you&apos;re work and your world, instead of immersing themselves in it. 
-                    So the, world-building is the first obvious area where researching other art is necessary, if we want our worlds to hold up to scrutiny and feel real. <br/><br/> 
-                    Steampunk as; a genre is very much about the world the characters inhabit. as much as&nbsp; the characters and plot are important, the setting is what sets steampunk apart from horror, scifi, romance or historical fiction. 
-                    From the very beginning, it&apos;s important to set the scene You want the reader to understand what kind of book they&apos;re reading right from the start.`,
-                    "incorrect": ["maek-believe", "you're", "the,", "as", "scene"],
-                },{
-                    "paragraph": `Bubbles party Services <br/><br/> Welcome to your new neighbourhood party&nbsp; service! We are newly established in the Bayside Area and offer a range of services and products to suit every party&nbsp; need. 
-                    From baby showers to engagement parties, birthday celebrations to end-of-year farewells, we take care of all your requiremens so you have nothing to worry about, 
-                    and you can just sat back and enjoy your event.<br/><br/> Our team has a combined forty-five years of experience in the event planning and management sector. 
-                    It&apos;s fair to say we know all the potential pitfalls of event management and how to avoid them! You can rest assured that your party&nbsp;will go off without a hitch&nbsp;In fact, 
-                    we&apos;re so convinced that we can foresee every issue that we guarantee satisfaction - or your money back. <br/><br/>
-                    Worried about the cost? Don&apos;t be - we offer four different tiers of services so you can choose a party&nbsp; to suit your budget. 
-                    And for the month of Sepptember, you can upgrade from Tier 1 to Tier 2 for no extra cost! So find us on social media (links below) 
-                    or you can even give us a call or send us an email. We would love to hear from you so that we can help make your speciale day utterly unforgettable.`,
-                    "incorrect": ["Sepptember,", "requiremens", "sat", "speciale", "party", "hitch&nbsp;In"],
-                },{
-                    "paragraph": `Meditation for stress relief <br/><br/> Meditation has been practised for thousands of years as a means of quietening the mind and releiving stress. 
-                    It involves sitting or lying in a comfortable position, and focusing on your breathing. 
-                    Sometimes those who practise meditation focus on a mantra or an idea; other times they just try to observe their own thoughts to obtain insight into what is troubling them. 
-                    Most of us think of meditation as something which features mainly in Easter religions, such as Buddism. But the fact is, other religions use similar techniques for the same purposes. 
-                    Take, for example, the rosary used in the Roman Catholic faith. 
-                    The rosary is a set of beads strung together like a necklace, and they are held in the hands. 
-                    Each bead corresponds to a pray, but the prayers are quite repetitive and recited off by heart. 
-                    According to the people who use them, after a while, the prayers can offer a kind of calm, similar to that achieved through meditation. 
-                    So we can see that seeking a quiet mind and stress relief is not something which is restricted to &apos;Western&apos; or &apos;Eastern&apos; belief&apos;s, but is something which humans have developed all over the world. <br/><br/> 
-                    How do you begin meditation! Rather than trying to twist your legs into nots and risk having your bottom going numb from sitting in one spot for hours, just try it in short bursts to begin with. 
-                    There are many apps you can download to help, but you can start by just sitting or lying still for 30 seconds and focusing on your breath and you inhale and exhale. 
-                    You might be surprised at how much calmer you feel even after a short time of meditation. And once youve had some practice, you can start extending it for even greater benefits.`,
-                    "incorrect": ["releiving", "Easter", "Buddism", "pray,", "belief&apos;s", "nots", "youve","meditation!"],
-                },{
-                    "paragraph": `The Collapse <br/><br/> Even though they had known for years that it was coming, when the Collapse happened, people were suprised. <br/><br/> 
-                    They had had every oportunity to prevent it. The short-term inconveniences and difficulties would have yielded immeasurable long-term benefits, had they only taken the initiative <br/><br/> 
-                    But nobody did, so there was the Collapse, and then afterwards, the Chaos. No informetion, no infrastructure. 
-                    To begin with there was fear and panic, but after the fear and panic, there was an odd kind of resignation, and in that time of resignation, the Company just sort of… hanppend. 
-                    It cannot be said that people were happy to have someone finally start rebuilding. Nobody was happy in those days. 
-                    There were brief moments of happiness, brief moments where it didnt all seem pointless or difficult’.
-                    But when the Company took over, people welcomed the idea of not having to worry about each day. It was easier to leave it all to the Company. <br/><br/>
-                    The first changes were met with universal agreement. The Company would have control over all government buildingss. Since the government had fallen apart, who was using them anyway? 
-                    The Company would issue vehicles to Company employees only—who needed a car, when you had no fuel to put in it, The Company would distribute food and phase out supermarkets. 
-                    The shops had had precious little to offer since the Collapse, so most agreed that this was one less concern, and it left time for cleaning up, for leisure, for reconnecting with family. <br/><br/> 
-                    One by one, each responsibility was taken from the many and claimed by the fewe. When the people finally realised that their voices had been silence, and their influence eliminated, 
-                    it's hard to know if they cared anymore. The trade-off for their liberation was a easy life. It wasnt an exciting life, and there was no way to sway decision-making, but it was not hard. 
-                    They had had enough of 'hard'. Soon enough, the Company had convinced them that democracy was overrated, and that if the people just left it to them, 
-                    the Company could do a better job, make a much better society, out of the ruins of the imperfection which had existed before. <br/><br/> 
-                    And so a new kind of life began, and almost too willingly, every one began to forget the past.`,
-                    "incorrect": ["suprised.", "oportunity", "hanppend." ,"informetion,", "buildingss." , "didnt", "difficult’.", "it,", "fewe","silence,","wasnt", "a" ,"initiative"],
-                },{
-                    "paragraph": `Dear Ali, <br/><br/>
-                    Thank you for you grant submission, which we received on 17st March.
-                    As you are no doubt aware, the grants process takes some time and involves several stages, and we would like to thank you for your patience while we reached our decision. <br/><br/>
-                    Im delighted to be able to inform you that your application has bene successful and we will be able to forward the grant money to your designated account within four (5) business days. 
-                    Please note that you will be required to sign and submit an acknowledgment of receipt within one week of receiving the monies. 
-                    I’ve included this as an attachment to this email. Simply print and sign, and the scanned page can be re-uploaded to our website. Instricutions are included in the attachemnet. <br/><br/>
-                    Your project sounds very interesting and we are so thrilled that we are in the position to help artists like yourself to realise their dreams of fulfilling projects, 
-                    and while it is not required, we do encourage applicants to contact us again once the project is completed. 
-                    We really enjoy seeing the finished product and sharing in that sense of achievement 
-                    If you have any queries or concerns, please do not hesitate to contact me directly, either via this email address or my phone number. 
-                    Once again, congratulations and we wish you the very best for your project. <br/><br/>
-                    Kind regards, <br/>
-                    Dorothea jackson`,
-                    "incorrect": ["you", "17st", "Im", "pray,", "bene", "(5)", "acknowledgment","attachemnet.","Instricutions","jackson"],
-                }]
-            }
+        // let states = {
+        //     "stages": [{
+        //             "paragraph": `Can you spot these avoidable mistsakes?<br/>
+        //             There are some punctuations errors here as well;<br/> 
+        //             Also, the words are somethings not apporpriate.`,
+        //             "incorrect": ["mistsakes","well;","somethings","apporpriate"],
+        //         },{
+        //             "paragraph": `Research in fiction <br/><br/> Fiction might be set in a maek-believe world, but it has to make sense. For our fiction to be authentic, we have to research, 
+        //             and of course part of that research is ensuring that we have the world right, in terms of what can work and what can&apos;t. 
+        //             A reader or viewer is happy to cut us a certain amount of slack &minus; they will suspend their disbelief &minus; but only to the point that it seems plausible. 
+        //             Stretch too far and you might not lose them completely, but perhaps it could mean that now they&apos;re critiquing you&apos;re work and your world, instead of immersing themselves in it. 
+        //             So the, world-building is the first obvious area where researching other art is necessary, if we want our worlds to hold up to scrutiny and feel real. <br/><br/> 
+        //             Steampunk as; a genre is very much about the world the characters inhabit. as much as&nbsp; the characters and plot are important, the setting is what sets steampunk apart from horror, scifi, romance or historical fiction. 
+        //             From the very beginning, it&apos;s important to set the scene You want the reader to understand what kind of book they&apos;re reading right from the start.`,
+        //             "incorrect": ["maek-believe", "you're", "the,", "as", "scene"],
+        //         },{
+        //             "paragraph": `Bubbles party Services <br/><br/> Welcome to your new neighbourhood party&nbsp; service! We are newly established in the Bayside Area and offer a range of services and products to suit every party&nbsp; need. 
+        //             From baby showers to engagement parties, birthday celebrations to end-of-year farewells, we take care of all your requiremens so you have nothing to worry about, 
+        //             and you can just sat back and enjoy your event.<br/><br/> Our team has a combined forty-five years of experience in the event planning and management sector. 
+        //             It&apos;s fair to say we know all the potential pitfalls of event management and how to avoid them! You can rest assured that your party&nbsp;will go off without a hitch&nbsp;In fact, 
+        //             we&apos;re so convinced that we can foresee every issue that we guarantee satisfaction - or your money back. <br/><br/>
+        //             Worried about the cost? Don&apos;t be - we offer four different tiers of services so you can choose a party&nbsp; to suit your budget. 
+        //             And for the month of Sepptember, you can upgrade from Tier 1 to Tier 2 for no extra cost! So find us on social media (links below) 
+        //             or you can even give us a call or send us an email. We would love to hear from you so that we can help make your speciale day utterly unforgettable.`,
+        //             "incorrect": ["Sepptember,", "requiremens", "sat", "speciale", "party", "hitch&nbsp;In"],
+        //         },{
+        //             "paragraph": `Meditation for stress relief <br/><br/> Meditation has been practised for thousands of years as a means of quietening the mind and releiving stress. 
+        //             It involves sitting or lying in a comfortable position, and focusing on your breathing. 
+        //             Sometimes those who practise meditation focus on a mantra or an idea; other times they just try to observe their own thoughts to obtain insight into what is troubling them. 
+        //             Most of us think of meditation as something which features mainly in Easter religions, such as Buddism. But the fact is, other religions use similar techniques for the same purposes. 
+        //             Take, for example, the rosary used in the Roman Catholic faith. 
+        //             The rosary is a set of beads strung together like a necklace, and they are held in the hands. 
+        //             Each bead corresponds to a pray, but the prayers are quite repetitive and recited off by heart. 
+        //             According to the people who use them, after a while, the prayers can offer a kind of calm, similar to that achieved through meditation. 
+        //             So we can see that seeking a quiet mind and stress relief is not something which is restricted to &apos;Western&apos; or &apos;Eastern&apos; belief&apos;s, but is something which humans have developed all over the world. <br/><br/> 
+        //             How do you begin meditation! Rather than trying to twist your legs into nots and risk having your bottom going numb from sitting in one spot for hours, just try it in short bursts to begin with. 
+        //             There are many apps you can download to help, but you can start by just sitting or lying still for 30 seconds and focusing on your breath and you inhale and exhale. 
+        //             You might be surprised at how much calmer you feel even after a short time of meditation. And once youve had some practice, you can start extending it for even greater benefits.`,
+        //             "incorrect": ["releiving", "Easter", "Buddism", "pray,", "belief&apos;s", "nots", "youve","meditation!"],
+        //         },{
+        //             "paragraph": `The Collapse <br/><br/> Even though they had known for years that it was coming, when the Collapse happened, people were suprised. <br/><br/> 
+        //             They had had every oportunity to prevent it. The short-term inconveniences and difficulties would have yielded immeasurable long-term benefits, had they only taken the initiative <br/><br/> 
+        //             But nobody did, so there was the Collapse, and then afterwards, the Chaos. No informetion, no infrastructure. 
+        //             To begin with there was fear and panic, but after the fear and panic, there was an odd kind of resignation, and in that time of resignation, the Company just sort of… hanppend. 
+        //             It cannot be said that people were happy to have someone finally start rebuilding. Nobody was happy in those days. 
+        //             There were brief moments of happiness, brief moments where it didnt all seem pointless or difficult’.
+        //             But when the Company took over, people welcomed the idea of not having to worry about each day. It was easier to leave it all to the Company. <br/><br/>
+        //             The first changes were met with universal agreement. The Company would have control over all government buildingss. Since the government had fallen apart, who was using them anyway? 
+        //             The Company would issue vehicles to Company employees only—who needed a car, when you had no fuel to put in it, The Company would distribute food and phase out supermarkets. 
+        //             The shops had had precious little to offer since the Collapse, so most agreed that this was one less concern, and it left time for cleaning up, for leisure, for reconnecting with family. <br/><br/> 
+        //             One by one, each responsibility was taken from the many and claimed by the fewe. When the people finally realised that their voices had been silence, and their influence eliminated, 
+        //             it's hard to know if they cared anymore. The trade-off for their liberation was a easy life. It wasnt an exciting life, and there was no way to sway decision-making, but it was not hard. 
+        //             They had had enough of 'hard'. Soon enough, the Company had convinced them that democracy was overrated, and that if the people just left it to them, 
+        //             the Company could do a better job, make a much better society, out of the ruins of the imperfection which had existed before. <br/><br/> 
+        //             And so a new kind of life began, and almost too willingly, every one began to forget the past.`,
+        //             "incorrect": ["suprised.", "oportunity", "hanppend." ,"informetion,", "buildingss." , "didnt", "difficult’.", "it,", "fewe","silence,","wasnt", "a" ,"initiative"],
+        //         },{
+        //             "paragraph": `Dear Ali, <br/><br/>
+        //             Thank you for you grant submission, which we received on 17st March.
+        //             As you are no doubt aware, the grants process takes some time and involves several stages, and we would like to thank you for your patience while we reached our decision. <br/><br/>
+        //             Im delighted to be able to inform you that your application has bene successful and we will be able to forward the grant money to your designated account within four (5) business days. 
+        //             Please note that you will be required to sign and submit an acknowledgment of receipt within one week of receiving the monies. 
+        //             I’ve included this as an attachment to this email. Simply print and sign, and the scanned page can be re-uploaded to our website. Instricutions are included in the attachemnet. <br/><br/>
+        //             Your project sounds very interesting and we are so thrilled that we are in the position to help artists like yourself to realise their dreams of fulfilling projects, 
+        //             and while it is not required, we do encourage applicants to contact us again once the project is completed. 
+        //             We really enjoy seeing the finished product and sharing in that sense of achievement 
+        //             If you have any queries or concerns, please do not hesitate to contact me directly, either via this email address or my phone number. 
+        //             Once again, congratulations and we wish you the very best for your project. <br/><br/>
+        //             Kind regards, <br/>
+        //             Dorothea jackson`,
+        //             "incorrect": ["you", "17st", "Im", "pray,", "bene", "(5)", "acknowledgment","attachemnet.","Instricutions","jackson"],
+        //         }]
+        //     }
+
+        var states = {};
+            states.stages = [];
+
+        var data = {};
+            data.game_level_category_code = "tL2OH9B4QxIyzcTF";
+            data.game_level_status = 1;
+        
+            $.ajax({
+                url: "http://api.firefighteraptitudetest.com.au/api/v1/game/game-levels",
+                type:"POST",
+                data: data,
+                async:false,
+                cache: false,
+                dataType: "json",
+                crossDomain: true,
+                processData: true,
+                success:function(result) {
+                    if (result.status == true) {
+                        fetchquestiolist(result["content"]["data"]);
+                    }
+                },
+                error: function (error) {
+                    console.log("There is an error with the server response. Please coordinate with your System's Administrator.");
+                }
+            });
+
+            function fetchquestiolist($param) {
+                $param.forEach(function(item, index) {
+                    states.stages.push(JSON.parse(item.game_level_content));
+                });
+            }            
 
         // Declare Instance of the object.
         window["wordCorrection"] = new wordCorrection(states);
