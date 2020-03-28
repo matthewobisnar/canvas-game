@@ -629,7 +629,22 @@
                             });
                         });
             
-                        $('.introjs-skipbutton').hide();
+                        intro.onexit(function(){
+                            window["CompareNumbers"].startGame();
+
+                            $("."+CompareNumbers.CLASSES.canvas1).bind("click", function() { 
+                                window["CompareNumbers"].evaluate($(this))
+                            });
+                    
+                            $("."+CompareNumbers.CLASSES.canvas2).bind("click", function() {
+                                window["CompareNumbers"].evaluate($(this))
+                            });
+                    
+                            $("."+CompareNumbers.CLASSES.btnEqual).bind("click", function(){
+                                window["CompareNumbers"].evaluate($(this))
+                            });
+                        })
+                        //$('.introjs-skipbutton').hide();
             
                         intro.onafterchange(function(){          
                             if (this._introItems.length - 1 == this._currentStep || this._introItems.length == 1) {
