@@ -70,7 +70,6 @@
         this.timer = 60;
         this.timerStatus = null;
         this.totalScores = 0;
-        this.answer = null;
         this.animteCirles = null;
 
         this.canvas1 = null;
@@ -112,7 +111,6 @@
             if (this.currentIndexQue < this.compareQuestions.stages.length ) {
                 this.numCompare1 = this.compareQuestions.stages[this.currentIndexQue].combinations[1];
                 this.numCompare2 = this.compareQuestions.stages[this.currentIndexQue].combinations[2];
-                this.answer = this.compareQuestions.stages[this.currentIndexQue].answer;
                 this.timer = 60;
                 this.updateDivs();
                 
@@ -476,58 +474,90 @@
     
 
     window.onload = function () {
-        var stages = { 
-            "stages": [
-                { 
-                    "combinations": { "1": ["1", "2*2", "-4"], "2": ["1", "2*2", "-4"], 
-                    "answer": "1", 
-                    //"multiplier": [1, 2] 
-                    } 
-                }, 
-                { 
-                    "combinations": { "1": ["1", "1"], "2": ["3", "-2"], 
-                    "answer": "1", 
-                    "multiplier": [] 
-                    } 
-                }, 
-                { 
-                    "combinations": { "1": ["4", "1*2"], "2": ["3", "-2", "4", "1*2"], 
-                    "answer": "2", 
-                    "multiplier": [] 
-                    } 
+        var stages = {};
+            stages.stages = [];
+
+        // var stages = { 
+        //     "stages": [
+        //         { 
+        //             "combinations": { "1": ["1", "2*2", "-4"], "2": ["1", "2*2", "-4"], 
+        //             "answer": "1", 
+        //             //"multiplier": [1, 2] 
+        //             } 
+        //         }, 
+        //         { 
+        //             "combinations": { "1": ["1", "1"], "2": ["3", "-2"], 
+        //             "answer": "1", 
+        //             "multiplier": [] 
+        //             } 
+        //         }, 
+        //         { 
+        //             "combinations": { "1": ["4", "1*2"], "2": ["3", "-2", "4", "1*2"], 
+        //             "answer": "2", 
+        //             "multiplier": [] 
+        //             } 
+        //         },
+        //         { 
+        //             "combinations": { "1": ["5", "1*2"], "2": ["5", "-2", "4", "1*2","-4"], 
+        //             "answer": "2", 
+        //             "multiplier": [] 
+        //             } 
+        //         },
+        //         { 
+        //             "combinations": { "1": ["1", "1*3"], "2": [ "-2", "4", "1*2"], 
+        //             "answer": "2", 
+        //             "multiplier": [] 
+        //             } 
+        //         },
+        //         { 
+        //             "combinations": { "1": ["5", "1*1"], "2": [ "-6", "1", "1*2"], 
+        //             "answer": "2", 
+        //             "multiplier": [] 
+        //             } 
+        //         },
+        //         { 
+        //             "combinations": { "1": ["5", "1*1","8"], "2": [ "-6", "1", "1*2","2"], 
+        //             "answer": "2", 
+        //             "multiplier": [] 
+        //             } 
+        //         },
+        //         { 
+        //             "combinations": { "1": ["5","2", "1*4","8"], "2": [ "-6", "1", "1*2","2"], 
+        //             "answer": "2", 
+        //             "multiplier": [] 
+        //             } 
+        //         }      
+        //     ]
+        // };
+
+        var data = {};
+            data.game_level_category_code = "a6PKgVZguCjoz80m";
+            data.game_level_status = 1;
+
+            $.ajax({
+                url: "http://api.firefighteraptitudetest.com.au/api/v1/game/game-levels",
+                type:"POST",
+                data: data,
+                async:false,
+                cache: false,
+                dataType: "json",
+                crossDomain: true,
+                processData: true,
+                success:function(result) {
+                    if (result.status == true) {
+                        fetchquestiolist(result["content"]["data"]);
+                    }
                 },
-                { 
-                    "combinations": { "1": ["5", "1*2"], "2": ["5", "-2", "4", "1*2","-4"], 
-                    "answer": "2", 
-                    "multiplier": [] 
-                    } 
-                },
-                { 
-                    "combinations": { "1": ["1", "1*3"], "2": [ "-2", "4", "1*2"], 
-                    "answer": "2", 
-                    "multiplier": [] 
-                    } 
-                },
-                { 
-                    "combinations": { "1": ["5", "1*1"], "2": [ "-6", "1", "1*2"], 
-                    "answer": "2", 
-                    "multiplier": [] 
-                    } 
-                },
-                { 
-                    "combinations": { "1": ["5", "1*1","8"], "2": [ "-6", "1", "1*2","2"], 
-                    "answer": "2", 
-                    "multiplier": [] 
-                    } 
-                },
-                { 
-                    "combinations": { "1": ["5","2", "1*4","8"], "2": [ "-6", "1", "1*2","2"], 
-                    "answer": "2", 
-                    "multiplier": [] 
-                    } 
-                }      
-            ]
-        };
+                error: function (error) {
+                    console.log("There is an error with the server response. Please coordinate with your System's Administrator.");
+                }
+            });
+
+            function fetchquestiolist($param) {
+                $param.forEach(function(item, index) {
+                    stages.stages.push(JSON.parse(item.game_level_content));
+                });
+            }
 
         window["CompareNumbers"] = new CompareNumbers(stages);
 

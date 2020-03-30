@@ -21,31 +21,61 @@
     var score = 0;
     var timer = 60;
     var timerStatus = null;
+    var questions = [];
+
+    var data = {};
+        data.game_level_category_code = "imxw32lbQWpXj7U6";
+        data.game_level_status = 1; 
+
+        $.ajax({
+            url: "http://api.firefighteraptitudetest.com.au/api/v1/game/game-levels",
+            type:"POST",
+            data: data,
+            async:false,
+            cache: false,
+            dataType: "json",
+            crossDomain: true,
+            processData: true,
+            success:function(result) {
+                if (result.status == true) {
+                    fetchquestiolist(result["content"]["data"]);
+                }
+            },
+            error: function (error) {
+                console.log("There is an error with the server response. Please coordinate with your System's Administrator.");
+            }
+        });
+
+    function fetchquestiolist($param) {
+        $param.forEach(function(item, index) {
+            questions.push(JSON.parse(item.game_level_content));
+        });
+    }
     
-    var questions = [
-        {
-            operation: ["2*5", "6+4"],
-            target: 10,
-        },
-        {
-            operation: ["4*3", "6*2","10+2","9+2","15-4","9+3"],
-            target: 12,
-        },
-        {
-            operation: ["4*5", "10*2","15+6","16+4","17+4","18+3"],
-            target: 20,
-        },
-        {   operation: ["36*1", "12*3","4*2","30+6","24*2","28+7"],
-            target: 36,
-        },
-        {   operation: ["16*3","40+8","6*8", "50-2", "50-3", "16*2"],
-            target: 48,
-        },
-        {   
-            operation: ["20+10", "26+4","15*2","10+19","21+8","25+6", "1*48"],
-            target: 30,
-        }
-    ]
+    // var questions = [
+    //     {
+    //         operation: ["2*5", "6+4"],
+    //         target: 10,
+    //     },
+    //     {
+    //         operation: ["4*3", "6*2","10+2","9+2","15-4","9+3"],
+    //         target: 12,
+    //     },
+    //     {
+    //         operation: ["4*5", "10*2","15+6","16+4","17+4","18+3"],
+    //         target: 20,
+    //     },
+    //     {   operation: ["36*1", "12*3","4*2","30+6","24*2","28+7"],
+    //         target: 36,
+    //     },
+    //     {   operation: ["16*3","40+8","6*8", "50-2", "50-3", "16*2"],
+    //         target: 48,
+    //     },
+    //     {   
+    //         operation: ["20+10", "26+4","15*2","10+19","21+8","25+6", "1*48"],
+    //         target: 30,
+    //     }
+    // ]
     
     canvas = document.querySelector(".canvas");
     context = canvas.getContext("2d");
