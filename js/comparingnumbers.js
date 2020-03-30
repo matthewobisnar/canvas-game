@@ -643,7 +643,8 @@
                             $("."+CompareNumbers.CLASSES.btnEqual).bind("click", function(){
                                 window["CompareNumbers"].evaluate($(this))
                             });
-                        })
+                        });
+                        
                         //$('.introjs-skipbutton').hide();
             
                         intro.onafterchange(function(){          
