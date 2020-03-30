@@ -95,9 +95,9 @@
 
                 this.words = this.canvas.innerHTML.split(/\s+/);
 
-                $(".canvas").addClass("animated fadeIn").html("<a href='index.html'><button class='btn btn-sm'><i class='material-icons text-secondary'>home</i></button></a><button class='instructionClass btn btn-sm' data-toggle='modal' data-target='#exampleModalCenter'><i class='material-icons text-secondary'>info</i></button><button class='btn btn-sm' id='vol_control'><i class='material-icons text-secondary'>volume_up</i></button><div class='test-wrap p-5'><p><span class='targets'>" + this.words.join( "</span> <span>" ) + "</span></p></div>");
+                $(".canvas").addClass("animated fadeIn").html("<div class='options'><a href='index.html'><button class='btn btn-sm'><i class='material-icons text-secondary'>home</i></button></a><button class='instructionClass btn btn-sm' data-toggle='modal' data-target='#exampleModalCenter'><i class='material-icons text-secondary'>info</i></button></div><div class='test-wrap p-5'><p><span class='targets'>" + this.words.join( "</span> <span>" ) + "</span></p></div>");
                 $("span").addClass("targets animated");
-
+                $("<button class='btn btn-sm' id='vol_control'><i class='material-icons text-secondary'>volume_up</i></button>").appendTo(".options");
                 // Add Event click per word.
                 $(".canvas p .targets").on( "click", this.evaluateWords.bind(this));
 
@@ -162,7 +162,7 @@
                                 description: "Proceed to question " + parseInt(self.currentQuestionIndex + 1),
                                 btnText:"Next"
                             }, function() {
-                               self.gameQue(self.currentQuestionIndex + 1);
+                               self.gameQue(self.currentQuestionIndex);
                             });
                         }
                     }
@@ -552,7 +552,8 @@
                 $param.forEach(function(item, index) {
                     states.stages.push(JSON.parse(item.game_level_content));
                 });
-            }            
+            }
+                        
 
         // Declare Instance of the object.
         window["wordCorrection"] = new wordCorrection(states);
@@ -597,10 +598,8 @@
                 src: ['assets/audio/Crystal - Vibe Tracks Royalty Free Music - No Copyright Music YouTube Music.mp3'],
                 loop: true,
               });
-            
 
             $(document).ready(function() {
-    
 
                 setTimeout(function() {
                     $("#wrapper").hide();
@@ -611,10 +610,24 @@
                             sound.play();
                             intro.start();
 
-                            
+                              $(document).on("click","#vol_control", function () {
+                                  console.log("ss");
+                                if ($("i", this).text() == "volume_up") {
+                                   $("i", this).text("volume_mute");
+                                   sessionStorage.setItem('mute', true);
+                                } else {
+                                   $("i", this).text("volume_up");
+                                   sessionStorage.setItem('mute', false);
+                                }
+                                
+                                var isTrue = sessionStorage.getItem("mute") == "true" ? true: false;
+                                sound.mute(isTrue);
+                             });
+
                           if (typeof sessionStorage.getItem("mute") == "undefined") {
                                 sessionStorage.setItem('mute', false);
                                 $("i", $("#vol_control")).text("volume_up");
+                               
                           } else {
                                 var isTrue = sessionStorage.getItem("mute") == "true" ? true: false;
                                 if (isTrue == true) {
@@ -624,19 +637,6 @@
                                  }
                                 sound.mute(isTrue);
                           }
-                         
-                         $("#vol_control").on("click", function () {
-                             if ($("i", this).text() == "volume_up") {
-                                $("i", this).text("volume_mute");
-                                sessionStorage.setItem('mute', true);
-                             } else {
-                                $("i", this).text("volume_up");
-                                sessionStorage.setItem('mute', false);
-                             }
-                             
-                             var isTrue = sessionStorage.getItem("mute") == "true" ? true: false;
-                             sound.mute(isTrue);
-                          });
 
                         }, 1000);
                     }
