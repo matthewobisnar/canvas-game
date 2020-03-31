@@ -74,6 +74,7 @@
             this.enableTimer = state;
             // load length of the game. and first index.
             this.wordMatchLength = this.states.stages.length;
+            console.log(this.wordMatchLength);
             this.totalScores = 0;
             
             this.gameQue(0);
@@ -528,6 +529,7 @@
         var data = {};
             data.game_level_category_code = "tL2OH9B4QxIyzcTF";
             data.game_level_status = 1;
+            data.limit = 30;
         
             $.ajax({
                 url: "http://api.firefighteraptitudetest.com.au/api/v1/game/game-levels",
