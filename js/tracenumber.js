@@ -53,31 +53,6 @@
         });
     }
     
-    // var questions = [
-    //     {
-    //         operation: ["2*5", "6+4"],
-    //         target: 10,
-    //     },
-    //     {
-    //         operation: ["4*3", "6*2","10+2","9+2","15-4","9+3"],
-    //         target: 12,
-    //     },
-    //     {
-    //         operation: ["4*5", "10*2","15+6","16+4","17+4","18+3"],
-    //         target: 20,
-    //     },
-    //     {   operation: ["36*1", "12*3","4*2","30+6","24*2","28+7"],
-    //         target: 36,
-    //     },
-    //     {   operation: ["16*3","40+8","6*8", "50-2", "50-3", "16*2"],
-    //         target: 48,
-    //     },
-    //     {   
-    //         operation: ["20+10", "26+4","15*2","10+19","21+8","25+6", "1*48"],
-    //         target: 30,
-    //     }
-    // ]
-    
     canvas = document.querySelector(".canvas");
     context = canvas.getContext("2d");
     canvas.width =  $(".canvasContainer").width();
