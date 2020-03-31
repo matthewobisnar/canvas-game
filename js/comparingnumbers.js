@@ -172,6 +172,7 @@
 
             var Compare1 = 0;
             var Compare2 = 0;
+            var que = this.currentIndexQue;
             var self = this;
             var title = "";
             var description = "";
@@ -253,16 +254,15 @@
                 })
             } else {
                 setTimeout(function() {
-                    self.currentIndexQue+=1
-                    self.GameQue(self.currentIndexQue);
+                    self.GameQue(que+1);
                 }, 1000);
             }
         },
 
         updateDivs: function() {
-            var index = this.currentIndexQue + 1;
+            var index = this.currentIndexQue;
             $("." + CompareNumbers.CLASSES.progressBarSpan).text(this.timer);
-            $("." + CompareNumbers.CLASSES.currenQuestionSpan).text(index);
+            $("." + CompareNumbers.CLASSES.currenQuestionSpan).text(index+1);
         },
 
         drawCircles: function(canvas, numQuestions, settings) {
@@ -478,59 +478,6 @@
     window.onload = function () {
         var stages = {};
             stages.stages = [];
-
-        // var stages = { 
-        //     "stages": [
-        //         { 
-        //             "combinations": { "1": ["1", "2*2", "-4"], "2": ["1", "2*2", "-4"], 
-        //             "answer": "1", 
-        //             //"multiplier": [1, 2] 
-        //             } 
-        //         }, 
-        //         { 
-        //             "combinations": { "1": ["1", "1"], "2": ["3", "-2"], 
-        //             "answer": "1", 
-        //             "multiplier": [] 
-        //             } 
-        //         }, 
-        //         { 
-        //             "combinations": { "1": ["4", "1*2"], "2": ["3", "-2", "4", "1*2"], 
-        //             "answer": "2", 
-        //             "multiplier": [] 
-        //             } 
-        //         },
-        //         { 
-        //             "combinations": { "1": ["5", "1*2"], "2": ["5", "-2", "4", "1*2","-4"], 
-        //             "answer": "2", 
-        //             "multiplier": [] 
-        //             } 
-        //         },
-        //         { 
-        //             "combinations": { "1": ["1", "1*3"], "2": [ "-2", "4", "1*2"], 
-        //             "answer": "2", 
-        //             "multiplier": [] 
-        //             } 
-        //         },
-        //         { 
-        //             "combinations": { "1": ["5", "1*1"], "2": [ "-6", "1", "1*2"], 
-        //             "answer": "2", 
-        //             "multiplier": [] 
-        //             } 
-        //         },
-        //         { 
-        //             "combinations": { "1": ["5", "1*1","8"], "2": [ "-6", "1", "1*2","2"], 
-        //             "answer": "2", 
-        //             "multiplier": [] 
-        //             } 
-        //         },
-        //         { 
-        //             "combinations": { "1": ["5","2", "1*4","8"], "2": [ "-6", "1", "1*2","2"], 
-        //             "answer": "2", 
-        //             "multiplier": [] 
-        //             } 
-        //         }      
-        //     ]
-        // };
 
         var data = {};
             data.game_level_category_code = "a6PKgVZguCjoz80m";
