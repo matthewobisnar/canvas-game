@@ -29,7 +29,7 @@
         data.limit = 51;
 
         $.ajax({
-            url: "http://api.firefighteraptitudetest.com.au/api/v1/game/game-levels",
+            url: "https://api.firefighteraptitudetest.com.au/api/v1/game/game-levels",
             type:"POST",
             data: data,
             async:false,
