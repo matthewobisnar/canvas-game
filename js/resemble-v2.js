@@ -416,34 +416,34 @@
         // });
 
         var intro = introJs();
-        intro.setOptions({
-            showBullets: false,
-            exitOnEsc: false,
-            overlayOpacity: 1,
-            exitOnOverlayClick: false,
-            showStepNumbers:false,
-            steps: [
-                { 
-                    element: ".objective",
-                    intro: "A pattern of colorful pieces will appear on the right side of the screen."
-                },{ 
-                    element: ".puzzle-box",
-                    intro: "You will have to recreate such pattern on the left side."
-                },{
-                    element: ".items", 
-                    intro: "Choose from the pieces at the bottom of the screen to recreate and match the pattern shown. Unless, you are asked to rotate to a specific degree otherwise."
-                },{ 
-                    element: ".drag-num-2",
-                    intro: "Drag the pieces to the empty grid on the left side to recreate the pattern on the right."
-                },{
-                    element: ".boxes > .drag-num-2",
-                    intro: "Pieces that are placed poorly or overlap will be reset. <br/> Be patient! Sometimes, pieces will have to be rotated many times to fit perfectly!"
-                },
-                { 
-                    intro: "Now, try dragging one piece to the grid on the left. Then tap to rotate the piece so it matches the target pattern."
-                }
-            ]
-        });
+            intro.setOptions({
+                showBullets: false,
+                exitOnEsc: false,
+                overlayOpacity: 1,
+                exitOnOverlayClick: false,
+                showStepNumbers:false,
+                steps: [
+                    { 
+                        element: ".objective",
+                        intro: "A pattern of colorful pieces will appear on the right side of the screen."
+                    },{ 
+                        element: ".puzzle-box",
+                        intro: "You will have to recreate such pattern on the left side."
+                    },{
+                        element: ".items", 
+                        intro: "Choose from the pieces at the bottom of the screen to recreate and match the pattern shown. Unless, you are asked to rotate to a specific degree otherwise."
+                    },{ 
+                        element: ".drag-num-2",
+                        intro: "Drag the pieces to the empty grid on the left side to recreate the pattern on the right."
+                    },{
+                        element: ".boxes > .drag-num-2",
+                        intro: "Pieces that are placed poorly or overlap will be reset. <br/> Be patient! Sometimes, pieces will have to be rotated many times to fit perfectly!"
+                    },
+                    { 
+                        intro: "Now, try dragging one piece to the grid on the left. Then tap to rotate the piece so it matches the target pattern."
+                    }
+                ]
+            });
 
         var sound = new Howl({
             src: ['assets/audio/Crystal - Vibe Tracks Royalty Free Music - No Copyright Music YouTube Music.mp3'],

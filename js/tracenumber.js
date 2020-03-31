@@ -155,7 +155,7 @@
             
             random = getRandom(index);
     
-            for (var j = 0 ; j<random; j++) {
+            for (var j = 0 ; j<random/3; j++) {
 
                 var overalapping = false;
                 var radius = 50;
@@ -209,7 +209,7 @@
                 var dy = (Math.random() < 0.5 ? -0.01 : 0.01);
                 var timerCircle = new Date().getTime();
                 var randomColor = randomColors();
-                var circle = new Circle(x, y, radius, dx, dy, questions[index].operation[random], randomColor, timerCircle);
+                var circle = new Circle(x, y, radius, dx, dy, questions[index].operation[random/=3], randomColor, timerCircle);
 
                 // wall collision detection...
                 if (circle.x + circle.radius > canvas.width) {
