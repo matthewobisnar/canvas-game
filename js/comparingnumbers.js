@@ -177,11 +177,11 @@
             var description = "";
 
             for (var i =0; i<this.numCompare1.length; i++) {
-                Compare1 += eval(this.numCompare1[i].replace("x","*"));
+                Compare1 += eval(this.numCompare1[i].replace(/x/g,"*"));
             }
 
             for (var i =0; i<this.numCompare2.length; i++) {
-                Compare2 += eval(this.numCompare2[i].replace("x","*"));
+                Compare2 += eval(this.numCompare2[i].replace(/x/g,"*"));
             }
 
             if (target.includes(CompareNumbers.CLASSES.canvas1)) {
@@ -248,19 +248,21 @@
                     btnText:"Take Exercise",
                 }, function(){
                     setTimeout(function() {
-                        self.GameQue(self.currentIndexQue+=1);
+                        self.GameQue(1);
                     }, 1000)
                 })
             } else {
                 setTimeout(function() {
-                    self.GameQue(self.currentIndexQue+=1);
+                    self.currentIndexQue+=1
+                    self.GameQue(self.currentIndexQue);
                 }, 1000);
             }
         },
 
         updateDivs: function() {
+            var index = this.currentIndexQue + 1;
             $("." + CompareNumbers.CLASSES.progressBarSpan).text(this.timer);
-            $("." + CompareNumbers.CLASSES.currenQuestionSpan).text(this.currentIndexQue + 1);
+            $("." + CompareNumbers.CLASSES.currenQuestionSpan).text(index);
         },
 
         drawCircles: function(canvas, numQuestions, settings) {
