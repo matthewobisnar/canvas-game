@@ -248,12 +248,12 @@
                     btnText:"Take Exercise",
                 }, function(){
                     setTimeout(function() {
-                        self.GameQue(self.currentIndexQue);
+                        self.GameQue(self.currentIndexQue+=1);
                     }, 1000)
                 })
             } else {
                 setTimeout(function() {
-                    self.GameQue(self.currentIndexQue);
+                    self.GameQue(self.currentIndexQue+=1);
                 }, 1000);
             }
         },
