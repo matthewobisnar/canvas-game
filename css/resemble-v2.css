@@ -5,8 +5,8 @@ body { background: #31495f;   overflow-x: hidden;}
 .boxes:hover { background: #562971; translate: .2s ease; border: dotted 1px yellowgreen}
 .puzzle-game, .objective-container { background-color: #2a1550 !important; }
 .hovered { background: #562971; translate: .2s ease; border: dotted 1px yellowgreen}
-.drag-num-0, .objective-num-0 { background-color: #fae488; transition: transform .2s ease-in-out;}
-.drag-num-1, .objective-num-1 { background-color: #66b0e0; transition: transform .2s ease-in-out;}
+.drag-num-0, .objective-num-1 { background-color: #fae488; transition: transform .2s ease-in-out;}
+.drag-num-1 { background-color: #66b0e0; transition: transform .2s ease-in-out;}
 .drag-num-2 { background: linear-gradient(135deg, #fae488 50%, #66b0e0 50%); transition: transform .2s ease-in-out;}
 .objective-num-2 { background-color: #66b0e0; transition: transform .2s ease-in-out; }
 .objective-num-3 { background: linear-gradient(135deg, #fae488 50%, #66b0e0 50%); transform: rotate(0deg);}
