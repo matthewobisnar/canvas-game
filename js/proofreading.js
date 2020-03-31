@@ -123,7 +123,8 @@
 
             
             this.wordMatch.forEach(function(item){
-               if (e.target.innerHTML.search(new RegExp(item)) !== -1) {
+
+               if (e.target.innerHTML == item) {
                     contain_answers = true; 
                     return;
                }
@@ -489,6 +490,11 @@
         window["wordCorrection"] = new wordCorrection(states);
         window["wordCorrection"].startGame(false);
 
+        
+        $(document).on("click", "#nexx", function(){
+            window["wordCorrection"].gameQue(window["wordCorrection"].currentQuestionIndex + 1);
+        })
+
         var intro = introJs();
             intro.setOptions({
                 showBullets: false,
@@ -541,7 +547,6 @@
                             intro.start();
 
                               $(document).on("click","#vol_control", function () {
-                                  console.log("ss");
                                 if ($("i", this).text() == "volume_up") {
                                    $("i", this).text("volume_mute");
                                    sessionStorage.setItem('mute', true);
