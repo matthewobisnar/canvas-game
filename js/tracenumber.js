@@ -141,7 +141,7 @@
                 this.radius = 1;
             } 
     
-            if (this.fontSize < 30) {
+            if (this.fontSize < 20) {
                 this.fontSize += this.fontSize * 0.1;
             }
         },
