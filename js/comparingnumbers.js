@@ -23,7 +23,7 @@
         this.color = color;
         this.text = text.replace("*","x");
 
-        this.font = "25px Comic Sans MS";
+        this.font = "20px Comic Sans MS";
         this.textAlign = "center";
 
     }
@@ -54,10 +54,9 @@
         },
 
         update: function () {
-
-            if (this.radius  < 35) {
+            if (this.radius  < 40) {
                 this.radius  += this.radius  * 0.1;
-            } else if(this.radius  == 35) { 
+            } else if(this.radius  == 40) { 
                 this.radius  = 1;
             }
         }
@@ -265,13 +264,14 @@
             $("." + CompareNumbers.CLASSES.currenQuestionSpan).text(index+1);
         },
 
-        drawCircles: function(canvas, numQuestions, settings) {
+        drawCircles: function (canvas, numQuestions, settings) {
             var circles = [];
 
             for (var i=0; i<numQuestions.length; i++) {
 
                 var x = (canvas.width) * Math.random();
                 var y = (canvas.height) * Math.random();
+                var overlapping = false;
                 var radius = 20;
                 var bg = settings.bg;
                 var color = settings.color;
@@ -279,35 +279,36 @@
                 var circle = new Circles (x, y, radius, bg, color, numtext); 
                 
                 // wall collision detection...
-                if (circle.x + 35 > canvas.width) {
-                    circle.x = (circle.x - 35) - 100;
+                if (circle.x + 40 > canvas.width) {
+                    circle.x = (circle.x - 40) - 100;
                 }
     
-                if (circle.x - 35 < 20) {
+                if (circle.x - 40 < 20) {
                     circle.x = circle.x + 35 + 100;
                 }
     
-                if (circle.y + 35 > canvas.height) {
-                    circle.y = (circle.y - 35) - 100;
+                if (circle.y + 40 > canvas.height) {
+                    circle.y = (circle.y - 40) - 100;
                 }
     
-                if (circle.y - 35 < 20) {
-                    circle.y = circle.y + 35 + 100;
+                if (circle.y - 40 < 20) {
+                    circle.y = circle.y + 40 + 100;
                 }
-    
-    
-                var overlapping = false;
+                
                 for (var j=0; j<circles.length; j++) {
                     var otherCircles = circles[j];
     
                     var d = this.distance(circle.x, circle.y, otherCircles.x, otherCircles.y);
-                    if (d < otherCircles.radius + circle.radius) {
+
+                    if (d < (otherCircles.radius*2 + circle.radius*2)) {
+                        console.log(d < (otherCircles.radius*2 + circle.radius*2));
                         overlapping = true;
                         break;
                     }
                 }
-    
-                if (!overlapping) {
+
+
+                if (overlapping == false) {
                     circles.push(circle);
                     overlapping = false;
                 }
