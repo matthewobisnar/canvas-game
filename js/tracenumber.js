@@ -94,7 +94,7 @@
         this.radius = radius;
         this.dx = dx;
         this.dy = dy;
-        this.text = text.replace("*", "x");
+        this.text = text.replace(/[*]/g, "x");
         this.fontSize = 1;
         this.bg = bg;
         this.timerCircle = timerCircle;    
@@ -209,7 +209,7 @@
                 var dy = (Math.random() < 0.5 ? -0.01 : 0.01);
                 var timerCircle = new Date().getTime();
                 var randomColor = randomColors();
-                var circle = new Circle(x, y, radius, dx, dy, questions[index].operation[random/=3], randomColor, timerCircle);
+                var circle = new Circle(x, y, radius, dx, dy, questions[index].operation[random], randomColor, timerCircle);
 
                 // wall collision detection...
                 if (circle.x + circle.radius > canvas.width) {
@@ -270,13 +270,12 @@
         var x = e.clientX;
         var y = e.clientY;
 
-
         for (var j =0; j<questionsCollected.length; j++) {
             if(Math.abs(questionsCollected[j].x - x) + Math.abs(questionsCollected[j].y - y) < (questionsCollected[j].radius * 2)) {
             
                 var correctX = questionsCollected[j].x;
                 var correctY = questionsCollected[j].y;
-                var objValue = questionsCollected[j].text.replace("x","*");
+                var objValue = questionsCollected[j].text.replace(/x/g,"*");
                 questionsCollected.splice(j,1);
 
                 // If evauated to be correct then add correct alert then replace the existing circle.
