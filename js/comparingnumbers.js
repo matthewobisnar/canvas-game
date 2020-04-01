@@ -612,6 +612,7 @@
 
                         intro.onexit(function(){
                             window["CompareNumbers"].startGame();
+                            window["CompareNumbers"].GameQue(1);
 
                             $("."+CompareNumbers.CLASSES.canvas1).bind("click", function() { 
                                 window["CompareNumbers"].evaluate($(this))

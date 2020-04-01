@@ -209,35 +209,38 @@
                 var dy = (Math.random() < 0.5 ? -0.01 : 0.01);
                 var timerCircle = new Date().getTime();
                 var randomColor = randomColors();
-                var circle = new Circle(x, y, radius, dx, dy, questions[index].operation[random], randomColor, timerCircle);
+                if (typeof questions[index].operation[random/=3] != "undefined") {
+                    var circle = new Circle(x, y, radius, dx, dy, questions[index].operation[random], randomColor, timerCircle);
 
-                // wall collision detection...
-                if (circle.x + circle.radius > canvas.width) {
-                    circle.x = (circle.x - circle.radius);
-                }
-    
-                if (circle.x - circle.radius < 20) {
-                    circle.x = circle.x + circle.radius;
-                }
-    
-                if (circle.y + circle.radius > canvas.height) {
-                    circle.y = (circle.y - circle.radius);
-                }
-    
-                if (circle.y - circle.radius < 20) { 
-                    circle.y = circle.y + circle.radius;
-                }
-    
-                for (var j = 0; j<questionsCollected.length; j++) {
-                    if (distance(questionsCollected[j], circle) < questionsCollected[j].radius + circle.radius) {              
-                        overalapping = true;
-                        break;
+                        // wall collision detection...
+                        if (circle.x + circle.radius > canvas.width) {
+                            circle.x = (circle.x - circle.radius);
+                        }
+            
+                        if (circle.x - circle.radius < 20) {
+                            circle.x = circle.x + circle.radius;
+                        }
+            
+                        if (circle.y + circle.radius > canvas.height) {
+                            circle.y = (circle.y - circle.radius);
+                        }
+            
+                        if (circle.y - circle.radius < 20) { 
+                            circle.y = circle.y + circle.radius;
+                        }
+            
+                        for (var j = 0; j<questionsCollected.length; j++) {
+                            if (distance(questionsCollected[j], circle) < questionsCollected[j].radius + circle.radius) {              
+                                overalapping = true;
+                                break;
+                            }
+                        }
+            
+                    if (!overalapping) {
+                            questionsCollected.push(circle);
                     }
                 }
-    
-               if (!overalapping) {
-                    questionsCollected.push(circle);
-               }
+                
             }
         
         }
@@ -477,6 +480,10 @@
                     intro: "Remember to pop the most number of correct bubbles before the quick round ends. Good luck!"
                 }
             ]
+        });
+
+        intro.onexit(function(){
+            startTheGame (1);
         });
 
         var sound = new Howl({
