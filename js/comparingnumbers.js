@@ -566,6 +566,7 @@
 
                 if ($(".container-fluid").hasClass("d-block")) {
                     setTimeout(function() {
+                        var currentState = 0;
                         intro.start();
                         sound.play();
                         if (typeof sessionStorage.getItem("mute") == "undefined") {
@@ -610,21 +611,23 @@
                             });
                         });
 
-                        intro.onexit(function(){
-                            window["CompareNumbers"].startGame();
-                            window["CompareNumbers"].GameQue(1);
+                        intro.onbeforeexit(function() {
+                            if (currentState < intro._options.steps.length - 1) { 
+                                window["CompareNumbers"].startGame();
+                                window["CompareNumbers"].GameQue(1);
 
-                            $("."+CompareNumbers.CLASSES.canvas1).bind("click", function() { 
-                                window["CompareNumbers"].evaluate($(this))
-                            });
-                    
-                            $("."+CompareNumbers.CLASSES.canvas2).bind("click", function() {
-                                window["CompareNumbers"].evaluate($(this))
-                            });
-                    
-                            $("."+CompareNumbers.CLASSES.btnEqual).bind("click", function(){
-                                window["CompareNumbers"].evaluate($(this))
-                            });
+                                $("."+CompareNumbers.CLASSES.canvas1).bind("click", function() { 
+                                    window["CompareNumbers"].evaluate($(this))
+                                });
+                        
+                                $("."+CompareNumbers.CLASSES.canvas2).bind("click", function() {
+                                    window["CompareNumbers"].evaluate($(this))
+                                });
+                        
+                                $("."+CompareNumbers.CLASSES.btnEqual).bind("click", function(){
+                                    window["CompareNumbers"].evaluate($(this))
+                                });
+                            }
                         });
             
                         //$('.introjs-skipbutton').hide();

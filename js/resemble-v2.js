@@ -406,7 +406,7 @@
         loadGame ();
 
         $(".objective-container, .puzzle-game").height(window.innerHeight - $(".navigators").height());
-
+        var currentState = 0;
         var intro = introJs();
             intro.setOptions({
                 showBullets: false,
@@ -437,8 +437,15 @@
                 ]
             });
 
-            intro.onexit(function(){
-                startGame(1);
+            intro.onchange(function(targetElement) {  
+                currentState = this._currentStep; 
+            });
+
+            
+            intro.onbeforeexit(function() {
+                if (currentState < intro._options.steps.length - 1) { 
+                    startGame(1);
+                }
             });
 
         var sound = new Howl({

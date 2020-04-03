@@ -76,7 +76,12 @@
             this.wordMatchLength = this.states.stages.length;
             this.totalScores = 0;
             
-            this.gameQue(0);
+            if (!this.enableTimer) {
+                this.gameQue(0);
+            } else {
+                this.gameQue(1);
+            }
+
         },
 
         gameQue: function (i) {
@@ -119,11 +124,29 @@
 
         evaluateWords: function(e) {
             var self = this;
+            var currentIndex = this.currentQuestionIndex
             var contain_answers = false;
+            // var tracklocation = [];
 
-            
+            // this.words.forEach(function (item, index, arr) {
+            //     if (e.target.innerHTML == item) {
+
+            //         if (typeof arr[index - 2] != "undefined") {
+            //             for (var i = (index - 2); i<index+2 ;i++) {
+            //                 console.log(tracklocation.push(arr[i]));
+            //             }
+            //         } else {
+            //             for (var i = (index); i<index+2 ;i++) {
+            //                 console.log(tracklocation.push(arr[i]));
+            //             }
+            //         }
+
+            //     }
+            // });
+
+            // console.log(tracklocation.join(" "));
+
             this.wordMatch.forEach(function(item){
-
                if (e.target.innerHTML == item) {
                     contain_answers = true; 
                     return;
@@ -152,6 +175,7 @@
                         
                         clearInterval(this.timerStatus);
                         this.currentQuestionIndex += 1;
+                        currentIndex = this.currentQuestionIndex;
 
                         if (this.enableTimer == false) {
                             call_swal({
@@ -159,15 +183,15 @@
                                 btnText:"Next"
                             }, function() {
                                self.enableTimer = true;
-                               self.gameQue(self.currentQuestionIndex);
+                               self.gameQue(currentIndex);
                             });
                         } else {
                             call_swal({
                                 title: "0 Remaining Mistakes",
-                                description: "Proceed to question " + parseInt(self.currentQuestionIndex + 1),
+                                description: "Proceed to question " + parseInt(currentIndex + 1),
                                 btnText:"Next"
                             }, function() {
-                               self.gameQue(self.currentQuestionIndex);
+                               self.gameQue(currentIndex);
                             });
                         }
                     }
@@ -490,8 +514,9 @@
         $(document).on("click", "#nexx", function(){
             window["wordCorrection"].gameQue(window["wordCorrection"].currentQuestionIndex + 1);
         })
-
+        var currentState = 0;
         var intro = introJs();
+
             intro.setOptions({
                 showBullets: false,
                 exitOnEsc: false,
@@ -526,17 +551,22 @@
                 ]
             });
 
-            intro.oncomplete(function(){
-                // Declare Instance of the object.
-                window["wordCorrection"] = new wordCorrection(states);
-                window["wordCorrection"].startGame(false);
-            });
-            
-            intro.onexit(function(){
-                window["wordCorrection"].startGame(true);
-                window["wordCorrection"].gameQue(1);
+            window["wordCorrection"] = new wordCorrection(states);
+            window["wordCorrection"].startGame(false);
+
+            intro.onchange(function(targetElement) {  
+                currentState = this._currentStep; 
             });
 
+            intro.oncomplete(function() {
+                window["wordCorrection"].startGame(false);
+            });
+
+            intro.onbeforeexit(function() {
+                if (currentState < intro._options.steps.length - 1) {
+                    window["wordCorrection"].startGame(true);
+                }
+            });
 
             var sound = new Howl({
                 src: ['assets/audio/Crystal - Vibe Tracks Royalty Free Music - No Copyright Music YouTube Music.mp3'],

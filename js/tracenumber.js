@@ -458,7 +458,8 @@
         createRoundsDiv ();
         createCounterDiv ();
         createScoreDiv ();
-
+        
+        var currentState = 0;
         var intro = introJs();
         intro.setOptions({
             showBullets: false,
@@ -482,8 +483,10 @@
             ]
         });
 
-        intro.onexit(function(){
-            startTheGame (1);
+        intro.onbeforeexit(function() {
+            if (currentState < intro._options.steps.length - 1) {
+                startTheGame (1);
+            }
         });
 
         var sound = new Howl({
