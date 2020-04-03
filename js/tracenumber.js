@@ -51,6 +51,21 @@
         $param.forEach(function(item, index) {
             questions.push(JSON.parse(item.game_level_content));
         });
+
+        answerkey($param);
+    }
+
+    function answerkey (content) {
+       $(".tallyitupanswer ul").empty();
+       var answers = [];
+       
+       content.forEach(function(item){
+            JSON.parse(item.game_level_content).operation.forEach(function(expre){
+               if (JSON.parse(item.game_level_content).target == eval(expre.replace(/x/g, "*"))) {
+                    console.log(expre);
+               }
+            });
+       })
     }
     
     canvas = document.querySelector(".canvas");
@@ -458,7 +473,7 @@
         createRoundsDiv ();
         createCounterDiv ();
         createScoreDiv ();
-        
+
         var currentState = 0;
         var intro = introJs();
         intro.setOptions({

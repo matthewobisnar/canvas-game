@@ -111,9 +111,10 @@
                 this.numCompare1 = this.compareQuestions.stages[this.currentIndexQue].combinations[1];
                 this.numCompare2 = this.compareQuestions.stages[this.currentIndexQue].combinations[2];
                 this.timer = 60;
-                this.updateDivs();
-                
+
+                this.updateDivs();           
                 // Draw random Circles here..
+                
                 this.circles1 =  this.drawCircles(this.canvas1, this.numCompare1, {bg:"white", color: "#f15349"}); // compare 1
                 this.circles2 = this.drawCircles(this.canvas2, this.numCompare2, {bg:"#f15349", color: "white"});
             
@@ -296,15 +297,14 @@
                 }
                 
                 for (var j=0; j<circles.length; j++) {
-                    var otherCircles = circles[j];
-    
-                    var d = this.distance(circle.x, circle.y, otherCircles.x, otherCircles.y);
 
+                    var otherCircles = circles[j];
+                    var d = this.distance(circle.x, circle.y, otherCircles.x, otherCircles.y);
                     if (d < (otherCircles.radius*2 + circle.radius*2)) {
-                        console.log(d < (otherCircles.radius*2 + circle.radius*2));
                         overlapping = true;
                         break;
                     }
+
                 }
 
 
@@ -508,46 +508,75 @@
                 $param.forEach(function(item, index) {
                     stages.stages.push(JSON.parse(item.game_level_content));
                 });
+
+                answerkey($param);
             }
 
         window["CompareNumbers"] = new CompareNumbers(stages);
 
-        // call_swal({
-        //     title:"",
-        //     description:"Click the button to start the game",
-        //     btnText:"Play",
-        // }, function(){
-        //     window["CompareNumbers"].startGame();
-        // })
+        function answerkey (contents) {
+            $(".tallyitupanswer ul").empty();
+            var answers = [];
+
+            for (var n=0; n<contents.length; n++) {
+
+                var Compare1 = 0;
+                var Compare2 = 0;
+
+                for (var i =0; i<JSON.parse(contents[n].game_level_content).combinations[1].length; i++) {
+                    Compare1 += eval(JSON.parse(contents[n].game_level_content).combinations[1][i].replace(/x/g,"*"));
+                }
+
+                for (var i =0; i<JSON.parse(contents[n].game_level_content).combinations[2].length; i++) {
+                    Compare2 += eval(JSON.parse(contents[n].game_level_content).combinations[2][i].replace(/x/g,"*"));
+                }
+
+                if (Compare1 > Compare2) { 
+                    answers.push({correct:"White", style: "whitedot badge"});
+                }
+                
+                if (Compare2 > Compare1) {
+                    answers.push({correct:"Red", style:"reddot badge"});
+                }
+                
+                if (Compare1 == Compare2) {
+                    answers.push({correct:"Equal", style: "badge bg-primary py-1 text-white"});
+                }
+            }
+
+            answers.forEach(function(item, index){
+                $("<li class='py-1'> No. " +index+ "&nbsp;<span class='"+item.style+" border'>"+item.correct+ "</span></li>").appendTo(".tallyitupanswer ul");
+            });
+        }
 
         var intro = introJs();
-        intro.setOptions({
-            showBullets: false,
-            exitOnEsc: false,
-            overlayOpacity: 1,
-            exitOnOverlayClick: false,
-            showStepNumbers:false,
-            steps: [
-                { 
-                    intro: "Your attention to details and quick calculating skills will be put to the test."
-                },
-                { 
-                    element:".canvas-1",
-                    intro: "2 sets of values will be displayed on the screen. Select the one with higher value.",
-                    position: "ottom-middle-aligned",
-                    displayStep: 4
-                },{
-                    element:".canvas-2",
-                    intro: "Select the one with higher value.",
-                    position: "bottom-middle-aligned",
-                    displayStep: 4
-                },
-                {
-                    element:".btn-equal",
-                    intro: "If the values are the same, click on the equal sign below. Now practice!"
-                }
-            ]
-        });
+            intro.setOptions({
+                showBullets: false,
+                exitOnEsc: false,
+                overlayOpacity: 1,
+                exitOnOverlayClick: false,
+                showStepNumbers:false,
+                steps: [
+                    { 
+                        intro: "Your attention to details and quick calculating skills will be put to the test."
+                    },
+                    { 
+                        element:".canvas-1",
+                        intro: "2 sets of values will be displayed on the screen. Select the one with higher value.",
+                        position: "ottom-middle-aligned",
+                        displayStep: 4
+                    },{
+                        element:".canvas-2",
+                        intro: "Select the one with higher value.",
+                        position: "bottom-middle-aligned",
+                        displayStep: 4
+                    },
+                    {
+                        element:".btn-equal",
+                        intro: "If the values are the same, click on the equal sign below. Now practice!"
+                    }
+                ]
+            });
 
        window["CompareNumbers"].startGame();
         $(".container-fluid").hide();
