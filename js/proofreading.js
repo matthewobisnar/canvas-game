@@ -484,11 +484,7 @@
                     states.stages.push(JSON.parse(item.game_level_content));
                 });
             }
-                        
-
-        // Declare Instance of the object.
-        window["wordCorrection"] = new wordCorrection(states);
-        window["wordCorrection"].startGame(false);
+                    
 
         
         $(document).on("click", "#nexx", function(){
@@ -530,6 +526,12 @@
                 ]
             });
 
+            intro.oncomplete(function(){
+                // Declare Instance of the object.
+                window["wordCorrection"] = new wordCorrection(states);
+                window["wordCorrection"].startGame(false);
+            });
+            
             intro.onexit(function(){
                 window["wordCorrection"].startGame(true);
                 window["wordCorrection"].gameQue(1);

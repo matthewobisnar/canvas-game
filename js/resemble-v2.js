@@ -407,14 +407,6 @@
 
         $(".objective-container, .puzzle-game").height(window.innerHeight - $(".navigators").height());
 
-        // call_swal({
-        //     title:"Your Task",
-        //     description:"You will be shown an objective pattern in the left side of the canvas made with coloured pieces. You'll need to recreate the pattern shown in the right side of the canvas.",
-        //     btnText:"Play",
-        // }, function(){
-        //     startGame (0);
-        // });
-
         var intro = introJs();
             intro.setOptions({
                 showBullets: false,
