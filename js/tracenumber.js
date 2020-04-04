@@ -55,7 +55,7 @@
 
     function answerkey (content, index) {
        $(".numbubbles_answerkey ul").empty();
-            $("<h5 class='my-3'>Level No. "+index+"</h5>").prependTo($(".numbubbles_answerkey ul"));
+            $("<h5 class='my-3'>Level No. "+(index +1)+"</h5>").prependTo($(".numbubbles_answerkey ul"));
             content.operation.forEach(function(expre){
                 if (content.target == eval(expre.replace(/x/g, "*"))) {
                     $("<li class='badge my-2 p-2 text-white bg-primary'>"+expre+"</li>").appendTo($(".numbubbles_answerkey ul"));
