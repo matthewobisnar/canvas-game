@@ -493,8 +493,12 @@
             ]
         });
 
+        intro.onchange(function(targetElement) {  
+            currentState = this._currentStep; 
+        });
+
         intro.onbeforeexit(function() {
-            if (currentState < intro._options.steps.length - 1) {
+            if (currentState != intro._options.steps.length - 1) {
                 startTheGame (1);
             }
         });
