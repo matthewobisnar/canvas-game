@@ -53,12 +53,12 @@
         });
     }
 
-    function answerkey (content) {
+    function answerkey (content, index) {
        $(".numbubbles_answerkey ul").empty();
-            
+            $("<h5 class='my-3'>Level No. "+index+"</h5>").prependTo($(".numbubbles_answerkey ul"));
             content.operation.forEach(function(expre){
                 if (content.target == eval(expre.replace(/x/g, "*"))) {
-                    $("<li class='badge m-2 text-white bg-primary'>"+expre+"</li>").appendTo($(".numbubbles_answerkey ul"));
+                    $("<li class='badge my-2 p-2 text-white bg-primary'>"+expre+"</li>").appendTo($(".numbubbles_answerkey ul"));
                 }
             });
     }
@@ -566,7 +566,7 @@
 
         console.log(questions[index].target);
 
-        answerkey(questions[index]);
+        answerkey(questions[index], index);
         getTargetValue(questions[index].target);
         setInterval(function() {question(index)}, 1000); // this will que... for next button
 
