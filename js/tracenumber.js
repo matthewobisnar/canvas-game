@@ -51,21 +51,16 @@
         $param.forEach(function(item, index) {
             questions.push(JSON.parse(item.game_level_content));
         });
-
-        answerkey($param);
     }
 
     function answerkey (content) {
-       $(".tallyitupanswer ul").empty();
-       var answers = [];
-       
-       content.forEach(function(item){
-            JSON.parse(item.game_level_content).operation.forEach(function(expre){
-               if (JSON.parse(item.game_level_content).target == eval(expre.replace(/x/g, "*"))) {
-                    console.log(expre);
-               }
+       $(".numbubbles_answerkey ul").empty();
+            
+            content.operation.forEach(function(expre){
+                if (content.target == eval(expre.replace(/x/g, "*"))) {
+                    $("<li class='badge m-2 text-white bg-primary'>"+expre+"</li>").appendTo($(".numbubbles_answerkey ul"));
+                }
             });
-       })
     }
     
     canvas = document.querySelector(".canvas");
@@ -252,7 +247,7 @@
                         }
             
                     if (!overalapping) {
-                            questionsCollected.push(circle);
+                        questionsCollected.push(circle);
                     }
                 }
                 
@@ -568,6 +563,10 @@
         questionsCollected = [];
         mistakes = [];
         corrects = [];
+
+        console.log(questions[index].target);
+
+        answerkey(questions[index]);
         getTargetValue(questions[index].target);
         setInterval(function() {question(index)}, 1000); // this will que... for next button
 
