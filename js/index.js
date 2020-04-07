@@ -18,6 +18,7 @@
                } else {
                   $("i", $("#vol_control")).text("volume_up");
                }
+
                sound.mute(isTrue);
          }
         
