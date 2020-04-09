@@ -7,6 +7,7 @@
 
     // Clear listener after first call.
  sound.on('load', function(){
+    sound.resume();
    sound.play();
  });
 
