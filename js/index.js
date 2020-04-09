@@ -1,18 +1,14 @@
 (function() {
    var sound = new Howl({
       src: ['assets/audio/Silly.mp3'],
-      autoplay: true,
       loop: true,
     });
 
-    // Clear listener after first call.
-   sound.on('load', function(){
-      sound.play();
-   });
-
     $(document).ready(function(){
-         //  sound.play();
-         $("#vol_control").trigger("click");
+
+         setTimeout(function (){
+            triggerSound();
+         }, 1000);
    
           if (typeof sessionStorage.getItem("mute") == "undefined") {
                sessionStorage.setItem('mute', false);
@@ -28,11 +24,11 @@
                sound.mute(isTrue);
          }
 
-        $("#vol_control").on("click", function () {
+        $("#vol_control").on("click",triggerSound);
 
-         if (typeof sessionStorage.getItem("mute") == "undefined") {
-            sound.play();
-         } else if ($("i", this).text() == "volume_up") {
+        function triggerSound () {
+         sound.play();
+         if ($("i", this).text() == "volume_up") {
          
             $("i", this).text("volume_mute");
             sessionStorage.setItem('mute', true);
@@ -45,7 +41,7 @@
          
             var isTrue = sessionStorage.getItem("mute") == "true" ? true: false;
             sound.mute(isTrue);
-         });
+         }
 
     })
 })()
