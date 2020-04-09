@@ -12,6 +12,7 @@
 
     $(document).ready(function(){
          //  sound.play();
+         $("#vol_control").trigger("click");
    
           if (typeof sessionStorage.getItem("mute") == "undefined") {
                sessionStorage.setItem('mute', false);
@@ -26,16 +27,22 @@
 
                sound.mute(isTrue);
          }
-        
+
         $("#vol_control").on("click", function () {
-            if ($("i", this).text() == "volume_up") {
-               $("i", this).text("volume_mute");
-               sessionStorage.setItem('mute', true);
-            } else {
-               $("i", this).text("volume_up");
-               sessionStorage.setItem('mute', false);
-            }
-            
+
+         if (typeof sessionStorage.getItem("mute") == "undefined") {
+            sound.play();
+         } else if ($("i", this).text() == "volume_up") {
+         
+            $("i", this).text("volume_mute");
+            sessionStorage.setItem('mute', true);
+         
+         } else {
+         
+            $("i", this).text("volume_up");
+            sessionStorage.setItem('mute', false);
+         }
+         
             var isTrue = sessionStorage.getItem("mute") == "true" ? true: false;
             sound.mute(isTrue);
          });
