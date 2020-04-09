@@ -236,7 +236,7 @@
             totalQuestionSpan.innerHTML = " of " + questions.length;
 
             currenQuestion.className = CLASSES.currenQuestionSpan + " font-weight-bold l-h-2 mx-1 text-light";
-            currenQuestion.innerHTML = currentIndex + 1;
+            currenQuestion.innerHTML = currentIndex;
 
             barcontainer.className = "bar-container mx-2 d-flex text-light";
             barcontainer.appendChild(icon1);
@@ -320,10 +320,11 @@
             timer = 60;
             currentIndex = index;
 
-            $("."+CLASSES.currenQuestionSpan).text(index + 1);
+            $("."+CLASSES.currenQuestionSpan).text(index);
            //$(".objective").css("transform","rotate(45deg)");
 
            if (enableTimer) {
+             clearInterval(timerStatus);
              timerStatus = setInterval(function () {
                 updateTimer();
              }, 500);
@@ -404,6 +405,16 @@
         createScoreDiv ();
         resetButton ();
         loadGame ();
+
+        $(document).on("click", "#nextButton", function(){
+            startGame(currentIndex + 1);
+        });
+
+        $(document).on("click", "#backButton", function(){
+           if ((currentIndex - 1 ) > 0) {
+                startGame(currentIndex - 1);
+           }
+        });
 
         $(".objective-container, .puzzle-game").height(window.innerHeight - $(".navigators").height());
         var currentState = 0;

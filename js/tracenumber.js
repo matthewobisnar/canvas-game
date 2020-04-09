@@ -164,7 +164,7 @@
 
         var random = 0;
     
-        if (questionsCollected.length <= 0) {
+        if (questionsCollected.length < 1) {
             
             random = getRandom(index);
     
@@ -207,7 +207,7 @@
                if (!overalapping) {
                     questionsCollected.push(circle);
                }
-            };
+            }
     
         } else {
           
@@ -414,7 +414,7 @@
             totalQuestionSpan.innerHTML = " of " + questionsLength;
 
             currenQuestion.className = CLASSES.currenQuestionSpan + " font-weight-bold l-h-2 mx-1 text-light";
-            currenQuestion.innerHTML = currentQuestionIndex + 1;
+            currenQuestion.innerHTML = currentQuestionIndex;
 
             barcontainer.className = "bar-container mx-2 d-flex text-light";
             barcontainer.appendChild(icon1);
@@ -557,6 +557,16 @@
             },2000)
         })
     }
+
+    $(document).on("click", "#nextButton", function(){
+        startTheGame (currentQuestionIndex+1);
+    });
+
+    $(document).on("click", "#backButton", function(){
+        if (currentQuestionIndex-1 > 0) {
+            startTheGame(currentQuestionIndex-1)
+        }
+    });
     
 
     function startTheGame (index) {
@@ -564,7 +574,7 @@
         timer = 60;
         currentQuestionIndex = index;
         questionsLength = questions.length;
-        $("."+CLASSES.currenQuestionSpan).text(currentQuestionIndex + 1);
+        $("."+CLASSES.currenQuestionSpan).text(currentQuestionIndex);
         $("."+CLASSES.totalQuestionLengthSpan).text(" of " + questionsLength);
 
         questionsCollected = [];
@@ -576,7 +586,7 @@
         answerkey(questions[index], index);
         getTargetValue(questions[index].target);
         setInterval(function() {question(index)}, 1000); // this will que... for next button
-
+        clearInterval(timerStatus);
 
         if (index != 0) {
 
@@ -609,7 +619,7 @@
 
         setInterval(function() {
             questionsCollected.forEach(function(item, index){
-                if (new Date().getTime() >= questionsCollected[index].timerCircle + 7 * 1000) { 
+                if (new Date().getTime() >= questionsCollected[index].timerCircle + 8 * 1000) {
                     // console.log(questionsCollected[index].text + "removed");
                     questionsCollected.splice(index, 1);
                 }

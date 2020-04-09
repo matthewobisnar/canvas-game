@@ -1,5 +1,7 @@
 (function() {
 
+    var QUESTION_ANSWERED = [];
+    
     wordCorrection.CLASSES = {
         navigatiorContainer: "btnContainer",
         progressDiv: "myProgress",
@@ -69,9 +71,9 @@
     // add methods of wordCorrection here..
     wordCorrection.prototype = {
         
-        startGame: function (state) {
-           
+        startGame: function (state) {  
             this.enableTimer = state;
+
             // load length of the game. and first index.
             this.wordMatchLength = this.states.stages.length;
             this.totalScores = 0;
@@ -81,11 +83,12 @@
             } else {
                 this.gameQue(1);
             }
-
         },
 
         gameQue: function (i) {
 
+            clearInterval(this.timerStatus);
+            var question; 
             this.currentQuestionIndex = i;
             this.mistakesAttempt = 3;
 
@@ -100,16 +103,43 @@
 
                 this.words = this.canvas.innerHTML.split(/\s+/);
 
-                $(".canvas").addClass("animated fadeIn").html("<div class='options'><a href='index.html'><button class='btn btn-sm'><i class='material-icons text-secondary'>home</i></button></a><button class='instructionClass btn btn-sm' data-toggle='modal' data-target='#exampleModalCenter'><i class='material-icons text-secondary'>info</i></button></div><div class='test-wrap p-5'><p><span class='targets'>" + this.words.join( "</span> <span>" ) + "</span></p></div>");
+                if (typeof QUESTION_ANSWERED[this.currentQuestionIndex] !="undefined") {
+                    question = "<div class='test-wrap p-5'><p>" + QUESTION_ANSWERED[this.currentQuestionIndex].value + "</p></div>";
+                } else {
+                    question = "<div class='test-wrap p-5'><p><span class='targets'> " +this.words.join( "</span> <span>" ) + "</span></p></div>"
+                }
+
+                $(".canvas").addClass("animated fadeIn").html(
+                    `<div class='options'>
+                        <a href='index.html'>
+                            <button class='btn btn-sm'>
+                                <i class='material-icons text-secondary'>home</i>
+                            </button>
+                        </a>
+                            <button class='instructionClass btn btn-sm' data-toggle='modal' data-target='#exampleModalCenter'>
+                                <i class='material-icons text-secondary'>info</i>
+                            </button>
+                        </div>` + question
+                       );
+
                 $("span").addClass("targets animated");
                 $("<button class='btn btn-sm' id='vol_control'><i class='material-icons text-secondary'>volume_up</i></button>").appendTo(".options");
                 // Add Event click per word.
                 $(".canvas p .targets").on( "click", this.evaluateWords.bind(this));
+                
+                var isTrue = sessionStorage.getItem("mute") == "true" ? true: false;
+
+                if (isTrue == true) {
+                    $("i", $("#vol_control")).text("volume_mute");
+                 } else {
+                    $("i", $("#vol_control")).text("volume_up");
+                 }
 
                 $(".anskeys ul").empty();
-                this.wordMatch.forEach(function(item){
+                this.wordMatch.forEach (function(item) {
                     $("<li><span>"+item+"</span></li>").appendTo(".anskeys ul");
                 });
+
                 // Update Timer..
                 if (this.enableTimer == true) {
                     this.timerStatus = setInterval(this.updateTimer.bind(this), 1000);
@@ -126,26 +156,6 @@
             var self = this;
             var currentIndex = this.currentQuestionIndex
             var contain_answers = false;
-            // var tracklocation = [];
-
-            // this.words.forEach(function (item, index, arr) {
-            //     if (e.target.innerHTML == item) {
-
-            //         if (typeof arr[index - 2] != "undefined") {
-            //             for (var i = (index - 2); i<index+2 ;i++) {
-            //                 console.log(tracklocation.push(arr[i]));
-            //             }
-            //         } else {
-            //             for (var i = (index); i<index+2 ;i++) {
-            //                 console.log(tracklocation.push(arr[i]));
-            //             }
-            //         }
-
-            //     }
-            // });
-
-            // console.log(tracklocation.join(" "));
-
             this.wordMatch.forEach(function(item){
                if (e.target.innerHTML == item) {
                     contain_answers = true; 
@@ -156,16 +166,20 @@
             if (contain_answers == true) {
                 if (!$(e.currentTarget).hasClass("correct")) {
                     $(e.currentTarget).addClass("correct");
-                   
+
                     this.totalScores+= 1;
                     this.mistakesRemaing -= 1;
-                   
+                    QUESTION_ANSWERED[currentIndex] = ({index: currentIndex, value: $(".canvas .test-wrap p").html()});
+
                     if (this.totalScores > 0) {
+                        
                         if(!$("."+wordCorrection.CLASSES.score).hasClass("t-y")) {
                             $("."+wordCorrection.CLASSES.score).addClass("t-y");
                         }
+
                         $("."+wordCorrection.CLASSES.score).html(' <i class="material-icons md-light t-y md-18">star</i>');
                         $("."+wordCorrection.CLASSES.score).children('.material-icons').addClass('animate-like');
+
                     }
                     // Update output Score..
                     $("."+wordCorrection.CLASSES.totalScoreSpan).text(this.totalScores);
@@ -179,7 +193,7 @@
 
                         if (this.enableTimer == false) {
                             call_swal({
-                                title: "Good job! You are now ready to take the exercise. ",
+                                title: "Good job! You are now ready to take the exercise.",
                                 btnText:"Next"
                             }, function() {
                                self.enableTimer = true;
@@ -219,16 +233,11 @@
                         // dead..
                         clearInterval(this.timerStatus);
                         swal({
-                            title: "Game Over! Total Score: " + this.totalScores,
-                            text: "Do you want to reset the game?",
+                            title: "You have 0 heart remaining. continue to next question.",
                             allowOutsideClick: false,
-                            buttons: true,
-                            dangerMode: true,
                           }).then((willDelete) => {
                             if (willDelete) {
-                                window.location.reload();
-                            } else {
-                                window.location.href ="index.html";
+                                self.gameQue(self.currentQuestionIndex + 1);
                             }
                           });
                     } else {
@@ -261,7 +270,6 @@
 
                           });
                     }
-
                     return;
                 }
             }
@@ -311,7 +319,7 @@
             this.timer = 60;
             $("." + wordCorrection.CLASSES.progressBarSpan).text(this.timer);
             $("." + wordCorrection.CLASSES.mistakesRemaing).text(this.mistakesRemaing);
-            $("." + wordCorrection.CLASSES.currenQuestionSpan).text(this.currentQuestionIndex + 1);
+            $("." + wordCorrection.CLASSES.currenQuestionSpan).text(this.currentQuestionIndex);
 
             for (var i = 0; i<3; i++) {
                 $(".r-"+i).addClass("t-r").remove("i").text("favorite");
@@ -444,7 +452,6 @@
             barcontainer.className = "bar-container hearts mx-3 d-flex text-right";
             btnContainer.appendChild(barcontainer);
         }
-
     }
 
     // ================ Create Dom Buttons =================
@@ -508,12 +515,20 @@
                     states.stages.push(JSON.parse(item.game_level_content));
                 });
             }
-                    
 
-        
-        $(document).on("click", "#nexx", function(){
-            window["wordCorrection"].gameQue(window["wordCorrection"].currentQuestionIndex + 1);
-        })
+        $(document).on("click", "#nextButton", function(){
+            if ((window["wordCorrection"].currentQuestionIndex+1) == 1) {
+                window["wordCorrection"].startGame(true);
+            }
+                window["wordCorrection"].gameQue(window["wordCorrection"].currentQuestionIndex + 1);
+        });
+
+        $(document).on("click", "#backButton", function(){
+            if (window["wordCorrection"].currentQuestionIndex - 1 > 0) {
+                window["wordCorrection"].gameQue(window["wordCorrection"].currentQuestionIndex - 1);
+            }
+        });
+
         var currentState = 0;
         var intro = introJs();
 
@@ -599,8 +614,7 @@
 
                           if (typeof sessionStorage.getItem("mute") == "undefined") {
                                 sessionStorage.setItem('mute', false);
-                                $("i", $("#vol_control")).text("volume_up");
-                               
+                                $("i", $("#vol_control")).text("volume_up");        
                           } else {
                                 var isTrue = sessionStorage.getItem("mute") == "true" ? true: false;
                                 if (isTrue == true) {

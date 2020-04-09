@@ -24,7 +24,7 @@ body {
   color: #fff;
   background-color: #efefef;
 }
-
+#nextButton, #backButton { display: flex; }
 .d-none { display: none}
 .d-block { display: block !important }
 .correct {

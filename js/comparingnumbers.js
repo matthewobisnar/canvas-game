@@ -262,7 +262,7 @@
         updateDivs: function() {
             var index = this.currentIndexQue;
             $("." + CompareNumbers.CLASSES.progressBarSpan).text(this.timer);
-            $("." + CompareNumbers.CLASSES.currenQuestionSpan).text(index+1);
+            $("." + CompareNumbers.CLASSES.currenQuestionSpan).text(index);
         },
 
         drawCircles: function (canvas, numQuestions, settings) {
@@ -400,7 +400,7 @@
                 totalQuestionSpan.innerHTML = " of " + (this.compareQuestions.stages.length);
     
                 currenQuestion.className = CompareNumbers.CLASSES.currenQuestionSpan + " font-weight-bold l-h-2 mx-1 text-light";
-                currenQuestion.innerHTML = this.currentIndexQue + 1;
+                currenQuestion.innerHTML = this.currentIndexQue;
     
                 barcontainer.className = "bar-container mx-2 d-flex text-light";
                 barcontainer.appendChild(icon1);
@@ -577,6 +577,19 @@
                     }
                 ]
             });
+
+        $(document).on("click", "#nextButton", function(){
+            if ((window["CompareNumbers"].currentIndexQue+1) == 1) {
+                window["CompareNumbers"].startGame();
+            }
+                window["CompareNumbers"].GameQue(window["CompareNumbers"].currentIndexQue + 1);
+        });
+
+        $(document).on("click", "#backButton", function(){
+            if (window["CompareNumbers"].currentIndexQue - 1 > 0) {
+                window["CompareNumbers"].GameQue(window["CompareNumbers"].currentIndexQue - 1);
+            }
+        });
 
        window["CompareNumbers"].startGame();
         $(".container-fluid").hide();

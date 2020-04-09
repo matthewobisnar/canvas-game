@@ -13,6 +13,7 @@ canvas {cursor: pointer;}
 body, html, #wrapper { width: 100%; height: 100%  }
 #wrapper { display: table ; background-color: #fff;}
 #main { display: table-cell; vertical-align: middle;text-align:center }
+#nextButton, #backButton { display: flex; }
 
 .reddot {
   padding: 5px;
