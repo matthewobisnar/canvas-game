@@ -595,7 +595,7 @@
         $(".container-fluid").hide();
 
         var sound = new Howl({
-            src: ['assets/audio/Crystal - Vibe Tracks Royalty Free Music - No Copyright Music YouTube Music.mp3'],
+            src: ['assets/audio/Silly.mp3'],
             loop: true,
           });
 
