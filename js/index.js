@@ -6,10 +6,9 @@
     });
 
     // Clear listener after first call.
- sound.on('load', function(){
-    sound.resume();
-   sound.play();
- });
+   sound.on('load', function(){
+      sound.play();
+   });
 
     $(document).ready(function(){
          //  sound.play();
