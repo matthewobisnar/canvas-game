@@ -1,6 +1,7 @@
 (function() {
    var sound = new Howl({
       src: ['assets/audio/Silly.mp3'],
+      autoplay: true,
       loop: true,
     });
 
