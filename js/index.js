@@ -7,7 +7,6 @@
     $(document).ready(function(){
        
       function onloadSound () {
-         console.log("ss");
          if (!("mute" in sessionStorage)) {
             sessionStorage.setItem('mute', false);
             $("i", $("#vol_control")).text("volume_up");
@@ -25,7 +24,7 @@
 
       sound.on("load", function() {
          sound.play();
-         onloadSound ();
+         onloadSound();
       })
 
         $("#vol_control").on("click",triggerSound);
