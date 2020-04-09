@@ -1,6 +1,7 @@
 (function() {
    var sound = new Howl({
       src: ['assets/audio/Silly.mp3'],
+      autoplay: true,
       loop: true,
     });
 
@@ -22,10 +23,14 @@
          }
       }
 
-      sound.on("load", function() {
-         sound.play();
+      sound.onplayerror = function() {
+         sound.once('unlock', function() {
+           sound.play();
+         });
+       }
+    
+         //sound.play();
          onloadSound();
-      })
 
         $("#vol_control").on("click",triggerSound);
 
