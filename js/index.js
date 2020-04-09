@@ -6,9 +6,6 @@
 
     $(document).ready(function(){
 
-         setTimeout(function (){
-            triggerSound();
-         }, 1000);
    
           if (typeof sessionStorage.getItem("mute") == "undefined") {
                sessionStorage.setItem('mute', false);
@@ -43,5 +40,6 @@
             sound.mute(isTrue);
          }
 
+         $("#vol_control").click();
     })
 })()
