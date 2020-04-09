@@ -5,9 +5,13 @@
       loop: true,
     });
 
-    $(document).ready(function(){
+    // Clear listener after first call.
+ sound.once('load', function(){
+   sound.play();
+ });
 
-      sound.play();
+    $(document).ready(function(){
+         //  sound.play();
    
           if (typeof sessionStorage.getItem("mute") == "undefined") {
                sessionStorage.setItem('mute', false);
