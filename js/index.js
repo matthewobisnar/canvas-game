@@ -24,6 +24,7 @@
         $("#vol_control").on("click",triggerSound);
 
         function triggerSound () {
+           console.log("triggered");
          sound.play();
          if ($("i", this).text() == "volume_up") {
          
