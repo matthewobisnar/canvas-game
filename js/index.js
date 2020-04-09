@@ -6,7 +6,7 @@
     });
 
     // Clear listener after first call.
- sound.once('load', function(){
+ sound.on('load', function(){
    sound.play();
  });
 
