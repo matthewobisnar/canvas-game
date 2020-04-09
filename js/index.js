@@ -1,13 +1,13 @@
 (function() {
+   var sound = new Howl({
+      src: ['assets/audio/Silly.mp3'],
+      loop: true,
+    });
+
     $(document).ready(function(){
 
-        var sound = new Howl({
-            src: ['assets/audio/Silly.mp3'],
-            loop: true,
-          });
-
-          sound.play();
-
+      sound.play();
+   
           if (typeof sessionStorage.getItem("mute") == "undefined") {
                sessionStorage.setItem('mute', false);
                $("i", $("#vol_control")).text("volume_up");
