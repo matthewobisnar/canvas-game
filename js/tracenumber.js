@@ -250,7 +250,9 @@
                         }
             
                     if (!overalapping) {
-                        questionsCollected.push(circle);
+                        if(new Date().getTime() > circle.timerCircle) {
+                            questionsCollected.push(circle);
+                        }
                     }
                 }
                 
@@ -627,5 +629,4 @@
 
         }, 100);
     }
-    
     })()

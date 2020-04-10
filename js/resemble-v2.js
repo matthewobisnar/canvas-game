@@ -320,6 +320,8 @@
             timer = 60;
             currentIndex = index;
 
+            answerkeys(questions[currentIndex]);
+
             $("."+CLASSES.currenQuestionSpan).text(index);
            //$(".objective").css("transform","rotate(45deg)");
 
@@ -368,6 +370,15 @@
         }
     }
 
+    function answerkeys (content) {
+        if ("answerkey" in content) {
+            console.log(content.answerkey);
+            $("#answerkeyiframe").attr("src", content.answerkey);
+        } else {
+            $("#answerkeyiframe").attr("src", "");
+        }
+    }
+
     $(window).on("load", function() {
 
         var data = {};
@@ -396,7 +407,7 @@
 
         function fetchquestiolist($param) {
             $param.forEach(function(item, index) {
-                questions.push(JSON.parse(item.game_level_content));
+                questions.push(JSON.parse(item.game_level_content))
             });
         }
 
