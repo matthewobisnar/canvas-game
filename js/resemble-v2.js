@@ -371,11 +371,11 @@
     }
 
     function answerkeys (content) {
+        $(".anskeys").empty();
         if ("answerkey" in content) {
-            console.log(content.answerkey);
-            $("#answerkeyiframe").attr("src", content.answerkey);
-        } else {
-            $("#answerkeyiframe").attr("src", "");
+            // console.log(content.answerkey);
+            $(content.answerkey).appendTo($(".anskeys"));
+            // $("#answerkeyiframe").attr("src", content.answerkey);
         }
     }
 

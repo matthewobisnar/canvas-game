@@ -165,10 +165,10 @@
         var random = 0;
     
         if (questionsCollected.length < 1) {
-            
+
             random = getRandom(index);
     
-            for (var j = 0 ; j<random/3; j++) {
+            for (var j = 0 ; j<random/4; j++) {
 
                 var overalapping = false;
                 var radius = 50;
@@ -250,9 +250,9 @@
                         }
             
                     if (!overalapping) {
-                        if(new Date().getTime() > circle.timerCircle) {
+                        // if(new Date().getTime() > circle.timerCircle) {
                             questionsCollected.push(circle);
-                        }
+                        // }
                     }
                 }
                 
