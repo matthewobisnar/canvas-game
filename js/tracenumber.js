@@ -57,7 +57,7 @@
        $(".numbubbles_answerkey ul").empty();
        $(".target-val").empty();
 
-            $("<h5 class='my-3'>Level No. "+(index +1)+"</h5>").prependTo($(".numbubbles_answerkey ul"));
+            $("<h5 class='my-3'>Level No. "+(index)+"</h5>").prependTo($(".numbubbles_answerkey ul"));
             $("<h4> = " +content.target+ "</h4>").appendTo($(".target-val"));
             content.operation.forEach(function(expre){
                 if (content.target == eval(expre.replace(/x/g, "*"))) {
@@ -161,14 +161,14 @@
     }
     
     function question (index) {
-
+        
         var random = 0;
     
         if (questionsCollected.length < 1) {
 
             random = getRandom(index);
     
-            for (var j = 0 ; j<random/4; j++) {
+            for (var j = 0 ; j<random/3; j++) {
 
                 var overalapping = false;
                 var radius = 50;
@@ -211,7 +211,7 @@
     
         } else {
           
-            if (questionsCollected.length < questions[index].operation.length) {
+            if (questionsCollected.length < questions[index].operation.length/3) {
                 
                 var overalapping = false;
                 random = getRandom(index);
