@@ -106,7 +106,7 @@
                 if (typeof QUESTION_ANSWERED[this.currentQuestionIndex] !="undefined") {
                     question = "<div class='test-wrap p-5'><p>" + QUESTION_ANSWERED[this.currentQuestionIndex].value + "</p></div>";
                 } else {
-                    question = "<div class='test-wrap p-5'><p><span class='targets'> " +this.words.join( "</span> <span>" ) + "</span></p></div>"
+                    question = "<div class='test-wrap p-5'><p><span class='targets'>" +this.words.join( "</span> <span>" ) + "</span></p></div>"
                 }
 
                 $(".canvas").addClass("animated fadeIn").html(
