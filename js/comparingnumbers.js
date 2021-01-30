@@ -266,9 +266,11 @@
         },
 
         drawCircles: function (canvas, numQuestions, settings) {
+            
             var circles = [];
+            var counter = 0;
 
-            for (var i=0; i<numQuestions.length; i++) {
+            while (circles.length<numQuestions.length) {
 
                 var x = (canvas.width) * Math.random();
                 var y = (canvas.height) * Math.random();
@@ -276,16 +278,16 @@
                 var radius = 20;
                 var bg = settings.bg;
                 var color = settings.color;
-                var numtext = numQuestions[i];
+                var numtext = numQuestions[counter];
                 var circle = new Circles (x, y, radius, bg, color, numtext); 
                 
-                // wall collision detection...
+                //wall collision detection...
                 if (circle.x + 40 > canvas.width) {
                     circle.x = (circle.x - 40) - 100;
                 }
     
                 if (circle.x - 40 < 20) {
-                    circle.x = circle.x + 35 + 100;
+                    circle.x = circle.x + 40 + 100;
                 }
     
                 if (circle.y + 40 > canvas.height) {
@@ -300,15 +302,15 @@
 
                     var otherCircles = circles[j];
                     var d = this.distance(circle.x, circle.y, otherCircles.x, otherCircles.y);
-                    if (d < (otherCircles.radius*2 + circle.radius*2)) {
+                    if (d <= (otherCircles.radius*2 + circle.radius*2)) {
                         overlapping = true;
                         break;
                     }
 
                 }
 
-
                 if (overlapping == false) {
+                    counter++;
                     circles.push(circle);
                     overlapping = false;
                 }
