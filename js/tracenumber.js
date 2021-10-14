@@ -19,7 +19,7 @@
     var questionsLength = 0;
     var currentQuestionIndex = 0;
     var score = 0;
-    var timer = 60;
+    var timer = 90;
     var timerStatus = null;
     var questions = [];
 
@@ -573,7 +573,7 @@
 
     function startTheGame (index) {
         loadCanvasBg ();
-        timer = 60;
+        timer = 90;
         currentQuestionIndex = index;
         questionsLength = questions.length;
         $("."+CLASSES.currenQuestionSpan).text(currentQuestionIndex);
@@ -600,7 +600,7 @@
         
             timerStatus = setInterval(function () {
                 updateTimer ();
-            }, 500);
+            }, 1000);
 
         } else {
             setInterval(function(){

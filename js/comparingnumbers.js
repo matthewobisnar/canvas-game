@@ -66,7 +66,7 @@
         
         this.compareQuestions = payload_questions;
         this.currentIndexQue = 0;
-        this.timer = 60;
+        this.timer = 90;
         this.timerStatus = null;
         this.totalScores = 0;
         this.animteCirles = null;
@@ -110,7 +110,7 @@
             if (this.currentIndexQue < this.compareQuestions.stages.length ) {
                 this.numCompare1 = this.compareQuestions.stages[this.currentIndexQue].combinations[1];
                 this.numCompare2 = this.compareQuestions.stages[this.currentIndexQue].combinations[2];
-                this.timer = 60;
+                this.timer = 90;
 
                 this.updateDivs();           
                 // Draw random Circles here..
